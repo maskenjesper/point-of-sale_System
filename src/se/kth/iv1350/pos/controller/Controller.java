@@ -4,6 +4,7 @@ import se.kth.iv1350.pos.integration.Accounting;
 import se.kth.iv1350.pos.integration.CashRegister;
 import se.kth.iv1350.pos.integration.Inventory;
 import se.kth.iv1350.pos.integration.ReceiptPrinter;
+import se.kth.iv1350.pos.model.Sale;
 
 /**
  * The controller class used to interface between the view and model layers. Handles system operations called from the
@@ -14,6 +15,7 @@ public class Controller {
     private Accounting accounting;
     private ReceiptPrinter receiptPrinter;
     private CashRegister cashRegister;
+    private Sale sale;
 
     /**
      * The default constructor for Controller. Creates and stores references to all external systems.
@@ -23,5 +25,12 @@ public class Controller {
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();
         cashRegister = new CashRegister();
+    }
+
+    /**
+     * Setup for a new sale by creating a new Sale object
+     */
+    public void startSale() {
+        sale = new Sale();
     }
 }
