@@ -45,7 +45,11 @@ public class Controller {
      */
     public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
         ItemDTO item = inventory.getItemInfo(itemIdentifier);
-        sale.addItem(new ItemTableEntryDTO(item, quantity));
-        return new SaleDTO(sale);
+        if (item != null) {
+            sale.addItem(new ItemTableEntryDTO(item, quantity));
+            return new SaleDTO(sale);
+        }
+        else
+            return null;
     }
 }
