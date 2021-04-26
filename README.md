@@ -1,0 +1,1 @@
+This is the project for Seminar 3 in OOD
