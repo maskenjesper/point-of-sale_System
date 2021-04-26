@@ -1,5 +1,8 @@
 package se.kth.iv1350.pos.controller;
 
+import se.kth.iv1350.pos.DTO.ItemDTO;
+import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
+import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.Accounting;
 import se.kth.iv1350.pos.integration.CashRegister;
 import se.kth.iv1350.pos.integration.Inventory;
@@ -32,5 +35,17 @@ public class Controller {
      */
     public void startSale() {
         sale = new Sale();
+    }
+
+    /**
+     * Searches for an identifier match and if successful adds found item together with the quantity in the sales table.
+     * @param itemIdentifier Specifies the type of item to add.
+     * @param quantity The quantity of the item to be added to the sale.
+     * @return Returns a SaleDTO if successful and null otherwise.
+     */
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
+        ItemDTO item = inventory.getItemInfo(itemIdentifier);
+        sale.addItem(new ItemTableEntryDTO(item, quantity));
+        return new SaleDTO(sale);
     }
 }
