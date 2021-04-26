@@ -6,13 +6,18 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
+    private ItemDTO mockItem1;
+    private ItemDTO mockItem2;
+
+    public Inventory() {
+        this.mockItem1 = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 20);
+        this.mockItem2 = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 20);
+    }
 
     public ItemDTO getItemInfo(int itemIdentifier) {
         if (itemIdentifier == 1)
-            return new ItemDTO();
+            return mockItem1;
         else
-            return new ItemDTO();
-        // TODO:    Make some actual mockdata to chose from.
-        //          Write the ItemDTO class.
+            return mockItem2;
     }
 }
