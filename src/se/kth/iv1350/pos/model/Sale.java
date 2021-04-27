@@ -55,6 +55,16 @@ public class Sale {
         totalPrice = discountCalculator.calculateDiscount(itemTable, customerID);
     }
 
+    /**
+     * Adds payment and change.
+     * @param amountPaid
+     */
+    public void addPayment(double amountPaid) {
+        PaymentHandeler paymentHandeler = new PaymentHandeler();
+        this.amountPaid = amountPaid;
+        change = paymentHandeler.calculatePayment(this.totalPrice, amountPaid);
+    }
+
     public double getTotalPrice() {
         return totalPrice;
     }

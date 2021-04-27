@@ -70,4 +70,19 @@ public class Controller {
         sale.addDiscount(customerID);
         return new SaleDTO(sale);
     }
+
+    /**
+     * Adds payment and calculates change
+     * @param amountPaid
+     * @return
+     */
+    public SaleDTO addPayment(double amountPaid) {
+        sale.addPayment(amountPaid);
+        SaleDTO info = new SaleDTO(sale);
+        inventory.updateRegistry(info);
+        accounting.addSaleRecord(info);
+        cashRegister.addPayment(info);
+        receiptPrinter.printReceipt(info);
+        return info;
+    }
 }

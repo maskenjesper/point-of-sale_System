@@ -1,6 +1,7 @@
 package se.kth.iv1350.pos.integration;
 
 import se.kth.iv1350.pos.DTO.ItemDTO;
+import se.kth.iv1350.pos.DTO.SaleDTO;
 
 /**
  * Class used to interface between the application and an external system that handles inventory.
@@ -20,5 +21,9 @@ public class Inventory {
         else if (itemIdentifier == 2)
             return mockItem2;
         return null;
+    }
+
+    public void updateRegistry(SaleDTO info) {
+        // TODO     Implementation
     }
 }
