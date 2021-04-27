@@ -61,7 +61,7 @@ public class ItemTable {
     public String toString() {
         StringBuilder sb = new StringBuilder("");
         for (ItemTableEntryDTO entry:table)
-            sb.append(entry.getItemDTO().toString() + "\n");
+            sb.append("| " + entry.getQuantity() + "st " + entry.getItemDTO().toString() + "\n");
         return sb.toString();
     }
 }

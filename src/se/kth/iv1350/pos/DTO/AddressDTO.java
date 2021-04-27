@@ -15,4 +15,9 @@ public class AddressDTO {
         this.country = country;
         this.ZIP = ZIP;
     }
+
+    @Override
+    public String toString() {
+        return street + ", " + city + ", " + country + ", " + ZIP;
+    }
 }

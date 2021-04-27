@@ -33,7 +33,7 @@ public class ItemDTO {
 
     @Override
     public String toString() {
-        return identifier + "| " + price + " " + currency + "(VAT: " + VATRate + "%)| " + name + ": " + description;
+        return "| " + price + currency + " (VAT: " + VATRate + "%) | " + name + ": " + description + " | ID: " + identifier + " |";
     }
 
     public int getIdentifier() {

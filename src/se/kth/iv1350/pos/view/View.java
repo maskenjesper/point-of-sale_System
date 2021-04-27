@@ -17,7 +17,10 @@ public class View {
 
     public void sampleExecution() {
         controller.startSale();
-        controller.addItemToSale(1, 2);
-        controller.endRegistering();
+        controller.addItemToSale(1, 20);
+        controller.addItemToSale(1, 20);
+        controller.addItemToSale(1, 5);
+        controller.addItemToSale(2, 20);
+        System.out.println(controller.endRegistering());
     }
 }

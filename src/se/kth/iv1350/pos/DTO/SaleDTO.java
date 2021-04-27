@@ -33,7 +33,7 @@ public class SaleDTO {
 
     @Override
     public String toString() {
-        return totalPrice + ", " + totalVAT + ", " + amountPaid + ", " + change + ", " + dateAndTime + ", " +
-                storeName + ", " + storeAddress + "\n" + itemTable.toString();
+        return "Totalt pris: " + totalPrice + "\nVarav VAT: " + totalVAT + "\nBetalat: " + amountPaid + "\nVäxel: " + change + "\nDatum och tid: " + dateAndTime + "\nButik: " +
+                storeName + "\nAdress: " + storeAddress + "\n" + itemTable;
     }
 }
