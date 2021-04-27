@@ -2,6 +2,7 @@ package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.AddressDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
+import se.kth.iv1350.pos.DTO.SaleDTO;
 
 /**
  * This class is used to create an object containing all information about a specific sale.
@@ -32,6 +33,12 @@ public class Sale {
      */
     public void addItem(ItemTableEntryDTO entry) {
         itemTable.add(entry);
+    }
+
+    public SaleDTO summarize() {
+        // TODO:    Make it actually summarize by calculating the information in it's table. It just fills the
+        //          totalPrice attribute atm.
+        return new SaleDTO(this);
     }
 
     public double getTotalPrice() {

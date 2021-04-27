@@ -52,4 +52,8 @@ public class Controller {
         else
             return null;
     }
+
+    public SaleDTO endRegistering() {
+        return sale.summarize();
+    }
 }

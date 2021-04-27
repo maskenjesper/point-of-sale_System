@@ -30,4 +30,28 @@ public class ItemDTO {
         this.currency = currency;
         this.VATRate = VATRate;
     }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public double getVATRate() {
+        return VATRate;
+    }
 }
