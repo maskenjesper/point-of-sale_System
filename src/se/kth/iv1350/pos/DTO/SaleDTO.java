@@ -30,4 +30,10 @@ public class SaleDTO {
         storeAddress = sale.getStoreAddress();
         itemTable = sale.getItemTable();
     }
+
+    @Override
+    public String toString() {
+        return totalPrice + ", " + totalVAT + ", " + amountPaid + ", " + change + ", " + dateAndTime + ", " +
+                storeName + ", " + storeAddress + "\n" + itemTable.toString();
+    }
 }

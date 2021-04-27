@@ -31,6 +31,11 @@ public class ItemDTO {
         this.VATRate = VATRate;
     }
 
+    @Override
+    public String toString() {
+        return identifier + "| " + price + " " + currency + "(VAT: " + VATRate + "%)| " + name + ": " + description;
+    }
+
     public int getIdentifier() {
         return identifier;
     }

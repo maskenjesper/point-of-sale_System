@@ -48,4 +48,12 @@ public class ItemTable {
     private boolean compareEntries(ItemTableEntryDTO existingEntry, ItemTableEntryDTO newEntry) {
         return existingEntry.getItemDTO().getIdentifier() == newEntry.getItemDTO().getIdentifier();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("");
+        for (ItemTableEntryDTO entry:table)
+            sb.append(entry.getItemDTO().toString() + "\n");
+        return sb.toString();
+    }
 }
