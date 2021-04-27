@@ -16,4 +16,12 @@ public class ItemTableEntryDTO {
         itemDTO = item;
         this.quantity = quantity;
     }
+
+    public ItemDTO getItemDTO() {
+        return itemDTO;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
