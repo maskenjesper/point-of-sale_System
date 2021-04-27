@@ -35,11 +35,24 @@ public class Sale {
         itemTable.add(entry);
     }
 
+    /**
+     * Calculates the attributes based on itemtable
+     * @return SaleDTO of modified sale
+     */
     public SaleDTO summarize() {
         totalPrice = itemTable.runningTotal;
         // TODO:    Make it actually summarize by calculating the information in it's table. It just fills the
         //          totalPrice attribute atm.
         return new SaleDTO(this);
+    }
+
+    /**
+     * Calculate discount
+     * @param customerID
+     */
+    public void addDiscount(int customerID) {
+        DiscountCalculator discountCalculator = new DiscountCalculator();
+        totalPrice = discountCalculator.calculateDiscount(itemTable, customerID);
     }
 
     public double getTotalPrice() {

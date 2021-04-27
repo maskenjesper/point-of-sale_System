@@ -53,7 +53,21 @@ public class Controller {
             return null;
     }
 
+    /**
+     * Calculates the attributes based on itemtable
+     * @return SaleDTO of the modified sale
+     */
     public SaleDTO endRegistering() {
         return sale.summarize();
+    }
+
+    /**
+     * Signals discount request
+     * @param customerID Used to verify if discount is available
+     * @return SaleDTO of the modified sale.
+     */
+    public SaleDTO discountRequest(int customerID) {
+        sale.addDiscount(customerID);
+        return new SaleDTO(sale);
     }
 }

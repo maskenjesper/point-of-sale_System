@@ -22,5 +22,6 @@ public class View {
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 20:\n" + controller.addItemToSale(2, 20));
         System.out.println("ADD ITEM WITH IDENTIFIER 3 (INVALID) QUANTITY 20:\n" + controller.addItemToSale(3, 20));
         System.out.println("END REGISTERING:\n" + controller.endRegistering());
+        System.out.println("REQUEST DISCOUNT:\n" + controller.discountRequest(123));
     }
 }
