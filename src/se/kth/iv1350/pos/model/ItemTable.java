@@ -3,6 +3,7 @@ package se.kth.iv1350.pos.model;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,13 @@ import java.util.List;
 public class ItemTable {
     List<ItemTableEntryDTO> table;
     double runningTotal = 0;
+
+    /**
+     * Creates an object and initializes the <code>table</code> attribute.
+     */
+    public ItemTable() {
+        table = new ArrayList<>();
+    }
 
     /**
      * Adds a new entry to the table.
