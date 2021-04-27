@@ -17,7 +17,8 @@ public class Inventory {
     public ItemDTO getItemInfo(int itemIdentifier) {
         if (itemIdentifier == 1)
             return mockItem1;
-        else
+        else if (itemIdentifier == 2)
             return mockItem2;
+        return null;
     }
 }
