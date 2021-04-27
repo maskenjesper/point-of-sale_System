@@ -13,6 +13,10 @@ public class ItemTable {
     List<ItemTableEntryDTO> table;
     double runningTotal = 0;
 
+    public ItemTable() {
+        table = new ArrayList<>();
+    }
+
     /**
      * Creates an object and initializes the <code>table</code> attribute.
      */
