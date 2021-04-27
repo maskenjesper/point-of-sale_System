@@ -14,4 +14,10 @@ public class View {
     public View() {
         controller = new Controller();
     }
+
+    public void sampleExecution() {
+        controller.startSale();
+        controller.addItemToSale(1, 2);
+        controller.endRegistering();
+    }
 }
