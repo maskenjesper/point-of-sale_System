@@ -57,6 +57,10 @@ public class ItemTable {
         return existingEntry.getItemDTO().getIdentifier() == newEntry.getItemDTO().getIdentifier();
     }
 
+    /**
+     * Creates a string representation of <code>this</code>.
+     * @return String representation of <code>this</code>.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("");

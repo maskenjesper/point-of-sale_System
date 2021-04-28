@@ -17,10 +17,16 @@ public class ItemTableEntryDTO {
         this.quantity = quantity;
     }
 
+    /**
+     * @return itemDTO attribute.
+     */
     public ItemDTO getItemDTO() {
         return itemDTO;
     }
 
+    /**
+     * @return quantity attribute.
+     */
     public int getQuantity() {
         return quantity;
     }

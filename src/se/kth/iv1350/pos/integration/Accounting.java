@@ -7,6 +7,10 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
  */
 public class Accounting {
 
+    /**
+     * Adds a sale record in some external system.
+     * @param record The information about the sale to record.
+     */
     public void addSaleRecord(SaleDTO record) {
         // TODO     Implementation
     }

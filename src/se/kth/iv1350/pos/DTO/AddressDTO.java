@@ -9,6 +9,13 @@ public class AddressDTO {
     private String country;
     private int ZIP;
 
+    /**
+     * Constructs an <code>AddressDTO</code> by copying the parameters to corresponding attributes.
+     * @param street Street for the address.
+     * @param city City of the address.
+     * @param country Country of the address.
+     * @param ZIP ZIP of the address.
+     */
     public AddressDTO(String street, String city, String country, int ZIP) {
         this.street = street;
         this.city = city;
@@ -16,6 +23,10 @@ public class AddressDTO {
         this.ZIP = ZIP;
     }
 
+    /**
+     * Creates a string representation of <code>this</code>.
+     * @return String representation of <code>this</code>.
+     */
     @Override
     public String toString() {
         return street + ", " + city + ", " + country + ", " + ZIP;

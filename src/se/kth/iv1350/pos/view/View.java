@@ -9,12 +9,16 @@ public class View {
     private Controller controller;
 
     /**
-     * The default constructor for a View that creates a Controller instance.
+     * The default constructor for a View that creates a Controller instance and stores a reference to it.
      */
     public View() {
         controller = new Controller();
     }
 
+    /**
+     * A method that calls all the sysops in appropriate order and with variations to showcase the programs
+     * functionality.
+     */
     public void sampleExecution() {
         controller.startSale();
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:\n" + controller.addItemToSale(1, 20));

@@ -48,7 +48,7 @@ public class Sale {
 
     /**
      * Calculate discount
-     * @param customerID
+     * @param customerID Used for verification.
      */
     public void addDiscount(int customerID) {
         DiscountCalculator discountCalculator = new DiscountCalculator();
@@ -57,7 +57,7 @@ public class Sale {
 
     /**
      * Adds payment and change.
-     * @param amountPaid
+     * @param amountPaid Amount paid by customer for the sale.
      */
     public void addPayment(double amountPaid) {
         PaymentHandeler paymentHandeler = new PaymentHandeler();
@@ -65,34 +65,58 @@ public class Sale {
         change = paymentHandeler.calculatePayment(this.totalPrice, amountPaid);
     }
 
+    /**
+     * @return totalPrice attribute.
+     */
     public double getTotalPrice() {
         return totalPrice;
     }
 
+    /**
+     * @return totalVAT attribute.
+     */
     public double getTotalVAT() {
         return totalVAT;
     }
 
+    /**
+     * @return amountPaid attribute.
+     */
     public double getAmountPaid() {
         return amountPaid;
     }
 
+    /**
+     * @return change attribute.
+     */
     public double getChange() {
         return change;
     }
 
+    /**
+     * @return dateAndTime attribute.
+     */
     public String getDateAndTime() {
         return dateAndTime;
     }
 
+    /**
+     * @return storeName attribute.
+     */
     public String getStoreName() {
         return storeName;
     }
 
+    /**
+     * @return storeAddress attribute.
+     */
     public AddressDTO getStoreAddress() {
         return storeAddress;
     }
 
+    /**
+     * @return itemTable attribute.
+     */
     public ItemTable getItemTable() {
         return itemTable;
     }

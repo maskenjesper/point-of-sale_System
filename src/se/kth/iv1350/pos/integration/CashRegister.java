@@ -7,6 +7,10 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
  */
 public class CashRegister {
 
+    /**
+     * Communicates with an external system that handles a cash register that the balance should be updated.
+     * @param info The information about the sale whose payment shall be added.
+     */
     public void addPayment(SaleDTO info) {
         // TODO     Implementation
     }

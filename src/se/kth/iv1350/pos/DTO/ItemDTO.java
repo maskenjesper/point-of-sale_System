@@ -14,13 +14,13 @@ public class ItemDTO {
     private double VATRate;
 
     /**
-     * Constructs an ItemDTO by filling it's attributes.
-     * @param identifier
-     * @param price
-     * @param description
-     * @param name
-     * @param currency
-     * @param VATRate
+     * Constructs an ItemDTO by filling it's attributes with the corresponding parameters.
+     * @param identifier ID of the item.
+     * @param price Price of the item in <code>currency</code>.
+     * @param description Description of the item.
+     * @param name Name of the item.
+     * @param currency Currency of the price.
+     * @param VATRate VAT-rate for the item in %.
      */
     public ItemDTO(int identifier, double price, String description, String name, String currency, double VATRate) {
         this.identifier = identifier;
@@ -31,31 +31,53 @@ public class ItemDTO {
         this.VATRate = VATRate;
     }
 
+    /**
+     * Creates a string representation of <code>this</code>.
+     * @return String representation of <code>this</code>.
+     */
     @Override
     public String toString() {
         return "| " + price + currency + " (VAT: " + VATRate + "%) | " + name + ": " + description + " | ID: " + identifier + " |";
     }
 
+    /**
+     * @return identifier attribute.
+     */
     public int getIdentifier() {
         return identifier;
     }
 
+    /**
+     * @return price attribute.
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * @return description attribute.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @return name attribute.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return currency attribute.
+     */
     public String getCurrency() {
         return currency;
     }
 
+    /**
+     * @return VARRate attribute.
+     */
     public double getVATRate() {
         return VATRate;
     }
