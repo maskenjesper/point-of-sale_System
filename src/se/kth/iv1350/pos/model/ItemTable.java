@@ -11,28 +11,31 @@ import java.util.List;
  */
 public class ItemTable {
     List<ItemTableEntryDTO> table;
-    double runningTotal = 0;
+    double runningTotal;
 
     /**
      * Creates an object and initializes the <code>table</code> attribute.
      */
     public ItemTable() {
         table = new ArrayList<>();
+        runningTotal = 0;
     }
 
     /**
      * Adds a new entry to the table.
-     * @param entry The entry to add.
+     * @param newEntry The entry to add.
      */
-    void add(ItemTableEntryDTO entry) {
-        if (tableContainsItemType(entry))
-            increaseQuantity(indexOfItemType(entry), entry.getQuantity());
+    void add(ItemTableEntryDTO newEntry) {
+        if (tableContainsItemDTOOfEntry(newEntry))  // Skulle jag kunna göra så att tableContainsItemDTOOfEntry får
+                                                    // returnera vilket index den hittar match på och returnera -1 om
+                                                    // inget hittas?
+            increaseQuantityOfEntryAt(indexOfItemDTO(newEntry), newEntry.getQuantity());
         else
-            table.add(entry);
-        runningTotal += entry.getQuantity() * entry.getItemDTO().getPrice();
+            table.add(newEntry);
+        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice();
     }
 
-    private boolean tableContainsItemType(ItemTableEntryDTO entry) {
+    private boolean tableContainsItemDTOOfEntry(ItemTableEntryDTO entry) {
         for (ItemTableEntryDTO existingEntry : table)
             if (compareEntries(existingEntry, entry)) {
                 return true;
@@ -40,14 +43,14 @@ public class ItemTable {
         return false;
     }
 
-    private int indexOfItemType(ItemTableEntryDTO entry) {
+    private int indexOfItemDTO(ItemTableEntryDTO entry) {
         for (int i = 0; i < table.size(); i++)
             if (compareEntries(table.get(i), entry))
                 return i;
         return -1;
     }
 
-    private void increaseQuantity(int index, int quantity) {
+    private void increaseQuantityOfEntryAt(int index, int quantity) {
         int newQuantity = table.get(index).getQuantity() + quantity;
         ItemDTO itemType = table.get(index).getItemDTO();
         table.set(index, new ItemTableEntryDTO(itemType, newQuantity));
