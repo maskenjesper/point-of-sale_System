@@ -39,6 +39,6 @@ public class Inventory {
      * @param info Sale information that specify how the registry should be updated.
      */
     public void updateRegistry(SaleDTO info) { // Är tanken med dessa att dem bara ska vara tomma? Att dem bara finns för att man ska ha något att anrop?
-        // TODO     Implementation              // Samma med metoderna i dem andra klasserna i integration?
+        //      Implementation                  // Samma med metoderna i dem andra klasserna i integration?
     }                                           // Är det dåligt att jag bara skickar SaleDTO till dessa system?
 }

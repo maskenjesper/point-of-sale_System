@@ -12,6 +12,6 @@ public class CashRegister {
      * @param info The information about the sale whose payment shall be added.
      */
     public void addPayment(SaleDTO info) {
-        // TODO     Implementation
+        //      Implementation
     }
 }

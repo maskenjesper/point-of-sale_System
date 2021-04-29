@@ -12,6 +12,6 @@ public class ReceiptPrinter {
      * @param content The content of receipt.
      */
     public void printReceipt(SaleDTO content) {
-        // TODO     Implementation
+        //      Implementation
     }
 }

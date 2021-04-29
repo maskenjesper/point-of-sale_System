@@ -12,6 +12,6 @@ public class Accounting {
      * @param record The information about the sale to record.
      */
     public void addSaleRecord(SaleDTO record) {
-        // TODO     Implementation
+        //      Implementation
     }
 }
