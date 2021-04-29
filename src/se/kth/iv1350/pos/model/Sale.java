@@ -40,10 +40,8 @@ public class Sale {
      * Calculates the attributes based on itemtable
      * @return SaleDTO of modified sale
      */
-    public SaleDTO summarize() {
-        totalPrice = itemTable.runningTotal;
-        // TODO:    Make it actually summarize by calculating the information in it's table. It just fills the
-        //          totalPrice attribute atm. It should calculate VAT.
+    public SaleDTO summarize() { // Är det tanken att VAT ska kalkyleras här eller ska det göras på varje item när dem läggs.
+        totalPrice = itemTable.getRunningTotal();
         return new SaleDTO(this);
     }
 
@@ -53,7 +51,7 @@ public class Sale {
      */
     public void addDiscount(int customerID) {
         DiscountCalculator discountCalculator = new DiscountCalculator();
-        totalPrice = discountCalculator.calculateDiscount(itemTable, customerID);
+        discountCalculator.calculateDiscount(this, customerID);
     }
 
     /**
@@ -63,7 +61,7 @@ public class Sale {
     public void addPayment(double amountPaid) {
         PaymentHandeler paymentHandeler = new PaymentHandeler();
         this.amountPaid = amountPaid;
-        change = paymentHandeler.calculatePayment(this.totalPrice, amountPaid);
+        paymentHandeler.calculatePayment(this, amountPaid);
     }
 
     /**
@@ -128,5 +126,29 @@ public class Sale {
      */
     public ItemTable getItemTable() {
         return itemTable;
+    }
+
+    /**
+     * Setter for totalPrice.
+     * @param newTotalPrice New total price.
+     */
+    public void setTotalPrice(double newTotalPrice) {
+        totalPrice = newTotalPrice;
+    }
+
+    /**
+     * Sets new amountPaid
+     * @param newAmountPaid
+     */
+    public void setAmountPaid(double newAmountPaid) {
+        amountPaid = newAmountPaid;
+    }
+
+    /**
+     * Sets new change
+     * @param newChange
+     */
+    public void setChange(double newChange) {
+        change = newChange;
     }
 }

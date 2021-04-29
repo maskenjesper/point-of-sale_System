@@ -41,4 +41,36 @@ public class SaleDTO {
                 change + "\nDatum och tid: " + dateAndTime + "\nButik: " + storeName + "\nAdress: " + storeAddress +
                 "\n" + itemTable;
     }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public double getTotalVAT() {
+        return totalVAT;
+    }
+
+    public double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public double getChange() {
+        return change;
+    }
+
+    public String getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public AddressDTO getStoreAddress() {
+        return storeAddress;
+    }
+
+    public ItemTable getItemTable() {
+        return itemTable;
+    }
 }

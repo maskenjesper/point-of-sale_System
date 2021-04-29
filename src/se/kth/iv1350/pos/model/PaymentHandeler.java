@@ -11,7 +11,8 @@ public class PaymentHandeler {
      * @param amountPaid The amount paid by the customer.
      * @return Change of the sale.
      */
-    public double calculatePayment(double totalPrice, double amountPaid) {
-        return amountPaid - totalPrice;
+    public void calculatePayment(Sale sale, double amountPaid) {
+        sale.setAmountPaid(amountPaid);
+        sale.setChange(amountPaid - sale.getTotalPrice());
     }
 }

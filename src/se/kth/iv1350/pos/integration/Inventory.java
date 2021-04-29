@@ -7,6 +7,9 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
+    // Är tanken att man ska göra på detta vis eftersom vi inte ska implementera något i data lagret?
+    // Och instantiera dessa attribut i konstruktorn. Tänker att jag bara behöver två olika items för att kunna
+    // visa allt programmet kan göra men jag kanske borde göra en array åtminstone (eller List)?
     private ItemDTO mockItem1;
     private ItemDTO mockItem2;
 
@@ -15,7 +18,7 @@ public class Inventory {
      */
     public Inventory() {
         this.mockItem1 = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 20);
-        this.mockItem2 = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 20);
+        this.mockItem2 = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 30);
     }
 
     /**
@@ -35,7 +38,7 @@ public class Inventory {
      * Updates an external registry system.
      * @param info Sale information that specify how the registry should be updated.
      */
-    public void updateRegistry(SaleDTO info) {
-        // TODO     Implementation
-    }
+    public void updateRegistry(SaleDTO info) { // Är tanken med dessa att dem bara ska vara tomma? Att dem bara finns för att man ska ha något att anrop?
+        // TODO     Implementation              // Samma med metoderna i dem andra klasserna i integration?
+    }                                           // Är det dåligt att jag bara skickar SaleDTO till dessa system?
 }

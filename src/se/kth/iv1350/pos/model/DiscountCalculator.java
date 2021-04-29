@@ -11,9 +11,8 @@ public class DiscountCalculator {
      * @param customerID The customers ID.
      * @return New totalPrice for the sale whose itemTable is given as parameter.
      */
-    public double calculateDiscount(ItemTable itemTable, int customerID) {
-        double newTotalPrice = -1;
-        return newTotalPrice;
-        // TODO:    Make some actual calculations.
+    public void calculateDiscount(Sale sale, int customerID) {
+        if (customerID == 123)
+            sale.setTotalPrice(sale.getTotalPrice() * 0.5); // Har just nu detta som placeholder. Borde jag göra någon bättre implementation?
     }
 }
