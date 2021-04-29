@@ -14,5 +14,5 @@ public class DiscountCalculator {
     public void calculateDiscount(Sale sale, int customerID) {
         if (customerID == 123)
             sale.setTotalPrice(sale.getTotalPrice() * 0.5); // Har just nu detta som placeholder. Borde jag göra någon bättre implementation?
-    }
+    }                                                       // Ska VAT också förändras?
 }

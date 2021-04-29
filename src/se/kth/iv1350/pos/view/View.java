@@ -27,52 +27,50 @@ public class View {
         controller.startSale();
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:");
-        saleDTO = controller.addItemToSale(1, 20);
-        if (saleDTO != null)
-            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
-                    "\n" + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + "\n");
-        else
-            System.out.println("Invalid identifier");
+        printAfterAddItemToSale(controller.addItemToSale(1, 20));
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 AGAIN QUANTITY 5:");
-        saleDTO = controller.addItemToSale(1, 5);
-        if (saleDTO != null)
-            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
-                    "\n" + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + "\n");
-        else
-            System.out.println("Invalid identifier");
+        printAfterAddItemToSale(controller.addItemToSale(1, 5));
 
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 20:");
-        saleDTO = controller.addItemToSale(2, 20);
-        if (saleDTO != null)
-            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
-                    "\n" + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + "\n");
-        else
-            System.out.println("Invalid identifier");
+        printAfterAddItemToSale(controller.addItemToSale(2, 20));
 
         System.out.println("ADD ITEM WITH IDENTIFIER 3 (INVALID) QUANTITY 20:");
-        saleDTO = controller.addItemToSale(3, 20);
-        if (saleDTO != null)
-            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
-                    "\n" + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + "\n");
-        else
-            System.out.println("Invalid identifier");
-/*
+        printAfterAddItemToSale(controller.addItemToSale(3, 20));
+
         System.out.println("END REGISTERING:");
-        controller.endRegistering();
+        printAfterEndRegistering(controller.endRegistering());
 
         System.out.println("REQUEST DISCOUNT (INVALID CUSTOMERID):");
-        controller.discountRequest(124);
+        printAfterDiscountRequest(controller.discountRequest(124));
 
         System.out.println("REQUEST DISCOUNT:");
-        controller.discountRequest(123);
+        printAfterDiscountRequest(controller.discountRequest(123));
 
         System.out.println("ADD PAYMENT:");
-        controller.addPayment(2000);*/
+        printReceipt(controller.addPayment(2000));
 
+    }
+
+    private void printAfterAddItemToSale(SaleDTO saleDTO) {
+        if (saleDTO != null)
+            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
+                    ": " + saleDTO.getItemTable().getLastItemInTable().getDescription() +
+                    "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() +
+                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + " SEK\n");
+        else
+            System.out.println("Invalid identifier\n");
+    }
+
+    private void printAfterEndRegistering(SaleDTO saleDTO) {
+        System.out.println("Sale ended\nTotal price: " + saleDTO.getTotalPrice() + " SEK\n");
+    }
+
+    private void printAfterDiscountRequest(SaleDTO saleDTO) {
+        System.out.println("Price after discount: " + saleDTO.getTotalPrice() + " SEK\n");
+    }
+
+    private void printReceipt(SaleDTO saleDTO) {
+        System.out.println("Receipt:\n" + saleDTO);
     }
 }

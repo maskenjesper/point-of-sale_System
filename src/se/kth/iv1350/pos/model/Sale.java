@@ -42,7 +42,18 @@ public class Sale {
      */
     public SaleDTO summarize() { // Är det tanken att VAT ska kalkyleras här eller ska det göras på varje item när dem läggs.
         totalPrice = itemTable.getRunningTotal();
+        totalVAT = (calculateVAT(itemTable) / 100) * totalPrice;
         return new SaleDTO(this);
+    }
+
+    private double calculateVAT(ItemTable itemTable) {
+        double totalVAT = 0;
+        int numberOfItems = 0;
+        for (ItemTableEntryDTO entry:itemTable.getTable()) {
+            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
+            numberOfItems += entry.getQuantity();
+        }
+        return totalVAT / numberOfItems;
     }
 
     /**
