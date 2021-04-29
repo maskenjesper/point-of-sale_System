@@ -20,6 +20,7 @@ public class View {
      * functionality.
      */
     public void sampleExecution() {
+        System.out.println("START SALE:");
         controller.startSale();
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:\n" + controller.addItemToSale(1, 20));
         System.out.println("ADD ITEM WITH IDENTIFIER 1 AGAIN QUANTITY 5:\n" + controller.addItemToSale(1, 5));

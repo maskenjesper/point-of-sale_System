@@ -44,11 +44,11 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) { // Gör denna metod bara en sak?
         ItemDTO item = inventory.getItemInfo(itemIdentifier);
         if (item != null) {
             sale.addItem(new ItemTableEntryDTO(item, quantity));
-            return new SaleDTO(sale);
+            return sale.getSaleDTO(); // Eller borde jag skriva new SaleDTO(sale)?
         }
         else
             return null;
@@ -69,7 +69,7 @@ public class Controller {
      */
     public SaleDTO discountRequest(int customerID) {
         sale.addDiscount(customerID);
-        return new SaleDTO(sale);
+        return sale.getSaleDTO();
     }
 
     /**
@@ -79,7 +79,12 @@ public class Controller {
      */
     public SaleDTO addPayment(double amountPaid) {
         sale.addPayment(amountPaid);
-        SaleDTO info = new SaleDTO(sale);
+        return updateExternalSystems();
+    }
+
+    // Man ska inte ha javadocs på privata metoder?
+    private SaleDTO updateExternalSystems() { // Är detta en lämplig utbrytning?
+        SaleDTO info = sale.getSaleDTO();
         inventory.updateRegistry(info);
         accounting.addSaleRecord(info);
         cashRegister.addPayment(info);

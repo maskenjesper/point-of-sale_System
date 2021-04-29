@@ -1,6 +1,7 @@
 package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.AddressDTO;
+import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 
@@ -20,7 +21,7 @@ public class Sale {
     /**
      * Constructor for a Sale that initializes by creating an empty ItemTable.
      */
-    public Sale() {
+    public Sale() { // Är detta lämpligt sätt att initiera sale på?
         itemTable = new ItemTable();
         dateAndTime = "23:17";
         storeName = "Jakobs liv's";
@@ -42,7 +43,7 @@ public class Sale {
     public SaleDTO summarize() {
         totalPrice = itemTable.runningTotal;
         // TODO:    Make it actually summarize by calculating the information in it's table. It just fills the
-        //          totalPrice attribute atm.
+        //          totalPrice attribute atm. It should calculate VAT.
         return new SaleDTO(this);
     }
 
@@ -63,6 +64,14 @@ public class Sale {
         PaymentHandeler paymentHandeler = new PaymentHandeler();
         this.amountPaid = amountPaid;
         change = paymentHandeler.calculatePayment(this.totalPrice, amountPaid);
+    }
+
+    /**
+     * Calls the constructor of SaleDTO that constructs a SaleDTO object from a Sale object. Sends <code>this</code>.
+     * @return SaleDTO of <code>this</code>.
+     */
+    public SaleDTO getSaleDTO() {
+        return new SaleDTO(this);
     }
 
     /**
