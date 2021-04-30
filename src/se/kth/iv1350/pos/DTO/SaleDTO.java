@@ -34,7 +34,7 @@ public class SaleDTO {
         return "Totalt pris: " + paymentInformation.getTotalPrice() + "\nVarav VAT: " +
                 paymentInformation.getTotalVAT() + "\nBetalat: " + paymentInformation.getAmountPaid() + "\nVäxel: " +
                 paymentInformation.getChange() + "\nDatum och tid: " + dateAndTime + "\nButik: " +
-                storeInformation.getStoreName() + "\nAdress: " + storeInformation.getStoreName() + "\n" + itemTable;
+                storeInformation.getStoreName() + "\nAdress: " + storeInformation.getStoreAddress() + "\n" + itemTable;
     }
 
     public PaymentInformation getPaymentInformation() {

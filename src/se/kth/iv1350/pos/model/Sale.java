@@ -34,12 +34,9 @@ public class Sale {
 
     /**
      * Calculates the attributes based on itemtable
-     * @return SaleDTO of modified sale
      */
-    public SaleDTO summarize() {
-        paymentInformation.setTotalPrice(itemTable.getRunningTotal());
-        paymentInformation.setTotalVAT(calculateVAT(itemTable) * paymentInformation.getTotalPrice());
-        return new SaleDTO(this);
+    public void endRegistering() {
+        paymentInformation.calculatePrice(itemTable);
     }
 
     /**
@@ -47,8 +44,7 @@ public class Sale {
      * @param customerID Used for verification.
      */
     public void addDiscount(int customerID) {
-        DiscountCalculator discountCalculator = new DiscountCalculator();
-        discountCalculator.calculateDiscount(paymentInformation, customerID);
+        paymentInformation.calculateDiscount(customerID);
     }
 
     /**
@@ -56,8 +52,7 @@ public class Sale {
      * @param amountPaid Amount paid by customer for the sale.
      */
     public void addPayment(double amountPaid) {
-        PaymentHandeler paymentHandeler = new PaymentHandeler();
-        paymentHandeler.calculatePayment(paymentInformation, amountPaid);
+        paymentInformation.calculatePayment(amountPaid);
     }
 
     /**
@@ -94,15 +89,5 @@ public class Sale {
      */
     public ItemTable getItemTable() {
         return itemTable;
-    }
-
-    private double calculateVAT(ItemTable itemTable) {
-        double totalVAT = 0;
-        int numberOfItems = 0;
-        for (ItemTableEntryDTO entry:itemTable.getTable()) {
-            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
-            numberOfItems += entry.getQuantity();
-        }
-        return VAT.convertPercentToCoefficient(totalVAT / numberOfItems);
     }
 }

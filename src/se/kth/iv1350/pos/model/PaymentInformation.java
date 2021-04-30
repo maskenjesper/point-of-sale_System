@@ -1,5 +1,8 @@
 package se.kth.iv1350.pos.model;
 
+import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
+import se.kth.iv1350.pos.utility.VAT;
+
 public class PaymentInformation {
     private double totalPrice;
     private double totalVAT;
@@ -13,20 +16,19 @@ public class PaymentInformation {
         change = 0;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void calculatePrice(ItemTable itemTable) {
+        totalPrice = itemTable.getRunningTotal();
+        totalVAT = calculateVAT(itemTable) * totalPrice;
     }
 
-    public void setTotalVAT(double totalVAT) {
-        this.totalVAT = totalVAT;
+    public void calculateDiscount(int customerID) {
+        if (customerID == 123)
+            totalPrice = totalPrice * 0.5;
     }
 
-    public void setAmountPaid(double amountPaid) {
+    public void calculatePayment(double amountPaid) {
         this.amountPaid = amountPaid;
-    }
-
-    public void setChange(double change) {
-        this.change = change;
+        change = amountPaid - totalPrice;
     }
 
     public double getTotalPrice() {
@@ -43,5 +45,15 @@ public class PaymentInformation {
 
     public double getChange() {
         return change;
+    }
+
+    private double calculateVAT(ItemTable itemTable) {
+        double totalVAT = 0;
+        int numberOfItems = 0;
+        for (ItemTableEntryDTO entry:itemTable.getTable()) {
+            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
+            numberOfItems += entry.getQuantity();
+        }
+        return VAT.convertPercentToCoefficient(totalVAT / numberOfItems);
     }
 }

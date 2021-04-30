@@ -11,14 +11,6 @@ public class StoreInformation {
         storeAddress = new AddressDTO("Gatuvägen", "Bostadsstaden", "Sverige", 12345);
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
-    public void setStoreAddress(AddressDTO storeAddress) {
-        this.storeAddress = storeAddress;
-    }
-
     public String getStoreName() {
         return storeName;
     }
