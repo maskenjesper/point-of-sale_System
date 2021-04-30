@@ -26,17 +26,12 @@ public class ItemTable {
      * @param newEntry The entry to add.
      */
     void add(ItemTableEntryDTO newEntry) {
-        int index = indexOfItemDTO(newEntry);
+        int index = searchForIdentifierMatch(newEntry);
         if (index != -1)
             increaseQuantityOfEntryAt(index, newEntry.getQuantity());
         else
             table.add(newEntry);
-        addEntryToRunningTotal(newEntry);
-    }
-
-    private void addEntryToRunningTotal(ItemTableEntryDTO newEntry) {
-        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() *
-                ((newEntry.getItemDTO().getVATRate() /100) + 1);
+        addEntryPriceToRunningTotal(newEntry);
     }
 
     /**
@@ -44,7 +39,7 @@ public class ItemTable {
      * @return String representation of <code>this</code>.
      */
     @Override
-    public String toString() {
+    public String toString() { // TODO: Kanske flyttar detta till View
         StringBuilder sb = new StringBuilder("");
         for (ItemTableEntryDTO entry:table)
             sb.append("| " + entry.getQuantity() + "st " + entry.getItemDTO().toString() + "\n");
@@ -63,7 +58,7 @@ public class ItemTable {
         return runningTotal;
     }
 
-    private int indexOfItemDTO(ItemTableEntryDTO entry) {
+    private int searchForIdentifierMatch(ItemTableEntryDTO entry) {
         for (int i = 0; i < table.size(); i++)
             if (compareEntries(table.get(i), entry))
                 return i;
@@ -78,5 +73,10 @@ public class ItemTable {
 
     private boolean compareEntries(ItemTableEntryDTO existingEntry, ItemTableEntryDTO newEntry) {
         return existingEntry.getItemDTO().getIdentifier() == newEntry.getItemDTO().getIdentifier();
+    }
+
+    private void addEntryPriceToRunningTotal(ItemTableEntryDTO newEntry) {
+        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() *
+                ((newEntry.getItemDTO().getVATRate() /100) + 1);
     }
 }

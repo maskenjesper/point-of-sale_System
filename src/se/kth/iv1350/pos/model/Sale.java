@@ -3,7 +3,6 @@ package se.kth.iv1350.pos.model;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.utility.Time;
-import se.kth.iv1350.pos.utility.VAT;
 
 /**
  * This class is used to create an object containing all information about a specific sale.

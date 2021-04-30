@@ -36,7 +36,7 @@ public class ItemDTO {
      * @return String representation of <code>this</code>.
      */
     @Override
-    public String toString() {
+    public String toString() { // TODO: Kanske flyttar detta till View
         return "| " + price + currency + " (VAT: " + VATRate + "%) | " + name + ": " + description + " | ID: " + identifier + " |";
     }
 

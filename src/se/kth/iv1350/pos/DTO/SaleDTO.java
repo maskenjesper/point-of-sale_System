@@ -30,7 +30,7 @@ public class SaleDTO {
      * @return String representation of <code>this</code>.
      */
     @Override
-    public String toString() {
+    public String toString() { // TODO: Kanske flyttar detta till View
         return "Totalt pris: " + paymentInformation.getTotalPrice() + "\nVarav VAT: " +
                 paymentInformation.getTotalVAT() + "\nBetalat: " + paymentInformation.getAmountPaid() + "\nVäxel: " +
                 paymentInformation.getChange() + "\nDatum och tid: " + dateAndTime + "\nButik: " +

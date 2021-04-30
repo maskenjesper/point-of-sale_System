@@ -28,7 +28,7 @@ public class AddressDTO {
      * @return String representation of <code>this</code>.
      */
     @Override
-    public String toString() {
+    public String toString() { // TODO: Kanske flyttar detta till View
         return street + ", " + city + ", " + country + ", " + ZIP;
     }
 
