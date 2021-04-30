@@ -9,8 +9,6 @@ import se.kth.iv1350.pos.integration.Inventory;
 import se.kth.iv1350.pos.integration.ReceiptPrinter;
 import se.kth.iv1350.pos.model.Sale;
 
-// Alla system operationer returnerar en SaleDTO i princip. Jag kanske har varit lite lat med designen då jag vet att SaleDTO innehåller all info som viewn behöver.
-// Men jag kanske borde skicka bara det som krävs enligt kravspecen.
 /**
  * The controller class used to interface between the view and model layers. Handles system operations called from the
  * view.
@@ -25,7 +23,7 @@ public class Controller {
     /**
      * The default constructor for Controller. Creates and stores references to all external systems.
      */
-    public Controller() { // Borde detta göras på något annat sätt eller är detta okej? Man kanske kan ha något registryCreator som skapar dessa?
+    public Controller() {
         inventory = new Inventory();
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();
@@ -46,14 +44,9 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) { // Gör denna metod bara en sak? Kan inte komma på något att bryta ut.
-        ItemDTO item = inventory.getItemInfo(itemIdentifier);
-        if (item != null) {
-            sale.addItem(new ItemTableEntryDTO(item, quantity));
-            return sale.getSaleDTO(); // Eller borde jag skriva new SaleDTO(sale)? Har skapat en getSaleDTO i Sale klassen.
-        }
-        else
-            return null;
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
+        ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
+        return addFoundItemToSale(foundItem, quantity);
     }
 
     /**
@@ -81,16 +74,24 @@ public class Controller {
      */
     public SaleDTO addPayment(double amountPaid) {
         sale.addPayment(amountPaid);
-        return updateExternalSystems();
+        SaleDTO saleDTO = sale.getSaleDTO();
+        updateExternalSystems(saleDTO);
+        return saleDTO;
     }
 
-    // Man ska inte ha javadocs på privata metoder?
-    private SaleDTO updateExternalSystems() { // Är detta en lämplig utbrytning?
-        SaleDTO info = sale.getSaleDTO();
+    private SaleDTO addFoundItemToSale(ItemDTO item, int quantity) {
+        if (item != null) {
+            sale.addItem(new ItemTableEntryDTO(item, quantity));
+            return sale.getSaleDTO();
+        }
+        else
+            return null;
+    }
+
+    private void updateExternalSystems(SaleDTO info) {
         inventory.updateRegistry(info);
         accounting.addSaleRecord(info);
         cashRegister.addPayment(info);
         receiptPrinter.printReceipt(info);
-        return info;
     }
 }

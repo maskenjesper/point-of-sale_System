@@ -31,4 +31,20 @@ public class AddressDTO {
     public String toString() {
         return street + ", " + city + ", " + country + ", " + ZIP;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public int getZIP() {
+        return ZIP;
+    }
 }

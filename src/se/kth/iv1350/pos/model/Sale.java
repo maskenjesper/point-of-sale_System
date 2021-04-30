@@ -1,31 +1,27 @@
 package se.kth.iv1350.pos.model;
 
-import se.kth.iv1350.pos.DTO.AddressDTO;
-import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
+import se.kth.iv1350.pos.utility.Time;
+import se.kth.iv1350.pos.utility.VAT;
 
 /**
  * This class is used to create an object containing all information about a specific sale.
  */
 public class Sale {
-    private double totalPrice;
-    private double totalVAT;
-    private double amountPaid;
-    private double change;
-    private String dateAndTime;
-    private String storeName;
-    private AddressDTO storeAddress;
+    private PaymentInformation paymentInformation;
+    private String dateAndTime; // Gör custom objekt istället?
+    private StoreInformation storeInformation;
     private ItemTable itemTable;
 
     /**
      * Constructor for a Sale that initializes by creating an empty ItemTable.
      */
-    public Sale() { // Är detta lämpligt sätt att initiera sale på?
+    public Sale() {
         itemTable = new ItemTable();
-        dateAndTime = "23:17";
-        storeName = "Jakobs liv's";
-        storeAddress = new AddressDTO("Gatuvägen", "Bostadsstaden", "Sverige", 12345);
+        dateAndTime = Time.getCurrentSystemTime(); // Använder ett utility paket här. Passade inte riktigt som privat metod för denna klass.
+        paymentInformation = new PaymentInformation();
+        storeInformation = new StoreInformation();
     }
 
     /**
@@ -40,20 +36,10 @@ public class Sale {
      * Calculates the attributes based on itemtable
      * @return SaleDTO of modified sale
      */
-    public SaleDTO summarize() { // Är det tanken att VAT ska kalkyleras här eller ska det göras på varje item när dem läggs.
-        totalPrice = itemTable.getRunningTotal();
-        totalVAT = (calculateVAT(itemTable) / 100) * totalPrice;
+    public SaleDTO summarize() {
+        paymentInformation.setTotalPrice(itemTable.getRunningTotal());
+        paymentInformation.setTotalVAT(calculateVAT(itemTable) * paymentInformation.getTotalPrice());
         return new SaleDTO(this);
-    }
-
-    private double calculateVAT(ItemTable itemTable) {
-        double totalVAT = 0;
-        int numberOfItems = 0;
-        for (ItemTableEntryDTO entry:itemTable.getTable()) {
-            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
-            numberOfItems += entry.getQuantity();
-        }
-        return totalVAT / numberOfItems;
     }
 
     /**
@@ -62,7 +48,7 @@ public class Sale {
      */
     public void addDiscount(int customerID) {
         DiscountCalculator discountCalculator = new DiscountCalculator();
-        discountCalculator.calculateDiscount(this, customerID);
+        discountCalculator.calculateDiscount(paymentInformation, customerID);
     }
 
     /**
@@ -71,8 +57,7 @@ public class Sale {
      */
     public void addPayment(double amountPaid) {
         PaymentHandeler paymentHandeler = new PaymentHandeler();
-        this.amountPaid = amountPaid;
-        paymentHandeler.calculatePayment(this, amountPaid);
+        paymentHandeler.calculatePayment(paymentInformation, amountPaid);
     }
 
     /**
@@ -86,29 +71,8 @@ public class Sale {
     /**
      * @return totalPrice attribute.
      */
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    /**
-     * @return totalVAT attribute.
-     */
-    public double getTotalVAT() {
-        return totalVAT;
-    }
-
-    /**
-     * @return amountPaid attribute.
-     */
-    public double getAmountPaid() {
-        return amountPaid;
-    }
-
-    /**
-     * @return change attribute.
-     */
-    public double getChange() {
-        return change;
+    public PaymentInformation getPaymentInformation() {
+        return paymentInformation;
     }
 
     /**
@@ -119,17 +83,10 @@ public class Sale {
     }
 
     /**
-     * @return storeName attribute.
-     */
-    public String getStoreName() {
-        return storeName;
-    }
-
-    /**
      * @return storeAddress attribute.
      */
-    public AddressDTO getStoreAddress() {
-        return storeAddress;
+    public StoreInformation getStoreInformation() {
+        return storeInformation;
     }
 
     /**
@@ -139,27 +96,13 @@ public class Sale {
         return itemTable;
     }
 
-    /**
-     * Setter for totalPrice.
-     * @param newTotalPrice New total price.
-     */
-    public void setTotalPrice(double newTotalPrice) {
-        totalPrice = newTotalPrice;
-    }
-
-    /**
-     * Sets new amountPaid
-     * @param newAmountPaid
-     */
-    public void setAmountPaid(double newAmountPaid) {
-        amountPaid = newAmountPaid;
-    }
-
-    /**
-     * Sets new change
-     * @param newChange
-     */
-    public void setChange(double newChange) {
-        change = newChange;
+    private double calculateVAT(ItemTable itemTable) {
+        double totalVAT = 0;
+        int numberOfItems = 0;
+        for (ItemTableEntryDTO entry:itemTable.getTable()) {
+            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
+            numberOfItems += entry.getQuantity();
+        }
+        return VAT.convertPercentToCoefficient(totalVAT / numberOfItems);
     }
 }

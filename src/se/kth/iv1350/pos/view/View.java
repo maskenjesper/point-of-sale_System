@@ -20,9 +20,7 @@ public class View {
      * A method that calls all the sysops in appropriate order and with variations to showcase the programs
      * functionality.
      */
-    public void sampleExecution() { // Har jag tänkt rätt här? Ska man bara hårdkoda på detta vis eller måste man ta input o grejer?
-        SaleDTO saleDTO;
-
+    public void sampleExecution() {
         System.out.println("START SALE:\n");
         controller.startSale();
 
@@ -48,7 +46,7 @@ public class View {
         printAfterDiscountRequest(controller.discountRequest(123));
 
         System.out.println("ADD PAYMENT:");
-        printReceipt(controller.addPayment(2000));
+        printAfterAddPayment(controller.addPayment(2000));
 
     }
 
@@ -63,11 +61,16 @@ public class View {
     }
 
     private void printAfterEndRegistering(SaleDTO saleDTO) {
-        System.out.println("Sale ended\nTotal price: " + saleDTO.getTotalPrice() + " SEK\n");
+        System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
     }
 
     private void printAfterDiscountRequest(SaleDTO saleDTO) {
-        System.out.println("Price after discount: " + saleDTO.getTotalPrice() + " SEK\n");
+        System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
+    }
+
+    private void printAfterAddPayment(SaleDTO saleDTO) {
+        System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange());
+        printReceipt(saleDTO);
     }
 
     private void printReceipt(SaleDTO saleDTO) {

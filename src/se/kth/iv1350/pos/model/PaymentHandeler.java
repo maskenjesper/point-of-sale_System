@@ -11,8 +11,8 @@ public class PaymentHandeler {
      * @param amountPaid The amount paid by the customer.
      * @return Change of the sale.
      */
-    public void calculatePayment(Sale sale, double amountPaid) {
-        sale.setAmountPaid(amountPaid);
-        sale.setChange(amountPaid - sale.getTotalPrice());
+    public void calculatePayment(PaymentInformation paymentInformation, double amountPaid) {
+        paymentInformation.setAmountPaid(amountPaid);
+        paymentInformation.setChange(amountPaid - paymentInformation.getTotalPrice());
     }
 }

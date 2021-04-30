@@ -25,14 +25,18 @@ public class ItemTable {
      * Adds a new entry to the table.
      * @param newEntry The entry to add.
      */
-    public void add(ItemTableEntryDTO newEntry) {
-        if (tableContainsItemDTOOfEntry(newEntry))  // Skulle jag kunna göra så att tableContainsItemDTOOfEntry får
-                                                    // returnera vilket index den hittar match på och returnera -1 om
-                                                    // inget hittas?
-            increaseQuantityOfEntryAt(indexOfItemDTO(newEntry), newEntry.getQuantity());
+    void add(ItemTableEntryDTO newEntry) {
+        int index = indexOfItemDTO(newEntry);
+        if (index != -1)
+            increaseQuantityOfEntryAt(index, newEntry.getQuantity());
         else
             table.add(newEntry);
-        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() * ((newEntry.getItemDTO().getVATRate() /100) + 1);
+        addEntryToRunningTotal(newEntry);
+    }
+
+    private void addEntryToRunningTotal(ItemTableEntryDTO newEntry) {
+        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() *
+                ((newEntry.getItemDTO().getVATRate() /100) + 1);
     }
 
     /**
@@ -47,24 +51,16 @@ public class ItemTable {
         return sb.toString();
     }
 
+    public ItemDTO getLastItemInTable() {
+        return table.get(table.size() - 1).getItemDTO();
+    }
+
     public List<ItemTableEntryDTO> getTable() {
         return table;
     }
 
     public double getRunningTotal() {
         return runningTotal;
-    }
-
-    public ItemDTO getLastItemInTable() {
-        return table.get(table.size() - 1).getItemDTO();
-    }
-
-    private boolean tableContainsItemDTOOfEntry(ItemTableEntryDTO entry) {
-        for (ItemTableEntryDTO existingEntry : table)
-            if (compareEntries(existingEntry, entry)) {
-                return true;
-            }
-        return false;
     }
 
     private int indexOfItemDTO(ItemTableEntryDTO entry) {

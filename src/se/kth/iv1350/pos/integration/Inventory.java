@@ -3,22 +3,22 @@ package se.kth.iv1350.pos.integration;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
-    // Är tanken att man ska göra på detta vis eftersom vi inte ska implementera något i data lagret?
-    // Och instantiera dessa attribut i konstruktorn. Tänker att jag bara behöver två olika items för att kunna
-    // visa allt programmet kan göra men jag kanske borde göra en array åtminstone (eller List)?
-    private ItemDTO mockItem1;
-    private ItemDTO mockItem2;
+    private List<ItemDTO> mockItems;
 
     /**
      * Constructor that instantiates mockdata for showcasing.
      */
     public Inventory() {
-        this.mockItem1 = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 20);
-        this.mockItem2 = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 30);
+        mockItems = new ArrayList<>();
+        mockItems.add(new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 20));
+        mockItems.add(new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 30));
     }
 
     /**
@@ -27,10 +27,9 @@ public class Inventory {
      * @return <code>ItemDTO</code> of found item. If none is found, then <code>null</code>.
      */
     public ItemDTO getItemInfo(int itemIdentifier) {
-        if (itemIdentifier == 1)
-            return mockItem1;
-        else if (itemIdentifier == 2)
-            return mockItem2;
+        for (ItemDTO item:mockItems)
+            if (item.getIdentifier() == itemIdentifier)
+                return item;
         return null;
     }
 
@@ -38,7 +37,7 @@ public class Inventory {
      * Updates an external registry system.
      * @param info Sale information that specify how the registry should be updated.
      */
-    public void updateRegistry(SaleDTO info) { // Är tanken med dessa att dem bara ska vara tomma? Att dem bara finns för att man ska ha något att anrop?
-        //      Implementation                  // Samma med metoderna i dem andra klasserna i integration?
-    }                                           // Är det dåligt att jag bara skickar SaleDTO till dessa system?
+    public void updateRegistry(SaleDTO info) {
+        //  Implementation
+    }
 }

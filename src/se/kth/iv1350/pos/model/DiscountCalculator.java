@@ -11,8 +11,9 @@ public class DiscountCalculator {
      * @param customerID The customers ID.
      * @return New totalPrice for the sale whose itemTable is given as parameter.
      */
-    public void calculateDiscount(Sale sale, int customerID) {
+    public void calculateDiscount(PaymentInformation paymentInformation, int customerID) {
         if (customerID == 123)
-            sale.setTotalPrice(sale.getTotalPrice() * 0.5); // Har just nu detta som placeholder. Borde jag göra någon bättre implementation?
+            paymentInformation.setTotalPrice(paymentInformation.getTotalPrice() * 0.5); // Har just nu detta som placeholder. Borde jag göra någon bättre implementation?
     }                                                       // Ska VAT också förändras?
-}
+}                                                           // Borde det kanske ske någon kommunikation med Accounting för att kolla om kunden är berättigad?
+                                                            // Borde det vara controller som anropar Accounting då?
