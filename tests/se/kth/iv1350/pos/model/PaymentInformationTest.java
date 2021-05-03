@@ -131,14 +131,64 @@ class PaymentInformationTest {
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
-    @Disabled
     @Test
-    void calculateDiscount() {
+    void calculateDiscountDeniedTotalPrice() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        int deniedCustomerID = 1;
+        paymentInformation.calculateDiscount(deniedCustomerID);
+        double expectedTotalPrice = 120;
+        double actualTotalPrice = paymentInformation.getTotalPrice();
+        assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was changed by denied discount request");
     }
 
-    @Disabled
     @Test
-    void calculatePayment() {
+    void calculateDiscountDeniedTotalVAT() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        int deniedCustomerID = 1;
+        paymentInformation.calculateDiscount(deniedCustomerID);
+        double expectedTotalVAT = 20;
+        double actualTotalVAT = paymentInformation.getTotalVAT();
+        assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was changed by denied discount request");
+    }
+
+    @Test
+    void calculateDiscountApprovedTotalPrice() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        int approvedCustomerID = 123;
+        paymentInformation.calculateDiscount(approvedCustomerID);
+        double expectedTotalPrice = 60;
+        double actualTotalPrice = paymentInformation.getTotalPrice();
+        assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was changed by denied discount request");
+    }
+
+    @Test
+    void calculateDiscountApprovedTotalVAT() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        int approvedCustomerID = 123;
+        paymentInformation.calculateDiscount(approvedCustomerID);
+        double expectedTotalVAT = 10;
+        double actualTotalVAT = paymentInformation.getTotalVAT();
+        assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was changed by denied discount request");
+    }
+
+    @Test
+    void calculatePaymentAmountPaid() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        double amountPaid = 1000;
+        paymentInformation.calculatePayment(amountPaid);
+        double expectedAmountPaid = 1000;
+        double actualAmountPaid = paymentInformation.getAmountPaid();
+        assertEquals(expectedAmountPaid, actualAmountPaid, "Amount paid was not updated correctly");
+    }
+
+    @Test
+    void calculatePaymentChange() {
+        paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
+        double amountPaid = 1000;
+        paymentInformation.calculatePayment(amountPaid);
+        double expectedChange = 880;
+        double actualChange = paymentInformation.getChange();
+        assertEquals(expectedChange, actualChange, "Amount paid was not updated correctly");
     }
 
     private void createItemTableWith1TestItemDTO1() {

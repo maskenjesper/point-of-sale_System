@@ -1,7 +1,6 @@
 package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
-import se.kth.iv1350.pos.utility.VAT;
 
 public class PaymentInformation {
     private double totalPrice;
@@ -22,8 +21,10 @@ public class PaymentInformation {
     }
 
     public void calculateDiscount(int customerID) {
-        if (customerID == 123)
-            totalPrice = totalPrice * 0.5;
+        if (customerID == 123) {
+            totalPrice *= 0.5;
+            totalVAT *= 0.5;
+        }
     }
 
     public void calculatePayment(double amountPaid) {
