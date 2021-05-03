@@ -17,8 +17,8 @@ public class Inventory {
      */
     public Inventory() {
         mockItems = new ArrayList<>();
-        mockItems.add(new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 20));
-        mockItems.add(new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 30));
+        mockItems.add(new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 0.2));
+        mockItems.add(new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 0.3));
     }
 
     /**

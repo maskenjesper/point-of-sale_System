@@ -17,8 +17,8 @@ public class PaymentInformation {
     }
 
     public void calculatePrice(ItemTable itemTable) {
-        totalPrice = itemTable.getRunningTotal();
-        totalVAT = calculateVAT(itemTable) * totalPrice;
+        totalPrice = itemTable.getRunningTotalIncludingVAT();
+        calculateVAT(itemTable);
     }
 
     public void calculateDiscount(int customerID) {
@@ -47,13 +47,15 @@ public class PaymentInformation {
         return change;
     }
 
-    private double calculateVAT(ItemTable itemTable) {
-        double totalVAT = 0;
+    private void calculateVAT(ItemTable itemTable) {
+        for (ItemTableEntryDTO entry : itemTable.getTable())
+            totalVAT += entry.getItemDTO().getPrice() * entry.getQuantity() * entry.getItemDTO().getVATRate();
+        /*double totalVAT = 0;
         int numberOfItems = 0;
         for (ItemTableEntryDTO entry:itemTable.getTable()) {
             totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
             numberOfItems += entry.getQuantity();
         }
-        return VAT.convertPercentToCoefficient(totalVAT / numberOfItems);
+        this.totalVAT = VAT.convertPercentToCoefficient(totalVAT / numberOfItems) * totalPrice;*/
     }
 }

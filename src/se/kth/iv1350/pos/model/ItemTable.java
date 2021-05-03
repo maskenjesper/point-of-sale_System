@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class ItemTable {
     private List<ItemTableEntryDTO> table;
-    private double runningTotal; // Är det dumt att ha runningTotal här? Borde jag bara använda mig av totalPrice i paymentInformation?
+    private double runningTotalIncludingVAT; // Är det dumt att ha runningTotal här? Borde jag bara använda mig av totalPrice i paymentInformation?
 
     /**
      * Creates an object and initializes the <code>table</code> attribute.
      */
     public ItemTable() {
         table = new ArrayList<>();
-        runningTotal = 0;
+        runningTotalIncludingVAT = 0;
     }
 
     /**
@@ -27,10 +27,7 @@ public class ItemTable {
      */
     void add(ItemTableEntryDTO newEntry) {
         int index = searchForIdentifierMatch(newEntry);
-        if (index != -1)
-            increaseQuantityOfEntryAt(index, newEntry.getQuantity());
-        else
-            table.add(newEntry);
+        addEntryToTable(newEntry, index);
         addEntryPriceToRunningTotal(newEntry);
     }
 
@@ -54,8 +51,8 @@ public class ItemTable {
         return table;
     }
 
-    public double getRunningTotal() {
-        return runningTotal;
+    public double getRunningTotalIncludingVAT() {
+        return runningTotalIncludingVAT;
     }
 
     private int searchForIdentifierMatch(ItemTableEntryDTO entry) {
@@ -63,6 +60,13 @@ public class ItemTable {
             if (compareEntries(table.get(i), entry))
                 return i;
         return -1;
+    }
+
+    private void addEntryToTable(ItemTableEntryDTO newEntry, int index) {
+        if (index != -1)
+            increaseQuantityOfEntryAt(index, newEntry.getQuantity());
+        else
+            table.add(newEntry);
     }
 
     private void increaseQuantityOfEntryAt(int index, int quantity) {
@@ -76,7 +80,7 @@ public class ItemTable {
     }
 
     private void addEntryPriceToRunningTotal(ItemTableEntryDTO newEntry) {
-        runningTotal += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() *
-                ((newEntry.getItemDTO().getVATRate() /100) + 1);
+        runningTotalIncludingVAT += newEntry.getQuantity() * newEntry.getItemDTO().getPrice() *
+                (newEntry.getItemDTO().getVATRate() + 1);
     }
 }

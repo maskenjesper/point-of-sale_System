@@ -55,7 +55,7 @@ public class View {
             System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
                     ": " + saleDTO.getItemTable().getLastItemInTable().getDescription() +
                     "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotal() + " SEK\n");
+                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " SEK\n");
         else
             System.out.println("Invalid identifier\n");
     }
