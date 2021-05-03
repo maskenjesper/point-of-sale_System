@@ -17,6 +17,17 @@ public class ItemTableEntryDTO {
         this.quantity = quantity;
     }
 
+    @Override
+    public boolean equals(Object o) { // Är detta en OK equals?
+        ItemTableEntryDTO itemTableEntryDTO;
+        if (o instanceof ItemTableEntryDTO)
+            itemTableEntryDTO = (ItemTableEntryDTO)o;
+        else
+            return false;
+        return itemDTO.equals(itemTableEntryDTO.itemDTO) &&
+                quantity == itemTableEntryDTO.quantity;
+    }
+
     /**
      * @return itemDTO attribute.
      */

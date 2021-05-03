@@ -31,6 +31,21 @@ public class ItemDTO {
         this.VATRate = VATRate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        ItemDTO itemDTO;
+        if (o instanceof ItemTableEntryDTO)
+            itemDTO = (ItemDTO)o;
+        else
+            return false;
+        return identifier == itemDTO.identifier &&
+                price == itemDTO.price &&
+                description.equals(itemDTO.description) &&
+                name.equals(itemDTO.name) &&
+                currency.equals(itemDTO.currency) &&
+                VATRate == itemDTO.VATRate;
+    }
+
     /**
      * Creates a string representation of <code>this</code>.
      * @return String representation of <code>this</code>.

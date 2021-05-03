@@ -9,7 +9,7 @@ import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PaymentInformationTest {
+class PaymentInformationTest { // Måste man skriva test för getters?
     PaymentInformation paymentInformation;
     ItemTable itemTableWith1TestItemDTO1;
     ItemTable itemTableWith2TestItemDTO1;
@@ -48,7 +48,14 @@ class PaymentInformationTest {
         paymentInformation = null;
         itemTableWith1TestItemDTO1 = null;
         itemTableWith2TestItemDTO1 = null;
+        itemTableWith1TestItemDTO2 = null;
+        itemTableWith2TestItemDTO2 = null;
+        itemTableWith1TestItemDTO1And1TestItemDTO2 = null;
+        itemTableWith2TestItemDTO1And1TestItemDTO2 = null;
+        itemTableWith1TestItemDTO1And2TestItemDTO2 = null;
+        itemTableWith2TestItemDTO1And2TestItemDTO2 = null;
         testItemDTO1 = null;
+        testItemDTO2 = null;
     }
 
     @Test

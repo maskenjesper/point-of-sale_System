@@ -15,6 +15,10 @@ public class PaymentInformation {
         change = 0;
     }
 
+    /**
+     * Calculates the totalPrice and totalVAT attributes based on the itemTable.
+     * @param itemTable contains the information that the calculations are based on.
+     */
     public void calculatePrice(ItemTable itemTable) {
         totalPrice = itemTable.getRunningTotalIncludingVAT();
         calculateVAT(itemTable);
@@ -51,12 +55,5 @@ public class PaymentInformation {
     private void calculateVAT(ItemTable itemTable) {
         for (ItemTableEntryDTO entry : itemTable.getTable())
             totalVAT += entry.getItemDTO().getPrice() * entry.getQuantity() * entry.getItemDTO().getVATRate();
-        /*double totalVAT = 0;
-        int numberOfItems = 0;
-        for (ItemTableEntryDTO entry:itemTable.getTable()) {
-            totalVAT += entry.getItemDTO().getVATRate() * entry.getQuantity();
-            numberOfItems += entry.getQuantity();
-        }
-        this.totalVAT = VAT.convertPercentToCoefficient(totalVAT / numberOfItems) * totalPrice;*/
     }
 }
