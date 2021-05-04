@@ -44,7 +44,7 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {    // Det kanske framgår att addFoundItemToSale ska
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {    // Det kanske inte framgår att addFoundItemToSale ska
         ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);      // returnera något men å andra sidan gör inte addItemToSale det heller.
         return addFoundItemToSale(foundItem, quantity);
     }

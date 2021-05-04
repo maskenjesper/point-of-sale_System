@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemTableTest { // Måste man ha test för toString?
     ItemTable itemTable;
     ItemDTO itemDTO;
+    ItemDTO itemDTOOther;
     ItemTableEntryDTO itemTableEntryDTO;
+    ItemTableEntryDTO itemTableEntryDTOOther;
 
 
     @BeforeEach
@@ -21,6 +23,8 @@ class ItemTableTest { // Måste man ha test för toString?
         itemTable = new ItemTable();
         itemDTO = new ItemDTO(1, 100, "", "", "", 0.2);
         itemTableEntryDTO = new ItemTableEntryDTO(itemDTO, 1);
+        itemDTOOther = new ItemDTO(2, 10, "2", "2", "2", 0.2);
+        itemTableEntryDTOOther = new ItemTableEntryDTO(itemDTOOther, 2);
     }
 
     @AfterEach
@@ -28,7 +32,7 @@ class ItemTableTest { // Måste man ha test för toString?
     }
 
     @Test
-    void addToEmptyItemTableCheckTable() { // Verkar inte som min equals() fungerar
+    void addToEmptyItemTableCheckTable() {
         itemTable.add(itemTableEntryDTO);
         ItemTableEntryDTO expectedResult = itemTableEntryDTO;
         ItemTableEntryDTO actualResult = itemTable.getTable().get(0);
@@ -44,12 +48,48 @@ class ItemTableTest { // Måste man ha test för toString?
     }
 
     @Test
-    void addWithMatchingItemDTO() {
+    void addToNotEmptyItemTableCheckRunningTotalIncludingVAT() {
+        itemTable.add(itemTableEntryDTO);
+        itemTable.add(itemTableEntryDTOOther);
+        double expectedResult = 144;
+        double actualResult = itemTable.getRunningTotalIncludingVAT();
+        assertEquals(expectedResult, actualResult, "RunningTotalIncludingVAT was not updated correctly");
+    }
 
+    @Test
+    void addWithMatchingItemDTOCheckRunningTotalIncludingVAT() {
+        itemTable.add(itemTableEntryDTO);
+        itemTable.add(itemTableEntryDTO);
+        double expectedResult = 240;
+        double actualResult = itemTable.getRunningTotalIncludingVAT();
+        assertEquals(expectedResult, actualResult, "RunningTotalIncludingVAT was not updated correctly");
+    }
+
+    @Test
+    void addWithMatchingItemDTOCheckQuantity() {
+        itemTable.add(itemTableEntryDTO);
+        itemTable.add(itemTableEntryDTO);
+        double expectedResult = 2;
+        double actualResult = itemTable.getTable().get(0).getQuantity();
+        assertEquals(expectedResult, actualResult, "Quantity was not updated correctly");
+    }
+
+    @Test
+    void add1Then2Then1AgainCheckLastEntry() {
+        itemTable.add(itemTableEntryDTO);
+        itemTable.add(itemTableEntryDTOOther);
+        itemTable.add(itemTableEntryDTO);
+        ItemDTO expectedResult = itemTableEntryDTO.getItemDTO();
+        ItemDTO actualResult = itemTable.getLastItemInTable();
+        assertEquals(expectedResult, actualResult, "Entry was not moved to last place in table after having it's quantity increased");
     }
 
     @Test
     void getLastItemInTable() {
-
+        itemTable.add(itemTableEntryDTO);
+        itemTable.add(itemTableEntryDTOOther);
+        ItemDTO expectedResult = itemTableEntryDTOOther.getItemDTO();
+        ItemDTO actualResult = itemTable.getLastItemInTable();
+        assertEquals(expectedResult, actualResult, "Didn't get last ItemDTO in the table");
     }
 }

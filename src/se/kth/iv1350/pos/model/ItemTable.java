@@ -72,7 +72,8 @@ public class ItemTable {
     private void increaseQuantityOfEntryAt(int index, int quantity) {
         int newQuantity = table.get(index).getQuantity() + quantity;
         ItemDTO itemType = table.get(index).getItemDTO();
-        table.set(index, new ItemTableEntryDTO(itemType, newQuantity));
+        table.add(new ItemTableEntryDTO(itemType, newQuantity));
+        table.remove(index);
     }
 
     private boolean compareEntries(ItemTableEntryDTO existingEntry, ItemTableEntryDTO newEntry) {
