@@ -25,7 +25,7 @@ public class PaymentInformation {
      * Calculates the totalPrice and totalVAT attributes based on the itemTable.
      * @param itemTable contains the information that the calculations are based on.
      */
-    public void calculatePrice(ItemTable itemTable) {
+    void calculatePrice(ItemTable itemTable) {
         totalPrice = itemTable.getRunningTotalIncludingVAT();
         calculateVAT(itemTable);
     }
@@ -34,7 +34,7 @@ public class PaymentInformation {
      * Alters total price if customer is eligible for discount
      * @param customerID ID of the customer.
      */
-    public void calculateDiscount(int customerID) {
+    void calculateDiscount(int customerID) {
         if (customerID == 123) {
             totalPrice *= 0.5;
             totalVAT *= 0.5;
@@ -45,7 +45,7 @@ public class PaymentInformation {
      * Registers amount paid and calculates discount.
      * @param amountPaid
      */
-    public void calculatePayment(double amountPaid) {
+    void calculatePayment(double amountPaid) {
         this.amountPaid = amountPaid;
         change = amountPaid - totalPrice;
     }
