@@ -43,6 +43,10 @@ public class ItemTable {
         return sb.toString();
     }
 
+    /**
+     * Gets the item type of the last entry in the table
+     * @return ItemDTO of the last entry
+     */
     public ItemDTO getLastItemInTable() {
         return table.get(table.size() - 1).getItemDTO();
     }

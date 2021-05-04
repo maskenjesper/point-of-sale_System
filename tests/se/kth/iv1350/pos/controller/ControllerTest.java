@@ -5,7 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class ControllerTest {
+class ControllerTest { // Ska jag verkligen göra tester för controller? Det känns som jag bara checkar alla
+                        // saker som redan checkas av Sale själv.
 
     //////////////////////////////
     //          SETUP           //

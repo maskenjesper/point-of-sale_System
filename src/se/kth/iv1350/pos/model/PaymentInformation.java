@@ -2,12 +2,18 @@ package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 
+/**
+ * Stores the payment related data for a sale and contains methods related to these.
+ */
 public class PaymentInformation {
     private double totalPrice;
     private double totalVAT;
     private double amountPaid;
     private double change;
 
+    /**
+     * Constructs initial payment info
+     */
     public PaymentInformation() {
         totalPrice = 0;
         totalVAT = 0;
@@ -24,6 +30,10 @@ public class PaymentInformation {
         calculateVAT(itemTable);
     }
 
+    /**
+     * Alters total price if customer is eligible for discount
+     * @param customerID ID of the customer.
+     */
     public void calculateDiscount(int customerID) {
         if (customerID == 123) {
             totalPrice *= 0.5;
@@ -31,6 +41,10 @@ public class PaymentInformation {
         }
     }
 
+    /**
+     * Registers amount paid and calculates discount.
+     * @param amountPaid
+     */
     public void calculatePayment(double amountPaid) {
         this.amountPaid = amountPaid;
         change = amountPaid - totalPrice;

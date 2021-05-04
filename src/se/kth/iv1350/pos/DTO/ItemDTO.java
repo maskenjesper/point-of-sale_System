@@ -31,6 +31,11 @@ public class ItemDTO {
         this.VATRate = VATRate;
     }
 
+    /**
+     * Checks if two itemDTOs have identical attributes.
+     * @param other Object to check equality against.
+     * @return True if equal; false if not
+     */
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof ItemDTO))

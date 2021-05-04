@@ -17,6 +17,11 @@ public class ItemTableEntryDTO {
         this.quantity = quantity;
     }
 
+    /**
+     * Checks if two item table entries have identical attributes.
+     * @param other Object to check equality against.
+     * @return True if equal; false if not
+     */
     @Override
     public boolean equals(Object other) { // Är detta en OK equals?
         if (!(other instanceof ItemTableEntryDTO))
