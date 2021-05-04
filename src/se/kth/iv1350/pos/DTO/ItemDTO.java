@@ -32,18 +32,16 @@ public class ItemDTO {
     }
 
     @Override
-    public boolean equals(Object o) {
-        ItemDTO itemDTO;
-        if (o instanceof ItemTableEntryDTO)
-            itemDTO = (ItemDTO)o;
-        else
+    public boolean equals(Object other) {
+        if (!(other instanceof ItemDTO))
             return false;
-        return identifier == itemDTO.identifier &&
-                price == itemDTO.price &&
-                description.equals(itemDTO.description) &&
-                name.equals(itemDTO.name) &&
-                currency.equals(itemDTO.currency) &&
-                VATRate == itemDTO.VATRate;
+        ItemDTO otherItemDTO = (ItemDTO)other;
+        return identifier == otherItemDTO.identifier &&
+                price == otherItemDTO.price &&
+                description.equals(otherItemDTO.description) &&
+                name.equals(otherItemDTO.name) &&
+                currency.equals(otherItemDTO.currency) &&
+                VATRate == otherItemDTO.VATRate;
     }
 
     /**

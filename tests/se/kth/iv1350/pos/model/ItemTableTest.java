@@ -27,7 +27,6 @@ class ItemTableTest { // Måste man ha test för toString?
     void tearDown() {
     }
 
-    @Disabled
     @Test
     void addToEmptyItemTableCheckTable() { // Verkar inte som min equals() fungerar
         itemTable.add(itemTableEntryDTO);

@@ -18,14 +18,12 @@ public class ItemTableEntryDTO {
     }
 
     @Override
-    public boolean equals(Object o) { // Är detta en OK equals?
-        ItemTableEntryDTO itemTableEntryDTO;
-        if (o instanceof ItemTableEntryDTO)
-            itemTableEntryDTO = (ItemTableEntryDTO)o;
-        else
+    public boolean equals(Object other) { // Är detta en OK equals?
+        if (!(other instanceof ItemTableEntryDTO))
             return false;
-        return itemDTO.equals(itemTableEntryDTO.itemDTO) &&
-                quantity == itemTableEntryDTO.quantity;
+        ItemTableEntryDTO otherItemTableEntryDTO = (ItemTableEntryDTO)other;
+        return itemDTO.equals(otherItemTableEntryDTO.itemDTO) &&
+                quantity == otherItemTableEntryDTO.quantity;
     }
 
     /**
