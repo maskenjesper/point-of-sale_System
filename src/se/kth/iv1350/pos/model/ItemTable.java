@@ -32,18 +32,6 @@ public class ItemTable {
     }
 
     /**
-     * Creates a string representation of <code>this</code>.
-     * @return String representation of <code>this</code>.
-     */
-    @Override
-    public String toString() { // TODO: Kanske flyttar detta till View
-        StringBuilder sb = new StringBuilder("");
-        for (ItemTableEntryDTO entry:table)
-            sb.append("| " + entry.getQuantity() + "st " + entry.getItemDTO().toString() + "\n");
-        return sb.toString();
-    }
-
-    /**
      * Gets the item type of the last entry in the table
      * @return ItemDTO of the last entry
      */

@@ -23,15 +23,6 @@ public class AddressDTO {
         this.ZIP = ZIP;
     }
 
-    /**
-     * Creates a string representation of <code>this</code>.
-     * @return String representation of <code>this</code>.
-     */
-    @Override
-    public String toString() { // TODO: Kanske flyttar detta till View
-        return street + ", " + city + ", " + country + ", " + ZIP;
-    }
-
     public String getStreet() {
         return street;
     }

@@ -50,15 +50,6 @@ public class ItemDTO {
     }
 
     /**
-     * Creates a string representation of <code>this</code>.
-     * @return String representation of <code>this</code>.
-     */
-    @Override
-    public String toString() { // TODO: Kanske flyttar detta till View
-        return "| " + price + currency + " (VAT: " + VATRate + "%) | " + name + ": " + description + " | ID: " + identifier + " |";
-    }
-
-    /**
      * @return identifier attribute.
      */
     public int getIdentifier() {

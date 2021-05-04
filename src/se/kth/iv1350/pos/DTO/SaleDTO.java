@@ -25,18 +25,6 @@ public class SaleDTO {
         itemTable = sale.getItemTable();
     }
 
-    /**
-     * Creates a string representation of <code>this</code>.
-     * @return String representation of <code>this</code>.
-     */
-    @Override
-    public String toString() { // TODO: Kanske flyttar detta till View
-        return "Totalt pris: " + paymentInformation.getTotalPrice() + "\nVarav VAT: " +
-                paymentInformation.getTotalVAT() + "\nBetalat: " + paymentInformation.getAmountPaid() + "\nVäxel: " +
-                paymentInformation.getChange() + "\nDatum och tid: " + dateAndTime + "\nButik: " +
-                storeInformation.getStoreName() + "\nAdress: " + storeInformation.getStoreAddress() + "\n" + itemTable;
-    }
-
     public PaymentInformation getPaymentInformation() {
         return paymentInformation;
     }
