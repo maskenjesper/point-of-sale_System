@@ -37,9 +37,13 @@ public class Controller {
         sale = new Sale();
     }
 
+    // Behövde göra så att en entry flyttas längst bak i listan även om bara quantity ökas. Detta för att view ska veta
+    // vilket item som lades till senast så att detta kan displayas.
     /**
      * Searches for an identifier match and if successful adds found item together with the quantity in the sales table
-     * and updates the running total.
+     * and updates the running total (including VAT).
+     * If there already is an instance of the found item in the list, it's quantity is increased and the entry is moved
+     * the last position in the table.
      * @param itemIdentifier Specifies the type of item to add.
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
@@ -50,7 +54,7 @@ public class Controller {
     }
 
     /**
-     * Calculates the attributes of <code>this</code> based on <code>itemtable</code>.
+     * Calculates the total price of the sale as well as how much of it is for VAT.
      * @return <code>SaleDTO</code> of the modified sale.
      */
     public SaleDTO endRegistering() {

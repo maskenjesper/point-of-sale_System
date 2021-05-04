@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemDTOTest {
+
+    //////////////////////////////
+    //          SETUP           //
+    //////////////////////////////
     ItemDTO itemDTO;
     ItemDTO itemDTOSame;
     ItemDTO itemDTODifferent;
@@ -25,10 +29,13 @@ class ItemDTOTest {
         itemDTODifferent = null;
     }
 
+    //////////////////////////////////
+    //          equals()            //
+    //////////////////////////////////
     @Test
     void equals() {
         boolean expectedResult = true;
-        boolean actualResult = itemDTO.equals(itemDTO);
+        boolean actualResult = itemDTO.equals(itemDTOSame);
         assertEquals(expectedResult, actualResult, "equals evaluated equal ItemDTOs as not equal");
     }
 

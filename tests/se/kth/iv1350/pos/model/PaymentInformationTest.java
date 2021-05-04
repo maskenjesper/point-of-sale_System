@@ -10,6 +10,10 @@ import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentInformationTest { // Måste man skriva test för getters?
+
+    //////////////////////////////
+    //          SETUP           //
+    //////////////////////////////
     PaymentInformation paymentInformation;
     ItemTable itemTableWith1TestItemDTO1;
     ItemTable itemTableWith2TestItemDTO1;
@@ -58,6 +62,9 @@ class PaymentInformationTest { // Måste man skriva test för getters?
         testItemDTO2 = null;
     }
 
+    //////////////////////////////////////////
+    //          calculatePrice()            //
+    //////////////////////////////////////////
     @Test
     void calculatePriceTotalPriceWithItemTableWith1TestItemDTO1() {
         paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
@@ -138,6 +145,9 @@ class PaymentInformationTest { // Måste man skriva test för getters?
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
+    //////////////////////////////////////////
+    //          calculateDiscount()         //
+    //////////////////////////////////////////
     @Test
     void calculateDiscountDeniedTotalPrice() {
         paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
@@ -178,6 +188,9 @@ class PaymentInformationTest { // Måste man skriva test för getters?
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was changed by denied discount request");
     }
 
+    //////////////////////////////////////////
+    //          calculatePayment()          //
+    //////////////////////////////////////////
     @Test
     void calculatePaymentAmountPaid() {
         paymentInformation.calculatePrice(itemTableWith1TestItemDTO1);
@@ -198,6 +211,9 @@ class PaymentInformationTest { // Måste man skriva test för getters?
         assertEquals(expectedChange, actualChange, "Amount paid was not updated correctly");
     }
 
+    //////////////////////////////////////
+    //          Helper methods          //
+    //////////////////////////////////////
     private void createItemTableWith1TestItemDTO1() {
         itemTableWith1TestItemDTO1.add(new ItemTableEntryDTO(testItemDTO1, 1));
     }

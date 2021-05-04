@@ -14,7 +14,7 @@ public class Sale {
     private ItemTable itemTable;
 
     /**
-     * Constructor for a Sale that initializes by creating an empty ItemTable.
+     * Constructor for a Sale that initializes a new instance.
      */
     public Sale() {
         itemTable = new ItemTable();
@@ -24,7 +24,7 @@ public class Sale {
     }
 
     /**
-     * Adds an entry to the sales item table.
+     * Adds an item entry to the sale.
      * @param entry The entry to add.
      */
     public void addItem(ItemTableEntryDTO entry) {
@@ -32,14 +32,14 @@ public class Sale {
     }
 
     /**
-     * Calculates the attributes based on itemtable
+     * Ends the registering phase of the sale.
      */
     public void endRegistering() {
         paymentInformation.calculatePrice(itemTable);
     }
 
     /**
-     * Calculate discount
+     * Adds a discount to the sale.
      * @param customerID Used for verification.
      */
     public void addDiscount(int customerID) {
@@ -55,7 +55,7 @@ public class Sale {
     }
 
     /**
-     * Calls the constructor of SaleDTO that constructs a SaleDTO object from a Sale object. Sends <code>this</code>.
+     * Calls the constructor of SaleDTO that constructs a SaleDTO object from a Sale object.
      * @return SaleDTO of <code>this</code>.
      */
     public SaleDTO getSaleDTO() {

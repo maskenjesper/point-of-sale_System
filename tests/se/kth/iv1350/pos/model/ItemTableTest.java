@@ -11,6 +11,10 @@ import se.kth.iv1350.pos.integration.Inventory;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemTableTest { // Måste man ha test för toString?
+
+    //////////////////////////////////////
+    //              SETUP               //
+    //////////////////////////////////////
     ItemTable itemTable;
     ItemDTO itemDTO;
     ItemDTO itemDTOOther;
@@ -29,8 +33,16 @@ class ItemTableTest { // Måste man ha test för toString?
 
     @AfterEach
     void tearDown() {
+        itemTable = null;
+        itemDTO = null;
+        itemDTOOther = null;
+        itemTableEntryDTO = null;
+        itemTableEntryDTOOther = null;
     }
 
+    ////////////////////////////
+    //          add()         //
+    ////////////////////////////
     @Test
     void addToEmptyItemTableCheckTable() {
         itemTable.add(itemTableEntryDTO);
@@ -75,7 +87,7 @@ class ItemTableTest { // Måste man ha test för toString?
     }
 
     @Test
-    void add1Then2Then1AgainCheckLastEntry() {
+    void addCheckLastEntryOfListAfterQuantityUpdate() {
         itemTable.add(itemTableEntryDTO);
         itemTable.add(itemTableEntryDTOOther);
         itemTable.add(itemTableEntryDTO);
@@ -84,6 +96,9 @@ class ItemTableTest { // Måste man ha test för toString?
         assertEquals(expectedResult, actualResult, "Entry was not moved to last place in table after having it's quantity increased");
     }
 
+    //////////////////////////////////////////////
+    //          getLastItemInTable()            //
+    //////////////////////////////////////////////
     @Test
     void getLastItemInTable() {
         itemTable.add(itemTableEntryDTO);

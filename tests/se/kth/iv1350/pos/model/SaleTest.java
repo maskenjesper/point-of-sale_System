@@ -1,11 +1,12 @@
-package se.kth.iv1350.pos.controller;
+package se.kth.iv1350.pos.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-class ControllerTest {
+class SaleTest {
 
     //////////////////////////////
     //          SETUP           //
@@ -19,17 +20,10 @@ class ControllerTest {
     }
 
     //////////////////////////////////
-    //          startSale()         //
+    //          addItem()           //
     //////////////////////////////////
     @Test
-    void startSale() {
-    }
-
-    //////////////////////////////////////
-    //          addItemToSale()         //
-    //////////////////////////////////////
-    @Test
-    void addItemToSale() {
+    void addItem() {
     }
 
     //////////////////////////////////////////
@@ -39,11 +33,11 @@ class ControllerTest {
     void endRegistering() {
     }
 
-    ////////////////////////////////////////
-    //          discountRequest()         //
-    ////////////////////////////////////////
+    //////////////////////////////////////
+    //          addDiscount()           //
+    //////////////////////////////////////
     @Test
-    void discountRequest() {
+    void addDiscount() {
     }
 
     //////////////////////////////////////

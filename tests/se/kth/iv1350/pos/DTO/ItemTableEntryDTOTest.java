@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemTableEntryDTOTest {
+
+    //////////////////////////////
+    //          SETUP           //
+    //////////////////////////////
     ItemTableEntryDTO itemTableEntryDTO;
     ItemTableEntryDTO itemTableEntryDTOSame;
     ItemTableEntryDTO itemTableEntryDTODifferent;
@@ -37,6 +41,9 @@ class ItemTableEntryDTOTest {
         itemTableEntryDTODifferent = null;
     }
 
+    //////////////////////////////////
+    //          equals()            //
+    //////////////////////////////////
     @Test
     void equals() {
         boolean expectedResult = true;
