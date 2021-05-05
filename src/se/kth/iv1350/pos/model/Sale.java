@@ -32,7 +32,7 @@ public class Sale {
     }
 
     /**
-     * Ends the registering phase of the sale.
+     * Ends the registering phase of the sale by calculating the price.
      */
     public void endRegistering() {
         paymentInformation.calculatePrice(itemTable);
@@ -55,7 +55,7 @@ public class Sale {
     }
 
     /**
-     * Calls the constructor of SaleDTO that constructs a SaleDTO object from a Sale object.
+     * Calls the constructor of SaleDTO that constructs a SaleDTO object from this Sale object.
      * @return SaleDTO of <code>this</code>.
      */
     public SaleDTO getSaleDTO() {

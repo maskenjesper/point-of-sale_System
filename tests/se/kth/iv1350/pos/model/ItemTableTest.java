@@ -21,7 +21,6 @@ class ItemTableTest { // Måste man ha test för toString?
     ItemTableEntryDTO itemTableEntryDTO;
     ItemTableEntryDTO itemTableEntryDTOOther;
 
-
     @BeforeEach
     void setUp() {
         itemTable = new ItemTable();

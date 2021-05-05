@@ -20,23 +20,12 @@ class PaymentInformationTest { // Måste man skriva test för getters?
     ItemTable itemTableWith1TestItemDTO2;
     ItemTable itemTableWith2TestItemDTO2;
     ItemTable itemTableWith1TestItemDTO1And1TestItemDTO2;
-    ItemTable itemTableWith2TestItemDTO1And1TestItemDTO2;
-    ItemTable itemTableWith1TestItemDTO1And2TestItemDTO2;
-    ItemTable itemTableWith2TestItemDTO1And2TestItemDTO2;
     ItemDTO testItemDTO1;
     ItemDTO testItemDTO2;
 
     @BeforeEach
     void setUp() {
         paymentInformation = new PaymentInformation();
-        itemTableWith1TestItemDTO1 = new ItemTable();
-        itemTableWith2TestItemDTO1 = new ItemTable();
-        itemTableWith1TestItemDTO2 = new ItemTable();
-        itemTableWith2TestItemDTO2 = new ItemTable();
-        itemTableWith1TestItemDTO1And1TestItemDTO2 = new ItemTable();
-        itemTableWith2TestItemDTO1And1TestItemDTO2 = new ItemTable();
-        itemTableWith1TestItemDTO1And2TestItemDTO2 = new ItemTable();
-        itemTableWith2TestItemDTO1And2TestItemDTO2 = new ItemTable();
         createTestItemDTO1();
         createTestItemDTO2();
 
@@ -55,9 +44,6 @@ class PaymentInformationTest { // Måste man skriva test för getters?
         itemTableWith1TestItemDTO2 = null;
         itemTableWith2TestItemDTO2 = null;
         itemTableWith1TestItemDTO1And1TestItemDTO2 = null;
-        itemTableWith2TestItemDTO1And1TestItemDTO2 = null;
-        itemTableWith1TestItemDTO1And2TestItemDTO2 = null;
-        itemTableWith2TestItemDTO1And2TestItemDTO2 = null;
         testItemDTO1 = null;
         testItemDTO2 = null;
     }
@@ -215,22 +201,27 @@ class PaymentInformationTest { // Måste man skriva test för getters?
     //          Helper methods          //
     //////////////////////////////////////
     private void createItemTableWith1TestItemDTO1() {
+        itemTableWith1TestItemDTO1 = new ItemTable();
         itemTableWith1TestItemDTO1.add(new ItemTableEntryDTO(testItemDTO1, 1));
     }
 
     private void createItemTableWith2TestItemDTO1() {
+        itemTableWith2TestItemDTO1 = new ItemTable();
         itemTableWith2TestItemDTO1.add(new ItemTableEntryDTO(testItemDTO1, 2));
     }
 
     private void createItemTableWith1TestItemDTO2() {
+        itemTableWith1TestItemDTO2 = new ItemTable();
         itemTableWith1TestItemDTO2.add(new ItemTableEntryDTO(testItemDTO2, 1));
     }
 
     private void createItemTableWith2TestItemDTO2() {
+        itemTableWith2TestItemDTO2 = new ItemTable();
         itemTableWith2TestItemDTO2.add(new ItemTableEntryDTO(testItemDTO2, 2));
     }
 
     private void createItemTableWith1TestItemDTO1And1TestItemDTO2() {
+        itemTableWith1TestItemDTO1And1TestItemDTO2 = new ItemTable();
         itemTableWith1TestItemDTO1And1TestItemDTO2.add(new ItemTableEntryDTO(testItemDTO1, 1));
         itemTableWith1TestItemDTO1And1TestItemDTO2.add(new ItemTableEntryDTO(testItemDTO2, 1));
     }

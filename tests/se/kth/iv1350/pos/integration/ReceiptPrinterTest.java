@@ -14,6 +14,7 @@ class ReceiptPrinterTest {
     //          SETUP           //
     //////////////////////////////
     ReceiptPrinter receiptPrinter;
+
     @BeforeEach
     void setUp() {
         receiptPrinter = new ReceiptPrinter();

@@ -14,6 +14,7 @@ class AccountingTest {
     //          SETUP           //
     //////////////////////////////
     Accounting accounting;
+
     @BeforeEach
     void setUp() {
         accounting = new Accounting();

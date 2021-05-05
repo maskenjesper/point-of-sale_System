@@ -23,7 +23,7 @@ public class Controller {
     /**
      * The default constructor for Controller. Creates and stores references to all external systems.
      */
-    public Controller() {
+    public Controller() { // Får controllern bara kommunicera med view genom dess returvärde?
         inventory = new Inventory();
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();

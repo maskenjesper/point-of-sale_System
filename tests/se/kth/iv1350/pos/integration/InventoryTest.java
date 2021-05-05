@@ -15,6 +15,7 @@ class InventoryTest {
     //          SETUP           //
     //////////////////////////////
     Inventory inventory;
+
     @BeforeEach
     void setUp() {
         inventory = new Inventory();
@@ -29,9 +30,16 @@ class InventoryTest {
     //          getItemInfo()           //
     //////////////////////////////////////
     @Test
-    void getItemInfo() {
+    void getItemInfoID1() {
         ItemDTO expectedResult = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 0.2);
         ItemDTO actualResult = inventory.getItemInfo(1);
+        assertEquals(expectedResult, actualResult, "Inventory retrieved wrong item");
+    }
+
+    @Test
+    void getItemInfoID2() {
+        ItemDTO expectedResult = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 0.3);
+        ItemDTO actualResult = inventory.getItemInfo(2);
         assertEquals(expectedResult, actualResult, "Inventory retrieved wrong item");
     }
 

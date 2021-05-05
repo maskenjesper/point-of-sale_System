@@ -14,6 +14,7 @@ class CashRegisterTest {
     //          SETUP           //
     //////////////////////////////
     CashRegister cashRegister;
+
     @BeforeEach
     void setUp() {
         cashRegister = new CashRegister();

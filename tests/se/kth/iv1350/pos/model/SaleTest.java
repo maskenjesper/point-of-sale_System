@@ -15,7 +15,7 @@ class SaleTest {
     //////////////////////////////
     Sale sale;
     ItemDTO testItem;
-    ItemDTO otherTestItem;
+    ItemDTO otherTestItem;          // Ska attribut till tester vara private?
     ItemTableEntryDTO testEntry;
     ItemTableEntryDTO otherTestEntry;
 
@@ -58,7 +58,7 @@ class SaleTest {
         int expectedQuantity = 4;
         int expectedTableLength = 1;
         int actualQuantity = sale.getItemTable().getTable().get(0).getQuantity();
-        int actualTableLength = sale.getItemTable().getTable().size();
+        int actualTableLength = sale.getItemTable().getTable().size(); // Är det helt fel att ha två assert? Borde jag bryta upp den?
         assertEquals(expectedQuantity, actualQuantity, "Quantity of the entry was not updated correctly");
         assertEquals(expectedTableLength, actualTableLength, "The table contains creates more entries when adding items " +
                 "with same ID");
