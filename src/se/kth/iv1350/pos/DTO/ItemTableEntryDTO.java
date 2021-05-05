@@ -23,7 +23,7 @@ public class ItemTableEntryDTO {
      * @return True if equal; false if not
      */
     @Override
-    public boolean equals(Object other) { // Är detta en OK equals?
+    public boolean equals(Object other) {
         if (!(other instanceof ItemTableEntryDTO))
             return false;
         ItemTableEntryDTO otherItemTableEntryDTO = (ItemTableEntryDTO)other;

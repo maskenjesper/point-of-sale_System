@@ -11,13 +11,13 @@ class ItemTableEntryDTOTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    ItemTableEntryDTO itemTableEntryDTO;
-    ItemTableEntryDTO itemTableEntryDTOSame;
-    ItemTableEntryDTO itemTableEntryDTODifferent;
+    private ItemTableEntryDTO itemTableEntryDTO;
+    private ItemTableEntryDTO itemTableEntryDTOSame;
+    private ItemTableEntryDTO itemTableEntryDTODifferent;
 
-    ItemDTO itemDTO;
-    ItemDTO itemDTOSame;
-    ItemDTO itemDTODifferent;
+    private ItemDTO itemDTO;
+    private ItemDTO itemDTOSame;
+    private ItemDTO itemDTODifferent;
 
     @BeforeEach
     void setup() {
@@ -45,14 +45,14 @@ class ItemTableEntryDTOTest {
     //          equals()            //
     //////////////////////////////////
     @Test
-    void equals() {
+    void equalsTestSame() {
         boolean expectedResult = true;
         boolean actualResult = itemTableEntryDTO.equals(itemTableEntryDTOSame);
         assertEquals(expectedResult, actualResult, "Equal ItemTableEntryDTO were evaluated not equal");
     }
 
     @Test
-    void notEquals() {
+    void equalsTestDifferent() {
         boolean expectedResult = false;
         boolean actualResult = itemTableEntryDTO.equals(itemTableEntryDTODifferent);
         assertEquals(expectedResult, actualResult, "Not equal ItemTableEntryDTO were evaluated equal");

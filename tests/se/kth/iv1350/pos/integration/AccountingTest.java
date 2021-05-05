@@ -11,7 +11,7 @@ class AccountingTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    Accounting accounting;
+    private Accounting accounting;
 
     @BeforeEach
     void setUp() {
@@ -27,7 +27,7 @@ class AccountingTest {
     //          addSaleRecord()         //
     //////////////////////////////////////
     @Test
-    void callAddSaleRecord() {
+    void addSaleRecordTestCall() {
         accounting.addSaleRecord(new SaleDTO(new Sale()));
     }
 }

@@ -8,8 +8,8 @@ import se.kth.iv1350.pos.utility.Time;
  * This class is used to create an object containing all information about a specific sale.
  */
 public class Sale {
-    private final PaymentInformation paymentInformation;            // Borde jag ha dessa som final?
-    private final String dateAndTime; // Gör custom objekt istället?
+    private final PaymentInformation paymentInformation;
+    private final String dateAndTime;
     private final StoreInformation storeInformation;
     private final ItemTable itemTable;
 
@@ -18,7 +18,7 @@ public class Sale {
      */
     public Sale() {
         itemTable = new ItemTable();
-        dateAndTime = Time.getCurrentSystemTime(); // Använder ett utility paket här. Passade inte riktigt som privat metod för denna klass.
+        dateAndTime = Time.getCurrentSystemTime();
         paymentInformation = new PaymentInformation();
         storeInformation = new StoreInformation();
     }

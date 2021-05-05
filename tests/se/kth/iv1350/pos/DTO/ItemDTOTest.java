@@ -11,9 +11,9 @@ class ItemDTOTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    ItemDTO itemDTO;
-    ItemDTO itemDTOSame;
-    ItemDTO itemDTODifferent;
+    private ItemDTO itemDTO;
+    private ItemDTO itemDTOSame;
+    private ItemDTO itemDTODifferent;
 
     @BeforeEach
     void setup() {
@@ -33,14 +33,14 @@ class ItemDTOTest {
     //          equals()            //
     //////////////////////////////////
     @Test
-    void equals() {
+    void equalsTestSame() {
         boolean expectedResult = true;
         boolean actualResult = itemDTO.equals(itemDTOSame);
         assertEquals(expectedResult, actualResult, "equals evaluated equal ItemDTOs as not equal");
     }
 
     @Test
-    void notEquals() {
+    void equalsTestDifferent() {
         boolean expectedResult = false;
         boolean actualResult = itemDTO.equals(itemDTODifferent);
         assertEquals(expectedResult, actualResult, "equals evaluated not equal ItemDTOs as equal");

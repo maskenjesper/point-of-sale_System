@@ -13,11 +13,11 @@ class SaleTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    Sale sale;
-    ItemDTO testItem;
-    ItemDTO otherTestItem;          // Ska attribut till tester vara private?
-    ItemTableEntryDTO testEntry;
-    ItemTableEntryDTO otherTestEntry;
+    private Sale sale;
+    private ItemDTO testItem;
+    private ItemDTO otherTestItem;
+    private ItemTableEntryDTO testEntry;
+    private ItemTableEntryDTO otherTestEntry;
 
 
     @BeforeEach
@@ -42,7 +42,7 @@ class SaleTest {
     //          addItem()           //
     //////////////////////////////////
     @Test
-    void addItem() {
+    void addItemTestTableOneItem() {
         sale.addItem(testEntry);
         ItemDTO expectedResult = testItem;
         ItemDTO actualResult = sale.getItemTable().getLastItemInTable();
@@ -50,7 +50,7 @@ class SaleTest {
     }
 
     @Test
-    void addSameItemMultipleTimes() {
+    void addItemTestTableMultipleSameItems() {
         sale.addItem(testEntry);
         sale.addItem(testEntry);
         sale.addItem(testEntry);
@@ -58,14 +58,14 @@ class SaleTest {
         int expectedQuantity = 4;
         int expectedTableLength = 1;
         int actualQuantity = sale.getItemTable().getTable().get(0).getQuantity();
-        int actualTableLength = sale.getItemTable().getTable().size(); // Är det helt fel att ha två assert? Borde jag bryta upp den?
+        int actualTableLength = sale.getItemTable().getTable().size();
         assertEquals(expectedQuantity, actualQuantity, "Quantity of the entry was not updated correctly");
         assertEquals(expectedTableLength, actualTableLength, "The table contains creates more entries when adding items " +
                 "with same ID");
     }
 
     @Test
-    void addItemCheckRunningTotal() {
+    void addItemTestRunningTotalOneItem() {
         sale.addItem(testEntry);
         double expectedResult = 12;
         double actualResult = sale.getItemTable().getRunningTotalIncludingVAT();
@@ -73,7 +73,7 @@ class SaleTest {
     }
 
     @Test
-    void addMultipleItemCheckRunningTotal() {
+    void addItemTestRunningTotalMultipleSameItems() {
         sale.addItem(testEntry);
         sale.addItem(testEntry);
         double expectedResult = 24;
@@ -82,7 +82,7 @@ class SaleTest {
     }
 
     @Test
-    void addMultipleDifferentItemCheckRunningTotal() {
+    void addItemTestRunningTotalMultipleDifferentItems() {
         sale.addItem(testEntry);
         sale.addItem(otherTestEntry);
         double expectedResult = 72;
@@ -94,7 +94,7 @@ class SaleTest {
     //          endRegistering()            //
     //////////////////////////////////////////
     @Test
-    void endRegisteringTotalPrice() {
+    void endRegisteringTestTotalPrice() {
         sale.addItem(testEntry);
         sale.addItem(otherTestEntry);
         sale.endRegistering();
@@ -104,7 +104,7 @@ class SaleTest {
     }
 
     @Test
-    void endRegisteringTotalVAT() {
+    void endRegisteringTestTotalVAT() {
         sale.addItem(testEntry);
         sale.addItem(otherTestEntry);
         sale.endRegistering();
@@ -117,7 +117,7 @@ class SaleTest {
     //          addDiscount()           //
     //////////////////////////////////////
     @Test
-    void addDiscountValid() {
+    void addDiscountTestValid() {
         sale.addItem(testEntry);
         sale.endRegistering();
         int validID = 123;
@@ -128,7 +128,7 @@ class SaleTest {
     }
 
     @Test
-    void addDiscountInvalid() {
+    void addDiscountTestInvalid() {
         sale.addItem(testEntry);
         sale.endRegistering();
         int invalidID = 1;
@@ -142,7 +142,7 @@ class SaleTest {
     //          addPayment()            //
     //////////////////////////////////////
     @Test
-    void addPaymentCheckAmountPaid() {
+    void addPaymentTestAmountPaid() {
         sale.addItem(testEntry);
         sale.endRegistering();
         sale.addPayment(100);
@@ -152,7 +152,7 @@ class SaleTest {
     }
 
     @Test
-    void addPaymentCheckChange() {
+    void addPaymentTestChange() {
         sale.addItem(testEntry);
         sale.endRegistering();
         sale.addPayment(100);

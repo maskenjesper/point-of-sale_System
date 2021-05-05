@@ -23,7 +23,7 @@ public class Controller {
     /**
      * The default constructor for Controller. Creates and stores references to all external systems.
      */
-    public Controller() { // Får controllern bara kommunicera med view genom dess returvärde?
+    public Controller() {
         inventory = new Inventory();
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();
@@ -37,8 +37,6 @@ public class Controller {
         sale = new Sale();
     }
 
-    // Behövde göra så att en entry flyttas längst bak i listan även om bara quantity ökas. Detta för att view ska veta
-    // vilket item som lades till senast så att detta kan displayas.
     /**
      * Searches for an identifier match and if successful adds found item together with the quantity in the sales table
      * and updates the running total (including VAT).
@@ -48,9 +46,14 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {    // Det kanske inte framgår att addFoundItemToSale ska
-        ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);      // returnera något men å andra sidan gör inte addItemToSale det heller.
-        return addFoundItemToSale(foundItem, quantity);
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
+        ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
+        if (foundItem != null) {
+            sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
+            return sale.getSaleDTO();
+        }
+        else
+            return null;
     }
 
     /**
@@ -82,15 +85,6 @@ public class Controller {
         SaleDTO saleDTO = sale.getSaleDTO();
         updateExternalSystems(saleDTO);
         return saleDTO;
-    }
-
-    private SaleDTO addFoundItemToSale(ItemDTO item, int quantity) {
-        if (item != null) {
-            sale.addItem(new ItemTableEntryDTO(item, quantity));
-            return sale.getSaleDTO();
-        }
-        else
-            return null;
     }
 
     private void updateExternalSystems(SaleDTO info) {

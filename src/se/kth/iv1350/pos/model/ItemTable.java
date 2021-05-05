@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ItemTable {
     private List<ItemTableEntryDTO> table;
-    private double runningTotalIncludingVAT; // Är det dumt att ha runningTotal här? Borde jag bara använda mig av totalPrice i paymentInformation?
+    private double runningTotalIncludingVAT;
 
     /**
      * Creates an object and initializes the <code>table</code> attribute.

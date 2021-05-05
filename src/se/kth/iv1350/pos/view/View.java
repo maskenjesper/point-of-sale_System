@@ -24,7 +24,7 @@ public class View {
      * A method that calls all the sysops in appropriate order and with variations to showcase the programs
      * functionality.
      */
-    public void sampleExecution() { // Gör det något att jag har anonyma värden här i metodanropen?
+    public void sampleExecution() {
         System.out.println("START SALE:\n");
         controller.startSale();
 

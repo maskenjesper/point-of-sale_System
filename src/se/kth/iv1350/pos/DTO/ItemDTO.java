@@ -3,7 +3,7 @@ package se.kth.iv1350.pos.DTO;
 /**
  * DTO that bundles the data representing an item.
  */
-public class ItemDTO { // Insåg att denna klass kan brytas upp i flera klasser. Borde jag göra detta?
+public class ItemDTO {
     private final int identifier;
     private final double price;
     private final String description;
@@ -20,9 +20,9 @@ public class ItemDTO { // Insåg att denna klass kan brytas upp i flera klasser.
      * @param currency Currency of the price.
      * @param VATRate VAT-rate for the item in %.
      */
-    public ItemDTO(int identifier, double price, String description, String name, String currency, double VATRate) { // Jag fick en ide om att eliminera denna långa parameterlista genom
-        this.identifier = identifier;                                                                                // att istället bara ha identifier som parameter och beroende på denna
-        this.price = price;                                                                                          // så instansieras objektet på ett specifikt sätt. Är det en bra ide?
+    public ItemDTO(int identifier, double price, String description, String name, String currency, double VATRate) {
+        this.identifier = identifier;
+        this.price = price;
         this.description = description;
         this.name = name;
         this.currency = currency;

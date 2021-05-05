@@ -11,7 +11,7 @@ class ReceiptPrinterTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    ReceiptPrinter receiptPrinter;
+    private ReceiptPrinter receiptPrinter;
 
     @BeforeEach
     void setUp() {
@@ -27,7 +27,7 @@ class ReceiptPrinterTest {
     //          printReceipt()          //
     //////////////////////////////////////
     @Test
-    void callPrintReceipt() {
+    void printReceiptTestCall() {
         receiptPrinter.printReceipt(new SaleDTO(new Sale()));
     }
 }

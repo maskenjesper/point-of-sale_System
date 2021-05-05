@@ -11,7 +11,7 @@ class CashRegisterTest {
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    CashRegister cashRegister;
+    private CashRegister cashRegister;
 
     @BeforeEach
     void setUp() {
@@ -27,7 +27,7 @@ class CashRegisterTest {
     //          addPayment()            //
     //////////////////////////////////////
     @Test
-    void callAddPayment() {
+    void addPaymentTestCall() {
         cashRegister.addPayment(new SaleDTO(new Sale()));
     }
 }

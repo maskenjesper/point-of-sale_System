@@ -8,16 +8,16 @@ import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ItemTableTest { // Måste man ha test för toString?
+class ItemTableTest {
 
     //////////////////////////////////////
     //              SETUP               //
     //////////////////////////////////////
-    ItemTable itemTable;
-    ItemDTO itemDTO;
-    ItemDTO itemDTOOther;
-    ItemTableEntryDTO itemTableEntryDTO;
-    ItemTableEntryDTO itemTableEntryDTOOther;
+    private ItemTable itemTable;
+    private ItemDTO itemDTO;
+    private ItemDTO itemDTOOther;
+    private ItemTableEntryDTO itemTableEntryDTO;
+    private ItemTableEntryDTO itemTableEntryDTOOther;
 
     @BeforeEach
     void setUp() {

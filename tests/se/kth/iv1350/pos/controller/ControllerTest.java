@@ -16,7 +16,7 @@ class ControllerTest { // Ska jag verkligen göra tester för controller? Det k�
     //////////////////////////////
     //          SETUP           //
     //////////////////////////////
-    Controller controller;
+    private Controller controller;
 
     @BeforeEach
     void setUp() {
@@ -32,7 +32,7 @@ class ControllerTest { // Ska jag verkligen göra tester för controller? Det k�
     //          startSale()         //
     //////////////////////////////////
     @Test
-    void startSale() { // Effekten startSale har är att sale attributet hos controllern ska instansieras vilket betyder att end register borde kunna anropas
+    void startSale() {
         controller.startSale();
         controller.endRegistering();
     }
