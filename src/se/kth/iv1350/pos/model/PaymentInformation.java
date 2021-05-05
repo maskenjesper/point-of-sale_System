@@ -35,7 +35,8 @@ public class PaymentInformation {
      * @param customerID ID of the customer.
      */
     void calculateDiscount(int customerID) {
-        if (customerID == 123) {
+        int eligibleCustomer = 123;
+        if (customerID == eligibleCustomer) {
             totalPrice *= 0.5;
             totalVAT *= 0.5;
         }

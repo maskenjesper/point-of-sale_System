@@ -5,7 +5,7 @@ import se.kth.iv1350.pos.model.ItemTable;
 /**
  * DTO that bundles the data representing an item.
  */
-public class ItemDTO {
+public class ItemDTO { // Insåg att denna klass kan brytas upp i flera klasser. Borde jag göra detta?
     private int identifier;
     private double price;
     private String description;
@@ -22,9 +22,9 @@ public class ItemDTO {
      * @param currency Currency of the price.
      * @param VATRate VAT-rate for the item in %.
      */
-    public ItemDTO(int identifier, double price, String description, String name, String currency, double VATRate) {
-        this.identifier = identifier;
-        this.price = price;
+    public ItemDTO(int identifier, double price, String description, String name, String currency, double VATRate) { // Jag fick en ide om att eliminera denna långa parameterlista genom
+        this.identifier = identifier;                                                                                // att istället bara ha identifier som parameter och beroende på denna
+        this.price = price;                                                                                          // så instansieras objektet på ett specifikt sätt. Är det en bra ide?
         this.description = description;
         this.name = name;
         this.currency = currency;
