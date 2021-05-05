@@ -4,10 +4,10 @@ package se.kth.iv1350.pos.DTO;
  * DTO that bundles the data representing an address.
  */
 public class AddressDTO {
-    private String street;
-    private String city;
-    private String country;
-    private int ZIP;
+    private final String street;
+    private final String city;
+    private final String country;
+    private final int ZIP;
 
     /**
      * Constructs an <code>AddressDTO</code> by copying the parameters to corresponding attributes.

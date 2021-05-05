@@ -4,8 +4,8 @@ package se.kth.iv1350.pos.DTO;
  * DTO for the ItemTableEntry class.
  */
 public class ItemTableEntryDTO {
-    ItemDTO itemDTO;
-    int quantity;
+    private final ItemDTO itemDTO;
+    private final int quantity;
 
     /**
      * Constructor for an ItemTableEntryDTO.

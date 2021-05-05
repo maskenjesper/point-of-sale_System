@@ -9,10 +9,10 @@ import se.kth.iv1350.pos.model.StoreInformation;
  * DTO for the Sale class.
  */
 public class SaleDTO {
-    private PaymentInformation paymentInformation;
-    private String dateAndTime;
-    private StoreInformation storeInformation;
-    private ItemTable itemTable;
+    private final PaymentInformation paymentInformation;
+    private final String dateAndTime;
+    private final StoreInformation storeInformation;
+    private final ItemTable itemTable;
 
     /**
      * Constructor that builds the DTO from given Sale object.

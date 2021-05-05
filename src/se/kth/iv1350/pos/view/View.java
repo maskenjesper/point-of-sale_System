@@ -94,7 +94,7 @@ public class View {
     }
 
     private String itemTableToString(ItemTable itemTable) {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         for (ItemTableEntryDTO entry:itemTable.getTable())
             sb.append("| " + entry.getQuantity() + "st " + itemDTOToString(entry.getItemDTO()) + "\n");
         return sb.toString();

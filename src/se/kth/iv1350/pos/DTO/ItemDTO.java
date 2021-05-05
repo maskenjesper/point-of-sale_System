@@ -1,17 +1,15 @@
 package se.kth.iv1350.pos.DTO;
 
-import se.kth.iv1350.pos.model.ItemTable;
-
 /**
  * DTO that bundles the data representing an item.
  */
 public class ItemDTO { // Insåg att denna klass kan brytas upp i flera klasser. Borde jag göra detta?
-    private int identifier;
-    private double price;
-    private String description;
-    private String name;
-    private String currency;
-    private double VATRate;
+    private final int identifier;
+    private final double price;
+    private final String description;
+    private final String name;
+    private final String currency;
+    private final double VATRate;
 
     /**
      * Constructs an ItemDTO by filling it's attributes with the corresponding parameters.

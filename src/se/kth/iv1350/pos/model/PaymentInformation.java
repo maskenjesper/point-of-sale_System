@@ -44,7 +44,7 @@ public class PaymentInformation {
 
     /**
      * Registers amount paid and calculates discount.
-     * @param amountPaid
+     * @param amountPaid The amount paid by the customer
      */
     void calculatePayment(double amountPaid) {
         this.amountPaid = amountPaid;

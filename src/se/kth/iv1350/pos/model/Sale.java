@@ -8,10 +8,10 @@ import se.kth.iv1350.pos.utility.Time;
  * This class is used to create an object containing all information about a specific sale.
  */
 public class Sale {
-    private PaymentInformation paymentInformation;
-    private String dateAndTime; // Gör custom objekt istället?
-    private StoreInformation storeInformation;
-    private ItemTable itemTable;
+    private final PaymentInformation paymentInformation;            // Borde jag ha dessa som final?
+    private final String dateAndTime; // Gör custom objekt istället?
+    private final StoreInformation storeInformation;
+    private final ItemTable itemTable;
 
     /**
      * Constructor for a Sale that initializes a new instance.
@@ -22,7 +22,7 @@ public class Sale {
         paymentInformation = new PaymentInformation();
         storeInformation = new StoreInformation();
     }
-
+    
     /**
      * Adds an item entry to the sale.
      * @param entry The entry to add.

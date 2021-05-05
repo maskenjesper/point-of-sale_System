@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.Inventory;
-import se.kth.iv1350.pos.model.Sale;
-import se.kth.iv1350.pos.view.View;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,9 +32,9 @@ class ControllerTest { // Ska jag verkligen göra tester för controller? Det k�
     //          startSale()         //
     //////////////////////////////////
     @Test
-    void startSale() {
+    void startSale() { // Effekten startSale har är att sale attributet hos controllern ska instansieras vilket betyder att end register borde kunna anropas
         controller.startSale();
-        SaleDTO result = controller.endRegistering();
+        controller.endRegistering();
     }
 
     //////////////////////////////////////
