@@ -18,12 +18,12 @@ class ControllerTest {
     private Controller controller;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         controller = new Controller();
     }
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws Exception {
         controller = null;
     }
 
@@ -31,7 +31,7 @@ class ControllerTest {
     //          startSale()         //
     //////////////////////////////////
     @Test
-    void startSale() {
+    void startSale() throws Exception {
         controller.startSale();
         controller.endRegistering();
     }
@@ -40,7 +40,7 @@ class ControllerTest {
     //          addItemToSale()         //
     //////////////////////////////////////
     @Test
-    void addItemToSaleTestItemDTO() {
+    void addItemToSaleTestItemDTO() throws Exception {
         controller.startSale();
         ItemDTO expectedResult = new Inventory().getItemInfo(1);
         SaleDTO saleDTO = controller.addItemToSale(1, 2);
@@ -49,7 +49,7 @@ class ControllerTest {
     }
 
     @Test
-    void addItemToSaleTestQuantity() {
+    void addItemToSaleTestQuantity() throws Exception {
         controller.startSale();
         int expectedResult = 2;
         SaleDTO saleDTO = controller.addItemToSale(1, 2);
@@ -58,7 +58,7 @@ class ControllerTest {
     }
 
     @Test
-    void addItemToSaleTestRunningTotalIncludingVAT() {
+    void addItemToSaleTestRunningTotalIncludingVAT() throws Exception {
         controller.startSale();
         double expectedResult = 2 * 25 * 1.2;
         SaleDTO saleDTO = controller.addItemToSale(1, 2);
@@ -70,7 +70,7 @@ class ControllerTest {
     //          endRegistering()            //
     //////////////////////////////////////////
     @Test
-    void endRegisteringTestTotalPriceOneItem() {
+    void endRegisteringTestTotalPriceOneItem() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         SaleDTO saleDTO = controller.endRegistering();
@@ -80,7 +80,7 @@ class ControllerTest {
     }
 
     @Test
-    void endRegisteringTestTotalPriceTwoDifferentItems() {
+    void endRegisteringTestTotalPriceTwoDifferentItems() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.addItemToSale(2, 1);
@@ -91,7 +91,7 @@ class ControllerTest {
     }
 
     @Test
-    void endRegisteringTestTotalVATOneItem() {
+    void endRegisteringTestTotalVATOneItem() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         SaleDTO saleDTO = controller.endRegistering();
@@ -101,7 +101,7 @@ class ControllerTest {
     }
 
     @Test
-    void endRegisteringTestTotalVATTwoDifferentItems() {
+    void endRegisteringTestTotalVATTwoDifferentItems() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.addItemToSale(2, 1);
@@ -115,7 +115,7 @@ class ControllerTest {
     //          discountRequest()         //
     ////////////////////////////////////////
     @Test
-    void discountRequestTestTotalPriceValid() {
+    void discountRequestTestTotalPriceValid() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();
@@ -127,7 +127,7 @@ class ControllerTest {
     }
 
     @Test
-    void discountRequestTestTotalVATValid() {
+    void discountRequestTestTotalVATValid() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();
@@ -139,7 +139,7 @@ class ControllerTest {
     }
 
     @Test
-    void discountRequestTestTotalPriceInvalid() {
+    void discountRequestTestTotalPriceInvalid() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();
@@ -151,7 +151,7 @@ class ControllerTest {
     }
 
     @Test
-    void discountRequestTestTotalVATInvalid() {
+    void discountRequestTestTotalVATInvalid() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();
@@ -166,7 +166,7 @@ class ControllerTest {
     //          addPayment()            //
     //////////////////////////////////////
     @Test
-    void addPaymentTestAmountPaid() {
+    void addPaymentTestAmountPaid() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();
@@ -178,7 +178,7 @@ class ControllerTest {
     }
 
     @Test
-    void addPaymentTestChange() {
+    void addPaymentTestChange() throws Exception {
         controller.startSale();
         controller.addItemToSale(1, 1);
         controller.endRegistering();

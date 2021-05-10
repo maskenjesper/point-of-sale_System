@@ -46,14 +46,18 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) {
-        ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
-        if (foundItem != null) {
-            sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
-            return sale.getSaleDTO();
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) throws Exception {
+        try {
+            ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
+            if (foundItem != null) {
+                sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
+                return sale.getSaleDTO();
+            }
+            else
+                return null;
+        } catch (Exception e) {
+            throw new Exception("More abstract exception", e);
         }
-        else
-            return null;
     }
 
     /**

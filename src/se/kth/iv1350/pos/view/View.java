@@ -29,51 +29,56 @@ public class View {
         controller.startSale();
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:");
-        printAfterAddItemToSale(controller.addItemToSale(1, 20));
-
+        AddItemToSale(1, 20);                                       // Det kanske är bättre att bara göra själva anropet i metoden istället
+                                                                    // för att skicka som parameter och ta bort "" prefixet? Som jag gjort nu.
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 20:");
-        printAfterAddItemToSale(controller.addItemToSale(2, 20));
+        AddItemToSale(2, 20);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 AGAIN QUANTITY 5:");
-        printAfterAddItemToSale(controller.addItemToSale(1, 5));
+        AddItemToSale(1, 5);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 3 (INVALID) QUANTITY 20:");
-        printAfterAddItemToSale(controller.addItemToSale(3, 20));
+        AddItemToSale(3, 20);
 
         System.out.println("END REGISTERING:");
-        printAfterEndRegistering(controller.endRegistering());
+        EndRegistering();
 
         System.out.println("REQUEST DISCOUNT (INVALID CUSTOMERID):");
-        printAfterDiscountRequest(controller.requestDiscount(124));
+        DiscountRequest(1);
 
         System.out.println("REQUEST DISCOUNT:");
-        printAfterDiscountRequest(controller.requestDiscount(123));
+        DiscountRequest(123);
 
         System.out.println("ADD PAYMENT:");
-        printAfterAddPayment(controller.addPayment(2000));
+        AddPayment(2000);
 
     }
 
-    private void printAfterAddItemToSale(SaleDTO saleDTO) {
-        if (saleDTO != null)
+    private void AddItemToSale(int itemIdentifier, int quantity) {
+        try {
+            SaleDTO saleDTO = controller.addItemToSale(itemIdentifier, quantity);
             System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
                     ": " + saleDTO.getItemTable().getLastItemInTable().getDescription() +
                     "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() +
                     "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " " +
                     saleDTO.getItemTable().getLastItemInTable().getCurrency() + "\n");
-        else
+        } catch (Exception e) {
             System.out.println("Invalid identifier\n");
+        }
     }
 
-    private void printAfterEndRegistering(SaleDTO saleDTO) {
+    private void EndRegistering() {
+        SaleDTO saleDTO = controller.endRegistering();
         System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
     }
 
-    private void printAfterDiscountRequest(SaleDTO saleDTO) {
+    private void DiscountRequest(int customerID) {
+        SaleDTO saleDTO = controller.requestDiscount(customerID);
         System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
     }
 
-    private void printAfterAddPayment(SaleDTO saleDTO) {
+    private void AddPayment(double amountPaid) {
+        SaleDTO saleDTO = controller.addPayment(amountPaid);
         System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange());
         printReceipt(saleDTO);
     }

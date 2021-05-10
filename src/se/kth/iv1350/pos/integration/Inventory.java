@@ -26,11 +26,11 @@ public class Inventory {
      * @param itemIdentifier The identifier that specifies what item is searched for.
      * @return <code>ItemDTO</code> of found item. If none is found, then <code>null</code>.
      */
-    public ItemDTO getItemInfo(int itemIdentifier) {
-        for (ItemDTO item:mockItems)
+    public ItemDTO getItemInfo(int itemIdentifier) throws Exception {   // TODO create custom exception
+        for (ItemDTO item : mockItems)
             if (item.getIdentifier() == itemIdentifier)
                 return item;
-        return null;
+        throw new Exception("Invalid identifier");
     }
 
     /**
