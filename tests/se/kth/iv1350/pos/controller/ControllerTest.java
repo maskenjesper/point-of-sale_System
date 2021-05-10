@@ -120,7 +120,7 @@ class ControllerTest {
         controller.addItemToSale(1, 1);
         controller.endRegistering();
         int eligibleCustomer = 123;
-        SaleDTO saleDTO = controller.discountRequest(eligibleCustomer);
+        SaleDTO saleDTO = controller.requestDiscount(eligibleCustomer);
         double expectedResult = 25 * 1.2 / 2;
         double actualResult = saleDTO.getPaymentInformation().getTotalPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not correctly modified by discount");
@@ -132,7 +132,7 @@ class ControllerTest {
         controller.addItemToSale(1, 1);
         controller.endRegistering();
         int eligibleCustomer = 123;
-        SaleDTO saleDTO = controller.discountRequest(eligibleCustomer);
+        SaleDTO saleDTO = controller.requestDiscount(eligibleCustomer);
         double expectedResult = 25 * 0.2 / 2;
         double actualResult = saleDTO.getPaymentInformation().getTotalVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not correctly modified by discount");
@@ -144,7 +144,7 @@ class ControllerTest {
         controller.addItemToSale(1, 1);
         controller.endRegistering();
         int ineligibleCustomer = 1;
-        SaleDTO saleDTO = controller.discountRequest(ineligibleCustomer);
+        SaleDTO saleDTO = controller.requestDiscount(ineligibleCustomer);
         double expectedResult = 25 * 1.2;
         double actualResult = saleDTO.getPaymentInformation().getTotalPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not correctly modified by discount");
@@ -156,7 +156,7 @@ class ControllerTest {
         controller.addItemToSale(1, 1);
         controller.endRegistering();
         int ineligibleCustomer = 1;
-        SaleDTO saleDTO = controller.discountRequest(ineligibleCustomer);
+        SaleDTO saleDTO = controller.requestDiscount(ineligibleCustomer);
         double expectedResult = 25 * 0.2;
         double actualResult = saleDTO.getPaymentInformation().getTotalVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not correctly modified by discount");

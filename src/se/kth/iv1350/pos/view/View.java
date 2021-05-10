@@ -44,10 +44,10 @@ public class View {
         printAfterEndRegistering(controller.endRegistering());
 
         System.out.println("REQUEST DISCOUNT (INVALID CUSTOMERID):");
-        printAfterDiscountRequest(controller.discountRequest(124));
+        printAfterDiscountRequest(controller.requestDiscount(124));
 
         System.out.println("REQUEST DISCOUNT:");
-        printAfterDiscountRequest(controller.discountRequest(123));
+        printAfterDiscountRequest(controller.requestDiscount(123));
 
         System.out.println("ADD PAYMENT:");
         printAfterAddPayment(controller.addPayment(2000));

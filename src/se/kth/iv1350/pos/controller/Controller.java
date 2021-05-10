@@ -70,7 +70,7 @@ public class Controller {
      * @param customerID Used to verify if discount is available.
      * @return <code>SaleDTO</code> of the modified sale.
      */
-    public SaleDTO discountRequest(int customerID) {
+    public SaleDTO requestDiscount(int customerID) {
         sale.addDiscount(customerID);
         return sale.getSaleDTO();
     }

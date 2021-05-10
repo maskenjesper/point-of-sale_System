@@ -51,7 +51,7 @@ class PaymentInformationTest {
     //          calculatePrice()            //
     //////////////////////////////////////////
     @Test
-    void calculatePriceTestTotalPriceWithItemTableWithOneitem1() {
+    void calculatePriceTestTotalPriceWithOneitem1() {
         paymentInformation.calculatePrice(itemTableWithOneitem1);
         double expectedTotalPrice = 120;
         double actualTotalPrice = paymentInformation.getTotalPrice();
@@ -59,7 +59,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalPriceWithItemTableWithTwoitem1() {
+    void calculatePriceTestTotalPriceWithTwoitem1() {
         paymentInformation.calculatePrice(itemTableWithTwoitem1);
         double expectedTotalPrice = 240;
         double actualTotalPrice = paymentInformation.getTotalPrice();
@@ -67,7 +67,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalPriceWithItemTableWithOneitem2() {
+    void calculatePriceTestTotalPriceWithOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem2);
         double expectedTotalPrice = 195;
         double actualTotalPrice = paymentInformation.getTotalPrice();
@@ -75,7 +75,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalPriceWithItemTableWithTwoitem2() {
+    void calculatePriceTestTotalPriceWithTwoitem2() {
         paymentInformation.calculatePrice(itemTableWithTwoitem2);
         double expectedTotalPrice = 390;
         double actualTotalPrice = paymentInformation.getTotalPrice();
@@ -83,7 +83,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalPriceWithItemTableWithOneitem1AndOneitem2() {
+    void calculatePriceTestTotalPriceWithOneitem1AndOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem1AndOneitem2);
         double expectedTotalPrice = 315;
         double actualTotalPrice = paymentInformation.getTotalPrice();
@@ -91,7 +91,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalVATWithItemTableWithOneitem1() {
+    void calculatePriceTestTotalVATWithOneitem1() {
         paymentInformation.calculatePrice(itemTableWithOneitem1);
         double expectedTotalVAT = 20;
         double actualTotalVAT = paymentInformation.getTotalVAT();
@@ -99,7 +99,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalVATWithItemTableWithTwoitem1() {
+    void calculatePriceTestTotalVATWithTwoitem1() {
         paymentInformation.calculatePrice(itemTableWithTwoitem1);
         double expectedTotalVAT = 40;
         double actualTotalVAT = paymentInformation.getTotalVAT();
@@ -107,7 +107,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalVATWithItemTableWithOneitem2() {
+    void calculatePriceTestTotalVATWithOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem2);
         double expectedTotalVAT = 45;
         double actualTotalVAT = paymentInformation.getTotalVAT();
@@ -115,7 +115,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalVATWithItemTableWithTwoitem2() {
+    void calculatePriceTestTotalVATWithTwoitem2() {
         paymentInformation.calculatePrice(itemTableWithTwoitem2);
         double expectedTotalVAT = 90;
         double actualTotalVAT = paymentInformation.getTotalVAT();
@@ -123,7 +123,7 @@ class PaymentInformationTest {
     }
 
     @Test
-    void calculatePriceTestTotalVATWithItemTableWithOneitem1AndOneitem2() {
+    void calculatePriceTestTotalVATWithOneitem1AndOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem1AndOneitem2);
         double expectedTotalVAT = 65;
         double actualTotalVAT = paymentInformation.getTotalVAT();
