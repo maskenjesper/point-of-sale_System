@@ -79,12 +79,12 @@ public class View {
 
     private void AddPayment(double amountPaid) {
         SaleDTO saleDTO = controller.addPayment(amountPaid);
-        System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange());
+        System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange() + "\n");
         printReceipt(saleDTO);
     }
 
     private void printReceipt(SaleDTO saleDTO) {
-        System.out.println("Receipt:\n" + "Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice() +
+        System.out.println("RECEIPT:\n" + "Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice() +
                 "\nVarav VAT: " + saleDTO.getPaymentInformation().getTotalVAT() + "\nBetalat: " +
                 saleDTO.getPaymentInformation().getAmountPaid() + "\nVäxel: " +
                 saleDTO.getPaymentInformation().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
