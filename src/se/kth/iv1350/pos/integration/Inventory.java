@@ -2,7 +2,6 @@ package se.kth.iv1350.pos.integration;
 
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
-import se.kth.iv1350.pos.model.InventoryException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
-    private List<ItemDTO> mockItems;
+    final private List<ItemDTO> mockItems;
 
     /**
      * Constructor that instantiates mockdata for showcasing.
@@ -27,9 +26,9 @@ public class Inventory {
      * @param itemIdentifier The identifier that specifies what item is searched for.
      * @return <code>ItemDTO</code> of found item. If none is found, then <code>null</code>.
      */
-    public ItemDTO getItemInfo(int itemIdentifier) throws InvalidItemIdentifierException, InventoryException {
+    public ItemDTO getItemInfo(int itemIdentifier) throws InvalidItemIdentifierException, DataBaseServerNotRunningException {
         if (itemIdentifier == 500)
-            throw new InventoryException("The database server is not running"); // Hårdkodade låtsasfallet
+            throw new DataBaseServerNotRunningException("The database server is not running"); // Hårdkodade låtsasfallet
         for (ItemDTO item : mockItems)
             if (item.getIdentifier() == itemIdentifier)
                 return item;
