@@ -3,10 +3,8 @@ package se.kth.iv1350.pos.controller;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
-import se.kth.iv1350.pos.integration.Accounting;
-import se.kth.iv1350.pos.integration.CashRegister;
-import se.kth.iv1350.pos.integration.Inventory;
-import se.kth.iv1350.pos.integration.ReceiptPrinter;
+import se.kth.iv1350.pos.integration.*;
+import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
 
 /**
@@ -46,17 +44,13 @@ public class Controller {
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) throws Exception {
-        try {
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) throws InventoryException { // Det mer specifika undantaget fångas av controllern och kastar ett mer generellt
+        try {                                                                                  // undantag istället med det specifika som cause
             ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
-            if (foundItem != null) {
-                sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
-                return sale.getSaleDTO();
-            }
-            else
-                return null;
-        } catch (Exception e) {
-            throw new Exception("More abstract exception", e);
+            sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
+            return sale.getSaleDTO();
+        } catch (InvalidItemIdentifierException e) {
+            throw new InventoryException("Inventory failure", e);
         }
     }
 

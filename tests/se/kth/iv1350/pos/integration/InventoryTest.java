@@ -8,7 +8,7 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.model.Sale;
 
-import java.util.concurrent.ExecutionException;
+import java.lang.Exception;
 
 import static org.junit.jupiter.api.Assertions.*;
 

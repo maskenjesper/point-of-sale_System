@@ -5,6 +5,7 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.controller.Controller;
+import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.ItemTable;
 
 /**
@@ -40,6 +41,9 @@ public class View {
         System.out.println("ADD ITEM WITH IDENTIFIER 3 (INVALID) QUANTITY 20:");
         AddItemToSale(3, 20);
 
+        System.out.println("ADD ITEM WITH IDENTIFIER 500 (SHOWCASE DATABASE SERVER NOT RUNNING) QUANTITY 20:");
+        AddItemToSale(500, 20);
+
         System.out.println("END REGISTERING:");
         EndRegistering();
 
@@ -62,8 +66,8 @@ public class View {
                     "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() +
                     "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " " +
                     saleDTO.getItemTable().getLastItemInTable().getCurrency() + "\n");
-        } catch (Exception e) {
-            System.out.println("Invalid identifier\n");
+        } catch (InventoryException e) {
+            System.out.println(e.getMessage() + "\n");
         }
     }
 

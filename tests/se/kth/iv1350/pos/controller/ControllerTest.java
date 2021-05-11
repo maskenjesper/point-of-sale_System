@@ -7,8 +7,6 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.Inventory;
 
-import java.util.concurrent.ExecutionException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -173,7 +171,7 @@ class ControllerTest {
     private SaleDTO addItemToSale(int itemIdentifier, int quantity) { // Måste jag ha @Test här?
         try {
             return controller.addItemToSale(itemIdentifier, quantity);
-        } catch (Exception e) {
+        } catch (Exception e) {                // Vilken typ av exception ska jag kasta i testerna?
             fail("Exception was thrown from adding valid item");
         }
         return null;
