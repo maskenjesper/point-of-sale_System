@@ -7,8 +7,6 @@ import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
 
-import javax.xml.crypto.Data;
-
 /**
  * The controller class used to interface between the view and model layers. Handles system operations called from the
  * view.
@@ -45,17 +43,17 @@ public class Controller {
      * @param itemIdentifier Specifies the type of item to add.
      * @param quantity The quantity of the item to be added to the sale.
      * @return Returns a <code>SaleDTO</code> if the <code>itemIdentifier</code> is valid and <code>null</code> otherwise.
+     * @throws InventoryException if the database call failed
+     * @throws InvalidItemIdentifierException if the item identifier sent was invalid
      */
-    public SaleDTO addItemToSale(int itemIdentifier, int quantity) throws InventoryException { // Det mer specifika undantaget fångas av controllern och kastar ett mer generellt
-        try {                                                                                  // undantag istället med det specifika som cause
+    public SaleDTO addItemToSale(int itemIdentifier, int quantity) throws InventoryException, InvalidItemIdentifierException {
+        try {
             ItemDTO foundItem = inventory.getItemInfo(itemIdentifier);
-            sale.addItem(new ItemTableEntryDTO(foundItem, quantity)); // Behöver jag göra något mer för att behålla state? Det är ju getItemInfo (Inventory är immutable)
-            return sale.getSaleDTO();                                 // som kan kasta undantag och den anropas först.
-        } catch (InvalidItemIdentifierException | DataBaseServerNotRunningException e) { // Är det såhär jag borde fånga båda undantagen?
-            // Är det här jag borde skriva output för developers? såhär:
+            sale.addItem(new ItemTableEntryDTO(foundItem, quantity));
+            return sale.getSaleDTO();
+        } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
-            // Innan jag skickar vidare den mer generella undantaget som ska visas på användargränsnittet?
-            // Då finns det inte riktigt någon anledning att skicka med cause dock
+            e.printStackTrace();
             throw new InventoryException("Inventory failure", e);
         }
     }

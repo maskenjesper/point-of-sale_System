@@ -5,6 +5,7 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.controller.Controller;
+import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
 import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.ItemTable;
 
@@ -67,7 +68,9 @@ public class View {
                     "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " " +
                     saleDTO.getItemTable().getLastItemInTable().getCurrency() + "\n");
         } catch (InventoryException e) {
-            System.out.println(e.getMessage() + "\n");
+            System.out.println("Inventory failure\n");
+        } catch (InvalidItemIdentifierException e) {
+            System.out.println("Invalid item identifier: " + e.getItemIdentifier() + "\n");
         }
     }
 

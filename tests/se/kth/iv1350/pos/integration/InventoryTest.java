@@ -33,7 +33,7 @@ class InventoryTest {
     //          getItemInfo()           //
     //////////////////////////////////////
     @Test
-    void getItemInfoTestID1() { // Jag skapar väl inte en ny testklass för själva undantagen utan bara lägger till tester hos metoderna där undantag kastas?
+    void getItemInfoTestID1() {
         try {
             ItemDTO expectedResult = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 0.2);
             ItemDTO actualResult = inventory.getItemInfo(1);
@@ -60,7 +60,17 @@ class InventoryTest {
             inventory.getItemInfo(3);
             fail("Exception was not thrown when invalid identifier was sent");
         } catch (Exception e) {
-            // Bör något skrivas här?
+            // Bör något skrivas här? checka felmeddelandet | assertthrows
+        }
+    }
+
+    @Test
+    void getItemInfoTestServerNotRunning() {
+        try {
+            inventory.getItemInfo(3);
+            fail("Exception was not thrown when the database server wasn't running");
+        } catch (Exception e) {
+            // Bör något skrivas här? checka felmeddelandet | assertthrows
         }
     }
 

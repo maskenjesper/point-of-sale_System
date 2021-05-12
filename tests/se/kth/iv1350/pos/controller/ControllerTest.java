@@ -41,7 +41,7 @@ class ControllerTest {
     //////////////////////////////////////
     @Test
     void addItemToSaleTestItemDTO() {
-        SaleDTO saleDTO = createSaleWithTwoSameItems();
+        SaleDTO saleDTO = createAndEndSaleWithTwoDifferentItems();
         ItemDTO expectedResult = getItemInfoAt(1);
         ItemDTO actualResult = saleDTO.getItemTable().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Item wasn't added correctly");
@@ -168,16 +168,16 @@ class ControllerTest {
     //////////////////////////////////////
     //          Helper Methods          //
     //////////////////////////////////////
-    private SaleDTO addItemToSale(int itemIdentifier, int quantity) { // Måste jag ha @Test här?
+    private SaleDTO addItemToSale(int itemIdentifier, int quantity) {
         try {
             return controller.addItemToSale(itemIdentifier, quantity);
-        } catch (Exception e) {                // Vilken typ av exception ska jag kasta i testerna?
+        } catch (Exception e) {
             fail("Exception was thrown from adding valid item");
         }
         return null;
     }
 
-    private ItemDTO getItemInfoAt(int index) {                        // och denna?
+    private ItemDTO getItemInfoAt(int index) {
         try {
             ItemDTO itemInfo = new Inventory().getItemInfo(index);
             return itemInfo;

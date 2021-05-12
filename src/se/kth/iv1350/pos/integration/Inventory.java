@@ -25,14 +25,16 @@ public class Inventory {
      * Searches through the available mockdata and returns one with identifier matching <code>itemIdentifier</code>.
      * @param itemIdentifier The identifier that specifies what item is searched for.
      * @return <code>ItemDTO</code> of found item. If none is found, then <code>null</code>.
+     * @throws InvalidItemIdentifierException if the identifier sent doesn't correspond with an item in the inventory
+     * @throws DatabaseServerNotRunningException simulated case for when the database server is not running
      */
-    public ItemDTO getItemInfo(int itemIdentifier) throws InvalidItemIdentifierException, DataBaseServerNotRunningException {
+    public ItemDTO getItemInfo(int itemIdentifier) throws InvalidItemIdentifierException, DatabaseServerNotRunningException {
         if (itemIdentifier == 500)
-            throw new DataBaseServerNotRunningException("The database server is not running"); // Hårdkodade låtsasfallet
+            throw new DatabaseServerNotRunningException("The database server is not running");
         for (ItemDTO item : mockItems)
             if (item.getIdentifier() == itemIdentifier)
                 return item;
-        throw new InvalidItemIdentifierException("Invalid identifier"); // Ett väldigt specifikt undantag kastas
+        throw new InvalidItemIdentifierException("Invalid identifier", itemIdentifier);
     }
 
     /**
