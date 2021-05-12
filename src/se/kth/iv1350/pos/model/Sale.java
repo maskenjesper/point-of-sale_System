@@ -4,6 +4,9 @@ import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.utility.Time;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is used to create an object containing all information about a specific sale.
  */
@@ -12,6 +15,7 @@ public class Sale {
     private final String dateAndTime;
     private final StoreInformation storeInformation;
     private final ItemTable itemTable;
+    private List<TotalRevenueObserver> totalRevenueObservers; // Stores observers
 
     /**
      * Constructor for a Sale that initializes a new instance.
@@ -21,6 +25,15 @@ public class Sale {
         dateAndTime = Time.getCurrentSystemTime();
         paymentInformation = new PaymentInformation();
         storeInformation = new StoreInformation();
+        totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
+    }
+
+    /**
+     * Adds a totalRevenueObserver to the sale
+     * @param totalRevenueObserver the observer to be added
+     */
+    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) { // adds observers to this sale
+        totalRevenueObservers.add(totalRevenueObserver);
     }
     
     /**
@@ -52,6 +65,7 @@ public class Sale {
      */
     public void addPayment(double amountPaid) {
         paymentInformation.calculatePayment(amountPaid);
+        notifyObservers(); // Notifies observers
     }
 
     /**
@@ -88,5 +102,10 @@ public class Sale {
      */
     public ItemTable getItemTable() {
         return itemTable;
+    }
+
+    private void notifyObservers() {
+        for (TotalRevenueObserver observer : totalRevenueObservers) // Notifies observers that state has changed
+            observer.paymentAddedToSale(this.paymentInformation.getTotalPrice());
     }
 }

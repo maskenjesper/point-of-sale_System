@@ -6,6 +6,12 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
+import se.kth.iv1350.pos.model.TotalRevenueObserver;
+import se.kth.iv1350.pos.view.TotalRevenueFileOutput;
+import se.kth.iv1350.pos.view.TotalRevenueView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The controller class used to interface between the view and model layers. Handles system operations called from the
@@ -17,6 +23,7 @@ public class Controller {
     private ReceiptPrinter receiptPrinter;
     private CashRegister cashRegister;
     private Sale sale;
+    private List<TotalRevenueObserver> totalRevenueObservers; // Stores observers
 
     /**
      * The default constructor for Controller. Creates and stores references to all external systems.
@@ -26,13 +33,18 @@ public class Controller {
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();
         cashRegister = new CashRegister();
+        totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
+        totalRevenueObservers.add(new TotalRevenueView()); // Adds TotalRevenueView observer to the list of observers
+        totalRevenueObservers.add(new TotalRevenueFileOutput()); // Adds TotalRevenueFileOutput observer to the list of observers
     }
 
     /**
      * This method does the setup for a new sale by creating a new Sale object and store a reference to this.
+     * It also adds the observers to the newly created sale.
      */
     public void startSale() {
         sale = new Sale();
+        addObserversToSale(); // Adds the observers to the newly created sale
     }
 
     /**
@@ -94,5 +106,10 @@ public class Controller {
         accounting.addSaleRecord(info);
         cashRegister.addPayment(info);
         receiptPrinter.printReceipt(info);
+    }
+
+    private void addObserversToSale() {
+        for (TotalRevenueObserver observer : totalRevenueObservers)
+            sale.addTotalRevenueObserver(observer);
     }
 }
