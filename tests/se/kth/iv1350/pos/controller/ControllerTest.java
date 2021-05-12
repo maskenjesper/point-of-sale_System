@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
+import se.kth.iv1350.pos.integration.DatabaseServerNotRunningException;
+import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
 import se.kth.iv1350.pos.integration.Inventory;
+import se.kth.iv1350.pos.model.InventoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,9 +43,9 @@ class ControllerTest {
     //          addItemToSale()         //
     //////////////////////////////////////
     @Test
-    void addItemToSaleTestItemDTO() {
+    void addItemToSaleTestItemDTO() throws Exception {
         SaleDTO saleDTO = createAndEndSaleWithTwoDifferentItems();
-        ItemDTO expectedResult = getItemInfoAt(1);
+        ItemDTO expectedResult = new Inventory().getItemInfo(2);
         ItemDTO actualResult = saleDTO.getItemTable().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Item wasn't added correctly");
     }
@@ -61,6 +64,26 @@ class ControllerTest {
         double expectedResult = 2 * 25 * 1.2;
         double actualResult = saleDTO.getItemTable().getRunningTotalIncludingVAT();
         assertEquals(expectedResult, actualResult, "Running total including VAT was incorrect");
+    }
+
+    @Test
+    void addItemToSaleTestInvalidIdentifier() {
+        try {
+            controller.addItemToSale(3, 1);
+            fail("Exception was not thrown when invalid id was sent");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidItemIdentifierException);
+        }
+    }
+
+    @Test
+    void addItemToSaleTestDatabaseServerNotRunning() {
+        try {
+            controller.addItemToSale(500, 1);
+            fail("Exception was not thrown when database server wasn't running");
+        } catch (Exception e) {
+            assertTrue(e instanceof InventoryException);
+        }
     }
 
     //////////////////////////////////////////
@@ -168,41 +191,37 @@ class ControllerTest {
     //////////////////////////////////////
     //          Helper Methods          //
     //////////////////////////////////////
-    private SaleDTO addItemToSale(int itemIdentifier, int quantity) {
-        try {
-            return controller.addItemToSale(itemIdentifier, quantity);
-        } catch (Exception e) {
-            fail("Exception was thrown from adding valid item");
-        }
-        return null;
-    }
-
-    private ItemDTO getItemInfoAt(int index) {
-        try {
-            ItemDTO itemInfo = new Inventory().getItemInfo(index);
-            return itemInfo;
-        } catch (Exception e) {
-            fail("Exception was thrown from adding valid item");
-        }
-        return null;
-    }
-
     private SaleDTO createSaleWithTwoSameItems() {
-        controller.startSale();
-        return addItemToSale(1, 2);
+        try {
+            controller.startSale();
+            return controller.addItemToSale(1, 2);
+        } catch (Exception e) {
+            fail("Exception was thrown when constructing valid test sale");
+        }
+        return null;
     }
 
     private SaleDTO createAndEndSaleWithOneItem() {
-        controller.startSale();
-        addItemToSale(1, 1);
-        return controller.endRegistering();
+        try {
+            controller.startSale();
+            controller.addItemToSale(1, 1);
+            return controller.endRegistering();
+        } catch (Exception e) {
+            fail("Exception was thrown when constructing valid test sale");
+        }
+        return null;
     }
 
     private SaleDTO createAndEndSaleWithTwoDifferentItems() {
-        controller.startSale();
-        addItemToSale(1, 1);
-        addItemToSale(2, 1);
-        return controller.endRegistering();
+        try {
+            controller.startSale();
+            controller.addItemToSale(1, 1);
+            controller.addItemToSale(2, 1);
+            return controller.endRegistering();
+        } catch (Exception e) {
+            fail("Exception was thrown when constructing valid test sale");
+        }
+        return null;
     }
 }
 

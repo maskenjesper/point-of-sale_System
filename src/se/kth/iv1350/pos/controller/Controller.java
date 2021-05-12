@@ -54,7 +54,7 @@ public class Controller {
         } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
             e.printStackTrace();
-            throw new InventoryException("Inventory failure", e);
+            throw new InventoryException("Inventory failure", e); // Vad är meningen med att skicka med cause?
         }
     }
 

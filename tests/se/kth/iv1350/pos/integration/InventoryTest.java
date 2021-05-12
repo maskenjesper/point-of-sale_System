@@ -60,17 +60,17 @@ class InventoryTest {
             inventory.getItemInfo(3);
             fail("Exception was not thrown when invalid identifier was sent");
         } catch (Exception e) {
-            // Bör något skrivas här? checka felmeddelandet | assertthrows
+            assertTrue(e instanceof InvalidItemIdentifierException);
         }
     }
 
     @Test
     void getItemInfoTestServerNotRunning() {
         try {
-            inventory.getItemInfo(3);
+            inventory.getItemInfo(500);
             fail("Exception was not thrown when the database server wasn't running");
         } catch (Exception e) {
-            // Bör något skrivas här? checka felmeddelandet | assertthrows
+            assertTrue(e instanceof DatabaseServerNotRunningException);
         }
     }
 
