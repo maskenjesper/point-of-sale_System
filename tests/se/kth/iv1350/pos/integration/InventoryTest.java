@@ -35,8 +35,8 @@ class InventoryTest {
     @Test
     void getItemInfoTestID1() {
         try {
-            ItemDTO expectedResult = new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 0.2);
-            ItemDTO actualResult = inventory.getItemInfo(1);
+            int expectedResult = 1;
+            int actualResult = inventory.getItemInfo(1).getIdentifier();
             assertEquals(expectedResult, actualResult, "Inventory retrieved wrong item");
         } catch (Exception e) {
             fail("Exception thrown when valid identifier was sent");
@@ -46,8 +46,8 @@ class InventoryTest {
     @Test
     void getItemInfoTestID2() {
         try {
-            ItemDTO expectedResult = new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 0.3);
-            ItemDTO actualResult = inventory.getItemInfo(2);
+            int expectedResult = 2;
+            int actualResult = inventory.getItemInfo(2).getIdentifier();
             assertEquals(expectedResult, actualResult, "Inventory retrieved wrong item");
         } catch (Exception e) {
             fail("Exception thrown when valid identifier was sent");
