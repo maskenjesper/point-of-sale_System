@@ -2,23 +2,19 @@ package se.kth.iv1350.pos.integration;
 
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
-
-import java.util.ArrayList;
-import java.util.List;
+import se.kth.iv1350.pos.data.ItemRegistry;
 
 /**
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
-    final private List<ItemDTO> mockItems;
+    private ItemRegistry itemRegistry;
 
     /**
      * Constructor that instantiates mockdata for showcasing.
      */
     public Inventory() {
-        mockItems = new ArrayList<>();
-        mockItems.add(new ItemDTO(1, 25, "Naturens sportdryck", "Mjölk", "SEK", 0.2));
-        mockItems.add(new ItemDTO(2, 20, "Nybakat surdegsbröd", "Levain", "SEK", 0.3));
+        itemRegistry = ItemRegistry.getInstance();
     }
 
     /**
@@ -31,7 +27,7 @@ public class Inventory {
     public ItemDTO getItemInfo(int itemIdentifier) throws InvalidItemIdentifierException, DatabaseServerNotRunningException {
         if (itemIdentifier == 500)
             throw new DatabaseServerNotRunningException("The database server is not running");
-        for (ItemDTO item : mockItems)
+        for (ItemDTO item : itemRegistry.getItemList())
             if (item.getIdentifier() == itemIdentifier)
                 return item;
         throw new InvalidItemIdentifierException("Invalid identifier", itemIdentifier);
