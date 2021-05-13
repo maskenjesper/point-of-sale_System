@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used to create an object containing all information about a specific sale.
+ * This class is used to create an object containing all information about a specific sale. As well as observers of this instance.
  */
 public class Sale {
     private final PaymentInformation paymentInformation;
@@ -32,7 +32,7 @@ public class Sale {
      * Adds a totalRevenueObserver to the sale
      * @param totalRevenueObserver the observer to be added
      */
-    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) { // adds observers to this sale
+    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) { // adds observer to this sale
         totalRevenueObservers.add(totalRevenueObserver);
     }
     
@@ -106,6 +106,6 @@ public class Sale {
 
     private void notifyObservers() {
         for (TotalRevenueObserver observer : totalRevenueObservers) // Notifies observers that state has changed
-            observer.paymentAddedToSale(this.paymentInformation.getTotalPrice());
+            observer.saleEnded(this.paymentInformation.getTotalPrice());
     }
 }

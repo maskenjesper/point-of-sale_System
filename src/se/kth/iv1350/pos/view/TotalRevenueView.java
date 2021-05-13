@@ -10,7 +10,7 @@ public class TotalRevenueView implements TotalRevenueObserver {
     }
 
     @Override
-    public void paymentAddedToSale(double totalPrice) {
+    public void saleEnded(double totalPrice) {
         totalRevenue += totalPrice;
         printTotalRevenue();
     }

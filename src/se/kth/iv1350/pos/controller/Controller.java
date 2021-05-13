@@ -26,7 +26,8 @@ public class Controller {
     private List<TotalRevenueObserver> totalRevenueObservers; // Stores observers
 
     /**
-     * The default constructor for Controller. Creates and stores references to all external systems.
+     * The default constructor for Controller. Creates and stores references to all external systems as well as
+     * stores a list of TotalRevenueObservers
      */
     public Controller() {
         inventory = new Inventory();
@@ -65,7 +66,7 @@ public class Controller {
             return sale.getSaleDTO();
         } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();  Dennas utskrift blir väldigt konstig och hamnar på fel plats
             throw new InventoryException("Inventory failure", e); // Vad är meningen med att skicka med cause?
         }
     }

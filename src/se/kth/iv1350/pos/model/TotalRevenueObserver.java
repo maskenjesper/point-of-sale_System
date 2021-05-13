@@ -9,5 +9,5 @@ public interface TotalRevenueObserver {
      * Invoked when the observed Sale has been paid
      * @param totalPrice The total price of the sale that has been paid
      */
-    void paymentAddedToSale(double totalPrice);
+    void saleEnded(double totalPrice);
 }

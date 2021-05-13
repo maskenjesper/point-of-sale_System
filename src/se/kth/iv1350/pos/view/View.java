@@ -27,12 +27,17 @@ public class View {
      * functionality.
      */
     public void sampleExecution() {
+        performSaleV1();
+        performSaleV2();
+    }
+
+    private void performSaleV1() {
         System.out.println("START SALE:\n");
         controller.startSale();
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:");
-        AddItemToSale(1, 20);                                       // Det kanske är bättre att bara göra själva anropet i metoden istället
-                                                                    // för att skicka som parameter och ta bort "" prefixet? Som jag gjort nu.
+        AddItemToSale(1, 20);
+
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 20:");
         AddItemToSale(2, 20);
 
@@ -56,7 +61,23 @@ public class View {
 
         System.out.println("ADD PAYMENT:");
         AddPayment(2000);
+    }
 
+    private void performSaleV2() {
+        System.out.println("START SALE:\n");
+        controller.startSale();
+
+        System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 1:");
+        AddItemToSale(1, 1);
+
+        System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 1:");
+        AddItemToSale(2, 1);
+
+        System.out.println("END REGISTERING:");
+        EndRegistering();
+
+        System.out.println("ADD PAYMENT:");
+        AddPayment(2000);
     }
 
     private void AddItemToSale(int itemIdentifier, int quantity) {
@@ -91,13 +112,15 @@ public class View {
     }
 
     private void printReceipt(SaleDTO saleDTO) {
-        System.out.println("RECEIPT:\n" + "Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice() +
+        System.out.println("#################################- RECEIPT -#################################");
+        System.out.println("Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice() +
                 "\nVarav VAT: " + saleDTO.getPaymentInformation().getTotalVAT() + "\nBetalat: " +
                 saleDTO.getPaymentInformation().getAmountPaid() + "\nVäxel: " +
                 saleDTO.getPaymentInformation().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
                 "\nButik: " + saleDTO.getStoreInformation().getStoreName() + "\nAdress: " +
                 addressDTOToString(saleDTO.getStoreInformation().getStoreAddress()) + "\n" +
                 itemTableToString(saleDTO.getItemTable()));
+        System.out.println("#############################################################################");
     }
 
     private String addressDTOToString(AddressDTO addressDTO) {

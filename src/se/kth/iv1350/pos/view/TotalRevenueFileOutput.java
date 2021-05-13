@@ -13,7 +13,7 @@ public class TotalRevenueFileOutput implements TotalRevenueObserver {
     public TotalRevenueFileOutput() {
         totalRevenue = 0;
         try {
-            logStream = new PrintWriter(new FileWriter("log.txt"), true);
+            logStream = new PrintWriter(new FileWriter("total_revenue_log.txt"), true);
         } catch (IOException e) {
             System.out.println("CAN NOT LOG");
             e.printStackTrace();
@@ -21,7 +21,7 @@ public class TotalRevenueFileOutput implements TotalRevenueObserver {
     }
 
     @Override
-    public void paymentAddedToSale(double totalPrice) {
+    public void saleEnded(double totalPrice) {
         totalRevenue += totalPrice;
         printTotalRevenue();
     }
