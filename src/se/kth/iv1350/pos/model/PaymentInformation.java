@@ -50,6 +50,8 @@ public class PaymentInformation {
     // Det känns också som att DiscountStrategy implementationerna inte kan göra så mycket eftersom dem inte har tillgång
     // attributen som dem ska redigera. Skulle behöva lägga till setters hos PaymentInformation för att dem ska kunna
     // utföra sin uppgift men detta känns inte så bra.
+    //
+    // Detta hade ju kunnats implementeras mycket snyggare genom att bara ha två olika privata metoder i denna klass.
 
     /**
      * Registers amount paid and calculates discount.

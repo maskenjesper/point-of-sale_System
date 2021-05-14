@@ -31,6 +31,9 @@ public class View {
         performSaleV2();
     }
 
+    /**
+     * Performs a specific variation of a sale
+     */
     private void performSaleV1() {
         System.out.println("START SALE:\n");
         controller.startSale();
@@ -63,6 +66,9 @@ public class View {
         AddPayment(2000);
     }
 
+    /**
+     * Performs a specific variation of a sale
+     */
     private void performSaleV2() {
         System.out.println("START SALE:\n");
         controller.startSale();
