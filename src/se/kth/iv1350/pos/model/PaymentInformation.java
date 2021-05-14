@@ -10,6 +10,7 @@ public class PaymentInformation {
     private double totalVAT;
     private double amountPaid;
     private double change;
+    private DiscountStrategy discountStrategy;
 
     /**
      * Constructs initial payment info
@@ -35,12 +36,20 @@ public class PaymentInformation {
      * @param customerID ID of the customer.
      */
     void calculateDiscount(int customerID) {
-        int eligibleCustomer = 123;
-        if (customerID == eligibleCustomer) {
-            totalPrice *= 0.5;
-            totalVAT *= 0.5;
-        }
+        int memberID = 123;
+        if (customerID == memberID)
+            discountStrategy = new MemberDiscountStrategy(); // Choose MemberDiscountStrategy
+        else
+            discountStrategy = new RegularDiscountStrategy(); // Choose RegularDiscountStrategy
+        discountStrategy.calculate(this);
     }
+    // Det känns som att denna implementation av strategy blir ganska dålig. Vilken algoritm som ska appliceras ska bero
+    // på customerID men då måste jag ha en if-sats som väljer algoritmen (eller stratergin snarare) som ska användas.
+    // Är inte själva meningen med strategy att eliminera if-satser dock?
+    //
+    // Det känns också som att DiscountStrategy implementationerna inte kan göra så mycket eftersom dem inte har tillgång
+    // attributen som dem ska redigera. Skulle behöva lägga till setters hos PaymentInformation för att dem ska kunna
+    // utföra sin uppgift men detta känns inte så bra.
 
     /**
      * Registers amount paid and calculates discount.
@@ -65,6 +74,14 @@ public class PaymentInformation {
 
     public double getChange() {
         return change;
+    }
+
+    public void setTotalPrice(double newTotalPrice) { // Needed for discount calculation
+        totalPrice = newTotalPrice;
+    }
+
+    public void setTotalVAT(double newTotalVAT) { // Needed for discount calculation
+        totalVAT = newTotalVAT;
     }
 
     private void calculateVAT(ItemTable itemTable) {
