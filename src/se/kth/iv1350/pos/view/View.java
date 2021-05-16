@@ -91,7 +91,8 @@ public class View {
             SaleDTO saleDTO = controller.addItemToSale(itemIdentifier, quantity);
             System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
                     ": " + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() +
+                    "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() + " | VAT: " +
+                    saleDTO.getItemTable().getLastItemInTable().getVATRate() * 100 + "%" +
                     "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " " +
                     saleDTO.getItemTable().getLastItemInTable().getCurrency() + "\n");
         } catch (InventoryException e) {

@@ -5,12 +5,15 @@ package se.kth.iv1350.pos.model;
  */
 public class RegularDiscountStrategy implements DiscountStrategy {
 
+    public RegularDiscountStrategy(PaymentInformation paymentInformation) {
+
+    }
+
     /**
      * Applies discount
-     * @param paymentInformation The object to modify
      */
     @Override
-    public void calculate(PaymentInformation paymentInformation) {
+    public void calculate() {
         return;
     }
 }

@@ -38,10 +38,10 @@ public class PaymentInformation {
     void calculateDiscount(int customerID) {
         int memberID = 123;
         if (customerID == memberID)
-            discountStrategy = new MemberDiscountStrategy(); // Choose MemberDiscountStrategy
+            discountStrategy = new MemberDiscountStrategy(this); // Choose MemberDiscountStrategy
         else
-            discountStrategy = new RegularDiscountStrategy(); // Choose RegularDiscountStrategy
-        discountStrategy.calculate(this);
+            discountStrategy = new RegularDiscountStrategy(this); // Choose RegularDiscountStrategy
+        discountStrategy.calculate();
     }
     // Det känns som att denna implementation av strategy blir ganska dålig. Vilken algoritm som ska appliceras ska bero
     // på customerID men då måste jag ha en if-sats som väljer algoritmen (eller stratergin snarare) som ska användas.
