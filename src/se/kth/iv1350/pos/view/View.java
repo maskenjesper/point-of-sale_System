@@ -39,31 +39,31 @@ public class View {
         controller.startSale();
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 20:");
-        AddItemToSale(1, 20);
+        addItemToSale(1, 20);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 20:");
-        AddItemToSale(2, 20);
+        addItemToSale(2, 20);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 AGAIN QUANTITY 5:");
-        AddItemToSale(1, 5);
+        addItemToSale(1, 5);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 3 (INVALID) QUANTITY 20:");
-        AddItemToSale(3, 20);
+        addItemToSale(3, 20);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 500 (SHOWCASE DATABASE SERVER NOT RUNNING) QUANTITY 20:");
-        AddItemToSale(500, 20);
+        addItemToSale(500, 20);
 
         System.out.println("END REGISTERING:");
-        EndRegistering();
+        endRegistering();
 
         System.out.println("REQUEST DISCOUNT (INVALID CUSTOMERID):");
-        DiscountRequest(1);
+        discountRequest(1);
 
         System.out.println("REQUEST DISCOUNT:");
-        DiscountRequest(123);
+        discountRequest(123);
 
         System.out.println("ADD PAYMENT:");
-        AddPayment(2000);
+        addPayment(2000);
     }
 
     /**
@@ -74,19 +74,19 @@ public class View {
         controller.startSale();
 
         System.out.println("ADD ITEM WITH IDENTIFIER 1 QUANTITY 1:");
-        AddItemToSale(1, 1);
+        addItemToSale(1, 1);
 
         System.out.println("ADD ITEM WITH IDENTIFIER 2 QUANTITY 1:");
-        AddItemToSale(2, 1);
+        addItemToSale(2, 1);
 
         System.out.println("END REGISTERING:");
-        EndRegistering();
+        endRegistering();
 
         System.out.println("ADD PAYMENT:");
-        AddPayment(2000);
+        addPayment(2000);
     }
 
-    private void AddItemToSale(int itemIdentifier, int quantity) {
+    private void addItemToSale(int itemIdentifier, int quantity) {
         try {
             SaleDTO saleDTO = controller.addItemToSale(itemIdentifier, quantity);
             System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
@@ -101,17 +101,17 @@ public class View {
         }
     }
 
-    private void EndRegistering() {
+    private void endRegistering() {
         SaleDTO saleDTO = controller.endRegistering();
         System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
     }
 
-    private void DiscountRequest(int customerID) {
+    private void discountRequest(int customerID) {
         SaleDTO saleDTO = controller.requestDiscount(customerID);
         System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
     }
 
-    private void AddPayment(double amountPaid) {
+    private void addPayment(double amountPaid) {
         SaleDTO saleDTO = controller.addPayment(amountPaid);
         System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange() + "\n");
         printReceipt(saleDTO);
