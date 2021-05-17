@@ -10,6 +10,7 @@ public class PaymentInformation {
     private double amountPaid;
     private double change;
     private DiscountStrategy discountStrategy;
+    private DiscountFactory discountFactory;
 
     /**
      * Constructs initial payment info
@@ -18,6 +19,7 @@ public class PaymentInformation {
         totalPrice = new Price();
         amountPaid = 0;
         change = 0;
+        discountFactory = new DiscountFactory(); // Instansiate discount factory
     }
 
     /**
@@ -34,16 +36,9 @@ public class PaymentInformation {
      * @param customerID ID of the customer.
      */
     void calculateDiscount(int customerID) {
-        int memberID = 123;
-        if (customerID == memberID)
-            discountStrategy = new MemberDiscountStrategy(this); // Choose MemberDiscountStrategy
-        else
-            discountStrategy = new RegularDiscountStrategy(this); // Choose RegularDiscountStrategy
-        totalPrice = discountStrategy.calculate();
+        discountStrategy = discountFactory.createDiscountStrategy(customerID); // creates a DiscountStrategy
+        totalPrice = discountStrategy.calculate(this);  // Applies discount with choosen strategy
     }
-    // Det känns som att denna implementation av strategy blir ganska dålig. Vilken algoritm som ska appliceras ska bero
-    // på customerID men då måste jag ha en if-sats som väljer algoritmen (eller stratergin snarare) som ska användas.
-    // Är inte själva meningen med strategy att eliminera if-satser dock?
 
     /**
      * Registers amount paid and calculates discount.

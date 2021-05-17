@@ -6,15 +6,11 @@ package se.kth.iv1350.pos.model;
 public class RegularDiscountStrategy implements DiscountStrategy {
     private PaymentInformation paymentInformation;
 
-    public RegularDiscountStrategy(PaymentInformation paymentInformation) {
-        this.paymentInformation = paymentInformation;
-    }
-
     /**
      * Applies discount
      */
     @Override
-    public Price calculate() {
+    public Price calculate(PaymentInformation paymentInformation) {
         return paymentInformation.getTotalPrice();
     }
 }

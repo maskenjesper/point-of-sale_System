@@ -7,7 +7,7 @@ import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.model.TotalRevenueObserver;
-import se.kth.iv1350.pos.view.TotalRevenueFileOutput;
+import se.kth.iv1350.pos.integration.TotalRevenueFileOutput;
 import se.kth.iv1350.pos.view.TotalRevenueView;
 
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public class Controller {
         totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
         totalRevenueObservers.add(new TotalRevenueView()); // Adds TotalRevenueView observer to the list of observers
         totalRevenueObservers.add(new TotalRevenueFileOutput()); // Adds TotalRevenueFileOutput observer to the list of observers
+        // Tänk över dessa
     }
 
     /**
@@ -66,8 +67,8 @@ public class Controller {
             return sale.getSaleDTO();
         } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
-            //e.printStackTrace();  Dennas utskrift blir väldigt konstig och hamnar på fel plats
-            throw new InventoryException("Inventory failure", e); // Vad är meningen med att skicka med cause?
+            e.printStackTrace();
+            throw new InventoryException("Inventory failure", e);
         }
     }
 
