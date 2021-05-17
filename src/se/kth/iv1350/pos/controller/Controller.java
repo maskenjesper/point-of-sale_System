@@ -8,7 +8,7 @@ import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.model.TotalRevenueObserver;
 import se.kth.iv1350.pos.integration.TotalRevenueFileOutput;
-import se.kth.iv1350.pos.view.TotalRevenueView;
+import se.kth.iv1350.pos.integration.TotalRevenueView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +68,7 @@ public class Controller {
         } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
             e.printStackTrace();
-            throw new InventoryException("Inventory failure", e);
+            throw new InventoryException("Inventory failure");
         }
     }
 
