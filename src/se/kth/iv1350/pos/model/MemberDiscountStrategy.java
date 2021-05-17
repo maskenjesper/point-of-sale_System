@@ -15,8 +15,8 @@ public class MemberDiscountStrategy implements DiscountStrategy {
      * Applies discount
      */
     @Override
-    public void calculate() {
-        paymentInformation.setTotalPrice(paymentInformation.getTotalPrice() * discountRate);
-        paymentInformation.setTotalVAT(paymentInformation.getTotalVAT() * discountRate);
+    public Price calculate() {
+        return new Price(paymentInformation.getTotalPrice().getPrice() * discountRate,
+                paymentInformation.getTotalPrice().getVAT() * discountRate);
     }
 }

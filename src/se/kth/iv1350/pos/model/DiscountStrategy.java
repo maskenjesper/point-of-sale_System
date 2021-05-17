@@ -8,5 +8,5 @@ public interface DiscountStrategy {
     /**
      * Calculates the discount and applies it to the PaymentInformation object
      */
-    void calculate();
+    Price calculate();
 }

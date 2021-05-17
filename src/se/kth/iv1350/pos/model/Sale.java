@@ -106,6 +106,6 @@ public class Sale {
 
     private void notifyObservers() {
         for (TotalRevenueObserver observer : totalRevenueObservers) // Notifies observers that state has changed
-            observer.saleEnded(this.paymentInformation.getTotalPrice());
+            observer.saleEnded(this.paymentInformation.getTotalPrice().getPrice());
     }
 }

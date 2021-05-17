@@ -99,7 +99,7 @@ class SaleTest {
         sale.addItem(otherTestEntry);
         sale.endRegistering();
         double expectedResult = 12 + 30 * 2;
-        double actualResult = sale.getPaymentInformation().getTotalPrice();
+        double actualResult = sale.getPaymentInformation().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Total price was not calculated correctly");
     }
 
@@ -109,7 +109,7 @@ class SaleTest {
         sale.addItem(otherTestEntry);
         sale.endRegistering();
         double expectedResult = 2 + 10 * 2;
-        double actualResult = sale.getPaymentInformation().getTotalVAT();
+        double actualResult = sale.getPaymentInformation().getTotalPrice().getVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not calculated correctly");
     }
 
@@ -123,7 +123,7 @@ class SaleTest {
         int validID = 123;
         sale.addDiscount(validID);
         double expectedResult = 6;
-        double actualResult = sale.getPaymentInformation().getTotalPrice();
+        double actualResult = sale.getPaymentInformation().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Discount was not applied properly");
     }
 
@@ -134,7 +134,7 @@ class SaleTest {
         int invalidID = 1;
         sale.addDiscount(invalidID);
         double expectedResult = 12;
-        double actualResult = sale.getPaymentInformation().getTotalPrice();
+        double actualResult = sale.getPaymentInformation().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Discount was applied properly for invalid customerID");
     }
 

@@ -104,12 +104,14 @@ public class View {
 
     private void endRegistering() {
         SaleDTO saleDTO = controller.endRegistering();
-        System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
+        System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice()
+                + " SEK\n");
     }
 
     private void discountRequest(int customerID) {
         SaleDTO saleDTO = controller.requestDiscount(customerID);
-        System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice() + " SEK\n");
+        System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice()
+                + " SEK\n");
     }
 
     private void addPayment(double amountPaid) {
@@ -120,8 +122,8 @@ public class View {
 
     private void printReceipt(SaleDTO saleDTO) {
         System.out.println("#################################- RECEIPT -#################################");
-        System.out.println("Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice() +
-                "\nVarav VAT: " + saleDTO.getPaymentInformation().getTotalVAT() + "\nBetalat: " +
+        System.out.println("Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice() +
+                "\nVarav VAT: " + saleDTO.getPaymentInformation().getTotalPrice().getVAT() + "\nBetalat: " +
                 saleDTO.getPaymentInformation().getAmountPaid() + "\nVäxel: " +
                 saleDTO.getPaymentInformation().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
                 "\nButik: " + saleDTO.getStoreInformation().getStoreName() + "\nAdress: " +

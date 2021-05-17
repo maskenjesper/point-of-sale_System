@@ -54,7 +54,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalPriceWithOneitem1() {
         paymentInformation.calculatePrice(itemTableWithOneitem1);
         double expectedTotalPrice = 120;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was not calculated correctly");
     }
 
@@ -62,7 +62,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalPriceWithTwoitem1() {
         paymentInformation.calculatePrice(itemTableWithTwoitem1);
         double expectedTotalPrice = 240;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was not calculated correctly");
     }
 
@@ -70,7 +70,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalPriceWithOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem2);
         double expectedTotalPrice = 195;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was not calculated correctly");
     }
 
@@ -78,7 +78,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalPriceWithTwoitem2() {
         paymentInformation.calculatePrice(itemTableWithTwoitem2);
         double expectedTotalPrice = 390;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was not calculated correctly");
     }
 
@@ -86,7 +86,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalPriceWithOneitem1AndOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem1AndOneitem2);
         double expectedTotalPrice = 315;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was not calculated correctly");
     }
 
@@ -94,7 +94,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalVATWithOneitem1() {
         paymentInformation.calculatePrice(itemTableWithOneitem1);
         double expectedTotalVAT = 20;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
@@ -102,7 +102,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalVATWithTwoitem1() {
         paymentInformation.calculatePrice(itemTableWithTwoitem1);
         double expectedTotalVAT = 40;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
@@ -110,7 +110,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalVATWithOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem2);
         double expectedTotalVAT = 45;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
@@ -118,7 +118,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalVATWithTwoitem2() {
         paymentInformation.calculatePrice(itemTableWithTwoitem2);
         double expectedTotalVAT = 90;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
@@ -126,7 +126,7 @@ class PaymentInformationTest {
     void calculatePriceTestTotalVATWithOneitem1AndOneitem2() {
         paymentInformation.calculatePrice(itemTableWithOneitem1AndOneitem2);
         double expectedTotalVAT = 65;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was not calculated correctly");
     }
 
@@ -139,7 +139,7 @@ class PaymentInformationTest {
         int deniedCustomerID = 1;
         paymentInformation.calculateDiscount(deniedCustomerID);
         double expectedTotalPrice = 120;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was changed by denied discount request");
     }
 
@@ -149,7 +149,7 @@ class PaymentInformationTest {
         int deniedCustomerID = 1;
         paymentInformation.calculateDiscount(deniedCustomerID);
         double expectedTotalVAT = 20;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was changed by denied discount request");
     }
 
@@ -159,7 +159,7 @@ class PaymentInformationTest {
         int approvedCustomerID = 123;
         paymentInformation.calculateDiscount(approvedCustomerID);
         double expectedTotalPrice = 60;
-        double actualTotalPrice = paymentInformation.getTotalPrice();
+        double actualTotalPrice = paymentInformation.getTotalPrice().getPrice();
         assertEquals(expectedTotalPrice, actualTotalPrice, "Total price was changed by denied discount request");
     }
 
@@ -169,7 +169,7 @@ class PaymentInformationTest {
         int approvedCustomerID = 123;
         paymentInformation.calculateDiscount(approvedCustomerID);
         double expectedTotalVAT = 10;
-        double actualTotalVAT = paymentInformation.getTotalVAT();
+        double actualTotalVAT = paymentInformation.getTotalPrice().getVAT();
         assertEquals(expectedTotalVAT, actualTotalVAT, "Total VAT was changed by denied discount request");
     }
 
