@@ -7,7 +7,8 @@ public class MemberDiscountStrategy implements DiscountStrategy {
     private double discountRate = 0.5;
 
     /**
-     * Applies discount
+     * @param paymentInformation Information to base calculations on
+     * @return The modified Price
      */
     @Override
     public Price calculate(PaymentInformation paymentInformation) {

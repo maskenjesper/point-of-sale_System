@@ -37,7 +37,7 @@ public class Controller {
         totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
         totalRevenueObservers.add(new TotalRevenueView()); // Adds TotalRevenueView observer to the list of observers
         totalRevenueObservers.add(new TotalRevenueFileOutput()); // Adds TotalRevenueFileOutput observer to the list of observers
-        // Tänk över dessa
+        // Tänk över dessa, skriv i rapporten åtminstone.
     }
 
     /**

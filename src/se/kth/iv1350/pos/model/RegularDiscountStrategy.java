@@ -7,7 +7,8 @@ public class RegularDiscountStrategy implements DiscountStrategy {
     private PaymentInformation paymentInformation;
 
     /**
-     * Applies discount
+     * @param paymentInformation Information to base calculations on
+     * @return The modified Price
      */
     @Override
     public Price calculate(PaymentInformation paymentInformation) {
