@@ -13,8 +13,8 @@ public class DiscountFactory {
      */
     public DiscountStrategy createDiscountStrategy(int customerID) {
         if (customerID == memberID)
-            return new MemberDiscountStrategy(); // Choose MemberDiscountStrategy
+            return new MemberDiscountStrategy();
         else
-            return new RegularDiscountStrategy(); // Choose RegularDiscountStrategy
+            return new RegularDiscountStrategy();
     }
 }

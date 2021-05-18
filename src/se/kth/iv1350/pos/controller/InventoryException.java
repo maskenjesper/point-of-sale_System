@@ -1,4 +1,4 @@
-package se.kth.iv1350.pos.model;
+package se.kth.iv1350.pos.controller;
 
 /**
  * Exception that conveys a general inventory error

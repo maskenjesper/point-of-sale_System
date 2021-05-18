@@ -5,10 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
-import se.kth.iv1350.pos.integration.DatabaseServerNotRunningException;
 import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
 import se.kth.iv1350.pos.integration.Inventory;
-import se.kth.iv1350.pos.model.InventoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -19,7 +19,7 @@ public class PaymentInformation {
         totalPrice = new Price();
         amountPaid = 0;
         change = 0;
-        discountFactory = new DiscountFactory(); // Instansiate discount factory
+        discountFactory = new DiscountFactory();
     }
 
     /**
@@ -36,8 +36,8 @@ public class PaymentInformation {
      * @param customerID ID of the customer.
      */
     void calculateDiscount(int customerID) {
-        discountStrategy = discountFactory.createDiscountStrategy(customerID); // creates a DiscountStrategy
-        totalPrice = discountStrategy.calculate(this);  // Applies discount with choosen strategy
+        discountStrategy = discountFactory.createDiscountStrategy(customerID);
+        totalPrice = discountStrategy.calculate(this);
     }
 
     /**

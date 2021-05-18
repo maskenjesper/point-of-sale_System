@@ -6,7 +6,7 @@ import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.controller.Controller;
 import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
-import se.kth.iv1350.pos.model.InventoryException;
+import se.kth.iv1350.pos.controller.InventoryException;
 import se.kth.iv1350.pos.model.ItemTable;
 
 /**

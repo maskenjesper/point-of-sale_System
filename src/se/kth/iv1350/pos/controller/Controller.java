@@ -4,11 +4,10 @@ import se.kth.iv1350.pos.DTO.ItemDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.*;
-import se.kth.iv1350.pos.model.InventoryException;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.model.TotalRevenueObserver;
 import se.kth.iv1350.pos.integration.TotalRevenueFileOutput;
-import se.kth.iv1350.pos.integration.TotalRevenueView;
+import se.kth.iv1350.pos.view.TotalRevenueView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class Controller {
     private ReceiptPrinter receiptPrinter;
     private CashRegister cashRegister;
     private Sale sale;
-    private List<TotalRevenueObserver> totalRevenueObservers; // Stores observers
+    private List<TotalRevenueObserver> totalRevenueObservers;
 
     /**
      * The default constructor for Controller. Creates and stores references to all external systems as well as
@@ -34,10 +33,9 @@ public class Controller {
         accounting = new Accounting();
         receiptPrinter = new ReceiptPrinter();
         cashRegister = new CashRegister();
-        totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
-        totalRevenueObservers.add(new TotalRevenueView()); // Adds TotalRevenueView observer to the list of observers
-        totalRevenueObservers.add(new TotalRevenueFileOutput()); // Adds TotalRevenueFileOutput observer to the list of observers
-        // Tänk över dessa, skriv i rapporten åtminstone.
+        totalRevenueObservers = new ArrayList<>();
+        totalRevenueObservers.add(new TotalRevenueView());
+        totalRevenueObservers.add(new TotalRevenueFileOutput());
     }
 
     /**
@@ -46,7 +44,7 @@ public class Controller {
      */
     public void startSale() {
         sale = new Sale();
-        addObserversToSale(); // Adds the observers to the newly created sale
+        addObserversToSale();
     }
 
     /**

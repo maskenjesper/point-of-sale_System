@@ -35,9 +35,9 @@ public class ItemRegistry {
      * @return Deepcopy of itemList
      */
     public List<ItemDTO> getItemList() {
-        List<ItemDTO> itemList = new ArrayList<>();
-        for (ItemDTO item : this.itemList)
-            itemList.add(item);
-        return itemList;
+        List<ItemDTO> itemListCopy = new ArrayList<>();
+        for (ItemDTO item : itemList)
+            itemListCopy.add(item);
+        return itemListCopy;
     }
 }

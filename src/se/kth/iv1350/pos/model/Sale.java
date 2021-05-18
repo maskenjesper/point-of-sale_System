@@ -15,7 +15,7 @@ public class Sale {
     private final String dateAndTime;
     private final StoreInformation storeInformation;
     private final ItemTable itemTable;
-    private List<TotalRevenueObserver> totalRevenueObservers; // Stores observers
+    private List<TotalRevenueObserver> totalRevenueObservers;
 
     /**
      * Constructor for a Sale that initializes a new instance.
@@ -25,14 +25,14 @@ public class Sale {
         dateAndTime = Time.getCurrentSystemTime();
         paymentInformation = new PaymentInformation();
         storeInformation = new StoreInformation();
-        totalRevenueObservers = new ArrayList<>(); // Instansiates observer list
+        totalRevenueObservers = new ArrayList<>();
     }
 
     /**
      * Adds a totalRevenueObserver to the sale
      * @param totalRevenueObserver the observer to be added
      */
-    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) { // adds observer to this sale
+    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) {
         totalRevenueObservers.add(totalRevenueObserver);
     }
     
@@ -65,7 +65,7 @@ public class Sale {
      */
     public void addPayment(double amountPaid) {
         paymentInformation.calculatePayment(amountPaid);
-        notifyObservers(); // Notifies observers
+        notifyObservers();
     }
 
     /**
@@ -105,7 +105,7 @@ public class Sale {
     }
 
     private void notifyObservers() {
-        for (TotalRevenueObserver observer : totalRevenueObservers) // Notifies observers that state has changed
+        for (TotalRevenueObserver observer : totalRevenueObservers)
             observer.saleEnded(this.paymentInformation.getTotalPrice().getPrice());
     }
 }
