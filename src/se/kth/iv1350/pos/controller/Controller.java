@@ -71,7 +71,7 @@ public class Controller {
         } catch (DatabaseServerNotRunningException e) {
             System.out.println("DEVELOPER LOG: " + e.getMessage());
             e.printStackTrace();
-            throw new InventoryException("Inventory failure");
+            throw new InventoryException("Failure within Inventory");
         }
     }
 

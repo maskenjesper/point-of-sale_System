@@ -8,7 +8,7 @@ import se.kth.iv1350.pos.data.ItemRegistry;
  * Class used to interface between the application and an external system that handles inventory.
  */
 public class Inventory {
-    private ItemRegistry itemRegistry;
+    private final ItemRegistry itemRegistry;
 
     /**
      * Constructor that instantiates mockdata for showcasing.
