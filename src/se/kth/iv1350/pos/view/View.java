@@ -23,7 +23,7 @@ public class View {
      * functionality.
      */
     public void sampleExecution() {
-        controller.activateTotalRevenueView(new TotalRevenueView());
+        controller.addTotalRevenueObserver(new TotalRevenueView());
         performSaleV1();
         performSaleV2();
     }

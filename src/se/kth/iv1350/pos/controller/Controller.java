@@ -6,7 +6,6 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.model.TotalRevenueObserver;
-import se.kth.iv1350.pos.view.TotalRevenueView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +39,8 @@ public class Controller {
      * A system operation that activates the total revenue element in the view.
      * @param totalRevenueView observer to add
      */
-    public void activateTotalRevenueView(TotalRevenueView totalRevenueView) {
-        totalRevenueObservers.add(totalRevenueView);
+    public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) {
+        totalRevenueObservers.add(totalRevenueObserver);
     }
 
     /**
