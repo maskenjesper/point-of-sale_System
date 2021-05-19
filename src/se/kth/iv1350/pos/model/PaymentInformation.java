@@ -39,7 +39,7 @@ public class PaymentInformation {
      */
     void calculateDiscount(int customerID) {
         discountStrategy = discountFactory.createDiscountStrategy(customerID);
-        totalPrice = discountStrategy.calculate(this);
+        totalPrice = discountStrategy.calculate(totalPrice);
     }
 
     /**

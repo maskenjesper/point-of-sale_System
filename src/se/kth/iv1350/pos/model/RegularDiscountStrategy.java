@@ -8,11 +8,11 @@ import se.kth.iv1350.pos.DTO.PriceDTO;
 public class RegularDiscountStrategy implements DiscountStrategy {
 
     /**
-     * @param paymentInformation Information to base calculations on
+     * @param price Information to base calculations on
      * @return The modified Price
      */
     @Override
-    public PriceDTO calculate(PaymentInformation paymentInformation) {
-        return paymentInformation.getTotalPrice();
+    public PriceDTO calculate(PriceDTO price) {
+        return price;
     }
 }
