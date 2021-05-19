@@ -10,5 +10,5 @@ public interface DiscountStrategy {
     /**
      * Calculates the discount and applies it to the PaymentInformation object
      */
-    PriceDTO calculate(PaymentInformation paymentInformation);
+    PriceDTO calculate(PriceDTO price);
 }

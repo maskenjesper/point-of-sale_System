@@ -12,7 +12,7 @@ public class RegularDiscountStrategy implements DiscountStrategy {
      * @return The modified Price
      */
     @Override
-    public PriceDTO calculate(PaymentInformation paymentInformation) {
-        return paymentInformation.getTotalPrice();
+    public PriceDTO calculate(PriceDTO price) {
+        return price;
     }
 }

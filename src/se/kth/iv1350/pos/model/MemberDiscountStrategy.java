@@ -13,8 +13,8 @@ public class MemberDiscountStrategy implements DiscountStrategy {
      * @return The modified Price
      */
     @Override
-    public PriceDTO calculate(PaymentInformation paymentInformation) {
-        return new PriceDTO(paymentInformation.getTotalPrice().getPrice() * discountRate,
-                paymentInformation.getTotalPrice().getVAT() * discountRate);
+    public PriceDTO calculate(PriceDTO price) {
+        return new PriceDTO(price.getPrice() * discountRate,
+                price.getVAT() * discountRate);
     }
 }
