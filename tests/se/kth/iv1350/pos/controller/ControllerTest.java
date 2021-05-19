@@ -70,7 +70,7 @@ class ControllerTest {
             controller.addItemToSale(3, 1);
             fail("Exception was not thrown when invalid id was sent");
         } catch (Exception e) {
-            assertTrue(e instanceof InvalidItemIdentifierException);
+            assertTrue(e instanceof InvalidItemIdentifierException, "Wrong Exception type");
         }
     }
 
@@ -80,7 +80,7 @@ class ControllerTest {
             controller.addItemToSale(500, 1);
             fail("Exception was not thrown when database server wasn't running");
         } catch (Exception e) {
-            assertTrue(e instanceof InventoryException);
+            assertTrue(e instanceof InventoryException, "Wrong Exception type");
         }
     }
 

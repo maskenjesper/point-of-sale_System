@@ -60,7 +60,7 @@ class InventoryTest {
             inventory.getItemInfo(3);
             fail("Exception was not thrown when invalid identifier was sent");
         } catch (Exception e) {
-            assertTrue(e instanceof InvalidItemIdentifierException);
+            assertTrue(e instanceof InvalidItemIdentifierException, "Wrong Exception type");
         }
     }
 
@@ -70,7 +70,7 @@ class InventoryTest {
             inventory.getItemInfo(500);
             fail("Exception was not thrown when the database server wasn't running");
         } catch (Exception e) {
-            assertTrue(e instanceof DatabaseServerNotRunningException);
+            assertTrue(e instanceof DatabaseServerNotRunningException, "Wrong Exception type");
         }
     }
 
