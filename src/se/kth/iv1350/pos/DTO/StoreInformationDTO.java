@@ -1,18 +1,16 @@
-package se.kth.iv1350.pos.model;
-
-import se.kth.iv1350.pos.DTO.AddressDTO;
+package se.kth.iv1350.pos.DTO;
 
 /**
  * Stores information about the store
  */
-public class StoreInformation {
-    private String storeName;
-    private AddressDTO storeAddress;
+public class StoreInformationDTO {
+    private final String storeName;
+    private final AddressDTO storeAddress;
 
     /**
      * Constructs an instance containing mockdata.
      */
-    public StoreInformation() {
+    public StoreInformationDTO() {
         storeName = "Jakobs liv's";
         storeAddress = new AddressDTO("Gatuvägen", "Bostadsstaden", "Sverige", 12345);
     }

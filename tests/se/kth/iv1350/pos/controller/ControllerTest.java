@@ -44,7 +44,7 @@ class ControllerTest {
     void addItemToSaleTestItemDTO() throws Exception {
         SaleDTO saleDTO = createAndEndSaleWithTwoDifferentItems();
         ItemDTO expectedResult = new Inventory().getItemInfo(2);
-        ItemDTO actualResult = saleDTO.getItemTable().getLastItemInTable();
+        ItemDTO actualResult = saleDTO.getItemTableDTO().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Item wasn't added correctly");
     }
 
@@ -52,7 +52,7 @@ class ControllerTest {
     void addItemToSaleTestQuantity() {
         SaleDTO saleDTO = createSaleWithTwoSameItems();
         int expectedResult = 2;
-        int actualResult = saleDTO.getItemTable().getTable().get(0).getQuantity();
+        int actualResult = saleDTO.getItemTableDTO().getTable().get(0).getQuantity();
         assertEquals(expectedResult, actualResult, "Quantity was incorrect");
     }
 
@@ -60,7 +60,7 @@ class ControllerTest {
     void addItemToSaleTestRunningTotalIncludingVAT() {
         SaleDTO saleDTO = createSaleWithTwoSameItems();
         double expectedResult = 2 * 25 * 1.2;
-        double actualResult = saleDTO.getItemTable().getRunningTotalIncludingVAT();
+        double actualResult = saleDTO.getItemTableDTO().getRunningTotalIncludingVAT();
         assertEquals(expectedResult, actualResult, "Running total including VAT was incorrect");
     }
 
@@ -91,7 +91,7 @@ class ControllerTest {
     void endRegisteringTestTotalPriceOneItem() {
         SaleDTO saleDTO = createAndEndSaleWithOneItem();
         double expectedResult = 25 * 1.2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getPrice();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not calculated correctly");
     }
 
@@ -99,7 +99,7 @@ class ControllerTest {
     void endRegisteringTestTotalPriceTwoDifferentItems() {
         SaleDTO saleDTO = createAndEndSaleWithTwoDifferentItems();
         double expectedResult = 25 * 1.2 + 20 * 1.3;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getPrice();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not calculated correctly");
     }
 
@@ -107,7 +107,7 @@ class ControllerTest {
     void endRegisteringTestTotalVATOneItem() {
         SaleDTO saleDTO = createAndEndSaleWithOneItem();
         double expectedResult = 25 * 0.2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getVAT();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not calculated correctly");
     }
 
@@ -115,7 +115,7 @@ class ControllerTest {
     void endRegisteringTestTotalVATTwoDifferentItems() {
         SaleDTO saleDTO = createAndEndSaleWithTwoDifferentItems();
         double expectedResult = 25 * 0.2 + 20 * 0.3;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getVAT();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not calculated correctly");
     }
 
@@ -128,7 +128,7 @@ class ControllerTest {
         int eligibleCustomer = 123;
         SaleDTO saleDTO = controller.requestDiscount(eligibleCustomer);
         double expectedResult = 25 * 1.2 / 2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getPrice();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not correctly modified by discount");
     }
 
@@ -139,7 +139,7 @@ class ControllerTest {
         int eligibleCustomer = 123;
         SaleDTO saleDTO = controller.requestDiscount(eligibleCustomer);
         double expectedResult = 25 * 0.2 / 2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getVAT();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not correctly modified by discount");
     }
 
@@ -149,7 +149,7 @@ class ControllerTest {
         int ineligibleCustomer = 1;
         SaleDTO saleDTO = controller.requestDiscount(ineligibleCustomer);
         double expectedResult = 25 * 1.2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getPrice();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice();
         assertEquals(expectedResult, actualResult, "Total Price was not correctly modified by discount");
     }
 
@@ -159,7 +159,7 @@ class ControllerTest {
         int ineligibleCustomer = 1;
         SaleDTO saleDTO = controller.requestDiscount(ineligibleCustomer);
         double expectedResult = 25 * 0.2;
-        double actualResult = saleDTO.getPaymentInformation().getTotalPrice().getVAT();
+        double actualResult = saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT();
         assertEquals(expectedResult, actualResult, "Total VAT was not correctly modified by discount");
     }
 
@@ -172,7 +172,7 @@ class ControllerTest {
         double amountPaid = 1000;
         SaleDTO saleDTO = controller.addPayment(amountPaid);
         double expected = 1000;
-        double actual = saleDTO.getPaymentInformation().getAmountPaid();
+        double actual = saleDTO.getPaymentInformationDTO().getAmountPaid();
         assertEquals(expected, actual, "AmountPaid was not added correctly");
     }
 
@@ -182,7 +182,7 @@ class ControllerTest {
         double amountPaid = 1000;
         SaleDTO saleDTO = controller.addPayment(amountPaid);
         double expected = amountPaid - 25 * 1.2;
-        double actual = saleDTO.getPaymentInformation().getChange();
+        double actual = saleDTO.getPaymentInformationDTO().getChange();
         assertEquals(expected, actual, "Change was not calculated correctly");
     }
 

@@ -2,6 +2,7 @@ package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 import se.kth.iv1350.pos.DTO.SaleDTO;
+import se.kth.iv1350.pos.DTO.StoreInformationDTO;
 import se.kth.iv1350.pos.utility.Time;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 public class Sale {
     private final PaymentInformation paymentInformation;
     private final String dateAndTime;
-    private final StoreInformation storeInformation;
+    private final StoreInformationDTO storeInformationDTO;
     private final ItemTable itemTable;
     private List<TotalRevenueObserver> totalRevenueObservers;
 
@@ -24,7 +25,7 @@ public class Sale {
         itemTable = new ItemTable();
         dateAndTime = Time.getCurrentSystemTime();
         paymentInformation = new PaymentInformation();
-        storeInformation = new StoreInformation();
+        storeInformationDTO = new StoreInformationDTO();
         totalRevenueObservers = new ArrayList<>();
     }
 
@@ -93,8 +94,8 @@ public class Sale {
     /**
      * @return storeAddress attribute.
      */
-    public StoreInformation getStoreInformation() {
-        return storeInformation;
+    public StoreInformationDTO getStoreInformation() {
+        return storeInformationDTO;
     }
 
     /**

@@ -1,16 +1,16 @@
-package se.kth.iv1350.pos.model;
+package se.kth.iv1350.pos.DTO;
 
 /**
  * Represents a Price as the total amount and the amount of it that is VAT
  */
-public class Price {
-    private double price;
-    private double VAT;
+public class PriceDTO {
+    private final double price;
+    private final double VAT;
 
     /**
      * Default constructor
      */
-    public  Price() {
+    public PriceDTO() {
         price = 0;
         VAT = 0;
     }
@@ -20,24 +20,8 @@ public class Price {
      * @param price price attribute
      * @param VAT VAT attribute
      */
-    public Price(double price, double VAT) {
+    public PriceDTO(double price, double VAT) {
         this.price = price;
-        this.VAT = VAT;
-    }
-
-    /**
-     * Sets the price attribute
-     * @param price new price
-     */
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    /**
-     * Sets the VAT attribute
-     * @param VAT new VAT
-     */
-    public void setVAT(double VAT) {
         this.VAT = VAT;
     }
 

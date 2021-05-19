@@ -1,6 +1,7 @@
 package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.ItemDTO;
+import se.kth.iv1350.pos.DTO.ItemTableDTO;
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
 
 import java.util.ArrayList;
@@ -31,12 +32,8 @@ public class ItemTable {
         addEntryPriceToRunningTotal(newEntry);
     }
 
-    /**
-     * Gets the item type of the last entry in the table
-     * @return ItemDTO of the last entry
-     */
-    public ItemDTO getLastItemInTable() {
-        return table.get(table.size() - 1).getItemDTO();
+    public ItemTableDTO getItemTableDTO() {
+        return new ItemTableDTO(this);
     }
 
     public List<ItemTableEntryDTO> getTable() {

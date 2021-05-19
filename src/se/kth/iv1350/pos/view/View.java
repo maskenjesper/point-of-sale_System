@@ -1,13 +1,9 @@
 package se.kth.iv1350.pos.view;
 
-import se.kth.iv1350.pos.DTO.AddressDTO;
-import se.kth.iv1350.pos.DTO.ItemDTO;
-import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
-import se.kth.iv1350.pos.DTO.SaleDTO;
+import se.kth.iv1350.pos.DTO.*;
 import se.kth.iv1350.pos.controller.Controller;
 import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
 import se.kth.iv1350.pos.controller.InventoryException;
-import se.kth.iv1350.pos.model.ItemTable;
 
 /**
  * A placeholder class to represent the interface between the application and user. Used to call system operations.
@@ -27,6 +23,7 @@ public class View {
      * functionality.
      */
     public void sampleExecution() {
+        controller.activateTotalRevenueView(new TotalRevenueView());
         performSaleV1();
         performSaleV2();
     }
@@ -89,12 +86,12 @@ public class View {
     private void addItemToSale(int itemIdentifier, int quantity) {
         try {
             SaleDTO saleDTO = controller.addItemToSale(itemIdentifier, quantity);
-            System.out.println("Item added: " + saleDTO.getItemTable().getLastItemInTable().getName() +
-                    ": " + saleDTO.getItemTable().getLastItemInTable().getDescription() +
-                    "\nPrice: " + saleDTO.getItemTable().getLastItemInTable().getPrice() + " | VAT: " +
-                    saleDTO.getItemTable().getLastItemInTable().getVATRate() * 100 + "%" +
-                    "\nRunning total: " + saleDTO.getItemTable().getRunningTotalIncludingVAT() + " " +
-                    saleDTO.getItemTable().getLastItemInTable().getCurrency() + "\n");
+            System.out.println("Item added: " + saleDTO.getItemTableDTO().getLastItemInTable().getName() +
+                    ": " + saleDTO.getItemTableDTO().getLastItemInTable().getDescription() +
+                    "\nPrice: " + saleDTO.getItemTableDTO().getLastItemInTable().getPrice() + " | VAT: " +
+                    saleDTO.getItemTableDTO().getLastItemInTable().getVATRate() * 100 + "%" +
+                    "\nRunning total: " + saleDTO.getItemTableDTO().getRunningTotalIncludingVAT() + " " +
+                    saleDTO.getItemTableDTO().getLastItemInTable().getCurrency() + "\n");
         } catch (InventoryException e) {
             System.out.println("Inventory failure\n");
         } catch (InvalidItemIdentifierException e) {
@@ -104,31 +101,31 @@ public class View {
 
     private void endRegistering() {
         SaleDTO saleDTO = controller.endRegistering();
-        System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice()
+        System.out.println("Sale ended\nTotal price: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice()
                 + " SEK\n");
     }
 
     private void discountRequest(int customerID) {
         SaleDTO saleDTO = controller.requestDiscount(customerID);
-        System.out.println("Price after discount: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice()
+        System.out.println("Price after discount: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice()
                 + " SEK\n");
     }
 
     private void addPayment(double amountPaid) {
         SaleDTO saleDTO = controller.addPayment(amountPaid);
-        System.out.println("Change to give: " + saleDTO.getPaymentInformation().getChange() + "\n");
+        System.out.println("Change to give: " + saleDTO.getPaymentInformationDTO().getChange() + "\n");
         printReceipt(saleDTO);
     }
 
     private void printReceipt(SaleDTO saleDTO) {
         System.out.println("#################################- RECEIPT -#################################");
-        System.out.println("Totalt pris: " + saleDTO.getPaymentInformation().getTotalPrice().getPrice() +
-                "\nVarav VAT: " + saleDTO.getPaymentInformation().getTotalPrice().getVAT() + "\nBetalat: " +
-                saleDTO.getPaymentInformation().getAmountPaid() + "\nVäxel: " +
-                saleDTO.getPaymentInformation().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
-                "\nButik: " + saleDTO.getStoreInformation().getStoreName() + "\nAdress: " +
-                addressDTOToString(saleDTO.getStoreInformation().getStoreAddress()) + "\n" +
-                itemTableToString(saleDTO.getItemTable()));
+        System.out.println("Totalt pris: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice() +
+                "\nVarav VAT: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT() + "\nBetalat: " +
+                saleDTO.getPaymentInformationDTO().getAmountPaid() + "\nVäxel: " +
+                saleDTO.getPaymentInformationDTO().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
+                "\nButik: " + saleDTO.getStoreInformationDTO().getStoreName() + "\nAdress: " +
+                addressDTOToString(saleDTO.getStoreInformationDTO().getStoreAddress()) + "\n" +
+                itemTableDTOToString(saleDTO.getItemTableDTO()));
         System.out.println("#############################################################################");
     }
 
@@ -137,9 +134,9 @@ public class View {
                 addressDTO.getZIP();
     }
 
-    private String itemTableToString(ItemTable itemTable) {
+    private String itemTableDTOToString(ItemTableDTO itemTableDTO) {
         StringBuilder sb = new StringBuilder();
-        for (ItemTableEntryDTO entry:itemTable.getTable())
+        for (ItemTableEntryDTO entry:itemTableDTO.getTable())
             sb.append("| " + entry.getQuantity() + "st " + itemDTOToString(entry.getItemDTO()) + "\n");
         return sb.toString();
     }

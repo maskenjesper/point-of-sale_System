@@ -1,43 +1,40 @@
 package se.kth.iv1350.pos.DTO;
 
-import se.kth.iv1350.pos.model.ItemTable;
-import se.kth.iv1350.pos.model.PaymentInformation;
 import se.kth.iv1350.pos.model.Sale;
-import se.kth.iv1350.pos.model.StoreInformation;
 
 /**
  * DTO for the Sale class.
  */
 public class SaleDTO {
-    private final PaymentInformation paymentInformation;
+    private final PaymentInformationDTO paymentInformationDTO;
     private final String dateAndTime;
-    private final StoreInformation storeInformation;
-    private final ItemTable itemTable;
+    private final StoreInformationDTO storeInformationDTO;
+    private final ItemTableDTO itemTableDTO;
 
     /**
      * Constructor that builds the DTO from given Sale object.
      * @param sale Sale object to build from.
      */
     public SaleDTO(Sale sale) {
-        paymentInformation = sale.getPaymentInformation();
+        paymentInformationDTO = sale.getPaymentInformation().getPaymentInformationDTO();
         dateAndTime = sale.getDateAndTime();
-        storeInformation = sale.getStoreInformation();
-        itemTable = sale.getItemTable();
+        storeInformationDTO = sale.getStoreInformation();
+        itemTableDTO = sale.getItemTable().getItemTableDTO();
     }
 
-    public PaymentInformation getPaymentInformation() {
-        return paymentInformation;
+    public PaymentInformationDTO getPaymentInformationDTO() {
+        return paymentInformationDTO;
     }
 
     public String getDateAndTime() {
         return dateAndTime;
     }
 
-    public StoreInformation getStoreInformation() {
-        return storeInformation;
+    public StoreInformationDTO getStoreInformationDTO() {
+        return storeInformationDTO;
     }
 
-    public ItemTable getItemTable() {
-        return itemTable;
+    public ItemTableDTO getItemTableDTO() {
+        return itemTableDTO;
     }
 }

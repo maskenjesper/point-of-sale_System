@@ -6,7 +6,6 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.model.TotalRevenueObserver;
-import se.kth.iv1350.pos.integration.TotalRevenueFileOutput;
 import se.kth.iv1350.pos.view.TotalRevenueView;
 
 import java.util.ArrayList;
@@ -34,8 +33,15 @@ public class Controller {
         receiptPrinter = new ReceiptPrinter();
         cashRegister = new CashRegister();
         totalRevenueObservers = new ArrayList<>();
-        totalRevenueObservers.add(new TotalRevenueView());
         totalRevenueObservers.add(new TotalRevenueFileOutput());
+    }
+
+    /**
+     * A system operation that activates the total revenue element in the view.
+     * @param totalRevenueView observer to add
+     */
+    public void activateTotalRevenueView(TotalRevenueView totalRevenueView) {
+        totalRevenueObservers.add(totalRevenueView);
     }
 
     /**

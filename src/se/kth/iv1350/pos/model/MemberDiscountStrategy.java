@@ -1,5 +1,7 @@
 package se.kth.iv1350.pos.model;
 
+import se.kth.iv1350.pos.DTO.PriceDTO;
+
 /**
  * A strategy for applying a discount on a sale made by a member
  */
@@ -11,8 +13,8 @@ public class MemberDiscountStrategy implements DiscountStrategy {
      * @return The modified Price
      */
     @Override
-    public Price calculate(PaymentInformation paymentInformation) {
-        return new Price(paymentInformation.getTotalPrice().getPrice() * discountRate,
+    public PriceDTO calculate(PaymentInformation paymentInformation) {
+        return new PriceDTO(paymentInformation.getTotalPrice().getPrice() * discountRate,
                 paymentInformation.getTotalPrice().getVAT() * discountRate);
     }
 }

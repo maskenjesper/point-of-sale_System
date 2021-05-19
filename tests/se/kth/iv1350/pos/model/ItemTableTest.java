@@ -89,7 +89,7 @@ class ItemTableTest {
         itemTable.add(itemTableEntryDTOOther);
         itemTable.add(itemTableEntryDTO);
         ItemDTO expectedResult = itemTableEntryDTO.getItemDTO();
-        ItemDTO actualResult = itemTable.getLastItemInTable();
+        ItemDTO actualResult = itemTable.getItemTableDTO().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Entry was not moved to last place in table after having it's quantity increased");
     }
 
@@ -101,7 +101,7 @@ class ItemTableTest {
         itemTable.add(itemTableEntryDTO);
         itemTable.add(itemTableEntryDTOOther);
         ItemDTO expectedResult = itemTableEntryDTOOther.getItemDTO();
-        ItemDTO actualResult = itemTable.getLastItemInTable();
+        ItemDTO actualResult = itemTable.getItemTableDTO().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Didn't get last ItemDTO in the table");
     }
 }

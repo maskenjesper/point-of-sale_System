@@ -45,7 +45,7 @@ class SaleTest {
     void addItemTestTableOneItem() {
         sale.addItem(testEntry);
         ItemDTO expectedResult = testItem;
-        ItemDTO actualResult = sale.getItemTable().getLastItemInTable();
+        ItemDTO actualResult = sale.getItemTable().getItemTableDTO().getLastItemInTable();
         assertEquals(expectedResult, actualResult, "Item was not added to the table of sale");
     }
 

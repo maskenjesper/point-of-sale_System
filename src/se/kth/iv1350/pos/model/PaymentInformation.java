@@ -1,12 +1,14 @@
 package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.DTO.ItemTableEntryDTO;
+import se.kth.iv1350.pos.DTO.PaymentInformationDTO;
+import se.kth.iv1350.pos.DTO.PriceDTO;
 
 /**
  * Stores the payment related data for a sale and contains methods related to these.
  */
 public class PaymentInformation {
-    private Price totalPrice;
+    private PriceDTO totalPrice;
     private double amountPaid;
     private double change;
     private DiscountStrategy discountStrategy;
@@ -16,7 +18,7 @@ public class PaymentInformation {
      * Constructs initial payment info
      */
     public PaymentInformation() {
-        totalPrice = new Price();
+        totalPrice = new PriceDTO();
         amountPaid = 0;
         change = 0;
         discountFactory = new DiscountFactory();
@@ -27,7 +29,7 @@ public class PaymentInformation {
      * @param itemTable contains the information that the calculations are based on.
      */
     void calculatePrice(ItemTable itemTable) {
-        totalPrice.setPrice(itemTable.getRunningTotalIncludingVAT());
+        totalPrice = new PriceDTO(itemTable.getRunningTotalIncludingVAT(), totalPrice.getVAT());
         calculateVAT(itemTable);
     }
 
@@ -49,7 +51,11 @@ public class PaymentInformation {
         change = amountPaid - totalPrice.getPrice();
     }
 
-    public Price getTotalPrice() {
+    public PaymentInformationDTO getPaymentInformationDTO() {
+        return new PaymentInformationDTO(this);
+    }
+
+    public PriceDTO getTotalPrice() {
         return totalPrice;
     }
 
@@ -63,7 +69,7 @@ public class PaymentInformation {
 
     private void calculateVAT(ItemTable itemTable) {
         for (ItemTableEntryDTO entry : itemTable.getTable())
-            totalPrice.setVAT(totalPrice.getVAT() + entry.getItemDTO().getPrice() * entry.getQuantity() *
-                    entry.getItemDTO().getVATRate());
+            totalPrice = new PriceDTO(totalPrice.getPrice(), totalPrice.getVAT() +
+                    entry.getItemDTO().getPrice() * entry.getQuantity() * entry.getItemDTO().getVATRate());
     }
 }
