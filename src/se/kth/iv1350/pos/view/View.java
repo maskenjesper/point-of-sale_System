@@ -114,35 +114,5 @@ public class View {
     private void addPayment(double amountPaid) {
         SaleDTO saleDTO = controller.addPayment(amountPaid);
         System.out.println("Change to give: " + saleDTO.getPaymentInformationDTO().getChange() + "\n");
-        printReceipt(saleDTO);
-    }
-
-    private void printReceipt(SaleDTO saleDTO) {
-        System.out.println("#################################- RECEIPT -#################################");
-        System.out.println("Totalt pris: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getPrice() +
-                "\nVarav VAT: " + saleDTO.getPaymentInformationDTO().getTotalPrice().getVAT() + "\nBetalat: " +
-                saleDTO.getPaymentInformationDTO().getAmountPaid() + "\nVäxel: " +
-                saleDTO.getPaymentInformationDTO().getChange() + "\nDatum och tid: " + saleDTO.getDateAndTime() +
-                "\nButik: " + saleDTO.getStoreInformationDTO().getStoreName() + "\nAdress: " +
-                addressDTOToString(saleDTO.getStoreInformationDTO().getStoreAddress()) + "\n" +
-                itemTableDTOToString(saleDTO.getItemTableDTO()));
-        System.out.println("#############################################################################");
-    }
-
-    private String addressDTOToString(AddressDTO addressDTO) {
-        return addressDTO.getStreet() + ", " + addressDTO.getCity() + ", " + addressDTO.getCountry() + ", " +
-                addressDTO.getZIP();
-    }
-
-    private String itemTableDTOToString(ItemTableDTO itemTableDTO) {
-        StringBuilder sb = new StringBuilder();
-        for (ItemTableEntryDTO entry:itemTableDTO.getTable())
-            sb.append("| " + entry.getQuantity() + "st " + itemDTOToString(entry.getItemDTO()) + "\n");
-        return sb.toString();
-    }
-
-    private String itemDTOToString(ItemDTO itemDTO) {
-        return "| " + itemDTO.getPrice() + itemDTO.getCurrency() + " (VAT: " + itemDTO.getVATRate() * 100 + "%) | " +
-                itemDTO.getName() + ": " + itemDTO.getDescription() + " | ID: " + itemDTO.getIdentifier() + " |";
     }
 }
