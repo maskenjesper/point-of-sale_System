@@ -191,39 +191,37 @@ class ViewTest {
         assertTrue(printout.contains(expectedOutput));
     }
 
-    @Disabled
     @Test
     void sampleExecutionReceipt1() {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
-        String expectedOutput = "#################################- RECEIPT -#################################\n" +
-                                "se.kth.iv1350.pos.integration.DatabaseServerNotRunningException: The database server is not running\n" +
-                                "\tat se.kth.iv1350.pos.integration.Inventory.getItemInfo(Inventory.java:29)\n" +
-                                "\tat se.kth.iv1350.pos.controller.Controller.addItemToSale(Controller.java:68)\n" +
-                                "\tat se.kth.iv1350.pos.view.View.addItemToSale(View.java:88)\n" +
-                                "\tat se.kth.iv1350.pos.view.View.performSaleV1(View.java:51)\n" +
-                                "\tat se.kth.iv1350.pos.view.View.sampleExecution(View.java:27)\n" +
-                                "\tat se.kth.iv1350.pos.startup.Main.main(Main.java:16)\n" +
-                                "Totalt pris: 635.0\n" +
+        String expectedOutput = "Totalt pris: 635.0\n" +
                                 "Varav VAT: 122.5\n" +
                                 "Betalat: 2000.0\n" +
                                 "Växel: 1365.0\n" +
-                                "Datum och tid: 2021/05/21 18:03:43\n" +
-                                "Butik: Jakobs liv's\n" +
-                                "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
-                                "| 20st | 20.0SEK (VAT: 30.0%) | Levain: Nybakat surdegsbröd | ID: 2 |\n" +
-                                "| 25st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n" +
-                                "\n" +
-                                "#############################################################################";
+                                "Datum och tid: ";
+        assertTrue(printout.contains(expectedOutput));
+        expectedOutput = "Butik: Jakobs liv's\n" +
+                        "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
+                        "| 20st | 20.0SEK (VAT: 30.0%) | Levain: Nybakat surdegsbröd | ID: 2 |\n" +
+                        "| 25st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n";
         assertTrue(printout.contains(expectedOutput));
     }
 
-    @Disabled
     @Test
     void sampleExecutionReceipt2() {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
-        String expectedOutput = "#################################- RECEIPT -#################################\n";
+        String expectedOutput = "Totalt pris: 56.0\n" +
+                                "Varav VAT: 11.0\n" +
+                                "Betalat: 2000.0\n" +
+                                "Växel: 1944.0\n" +
+                                "Datum och tid: ";
+        assertTrue(printout.contains(expectedOutput));
+        expectedOutput = "Butik: Jakobs liv's\n" +
+                        "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
+                        "| 1st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n" +
+                        "| 1st | 20.0SEK (VAT: 30.0%) | Levain: Nybakat surdegsbröd | ID: 2 |\n";
         assertTrue(printout.contains(expectedOutput));
     }
 }
