@@ -16,6 +16,6 @@ public class TotalRevenueView extends ShowTotalRevenueObserver {
 
     @Override
     protected void handleErrors(Exception e) {
-
+        e.printStackTrace();
     }
 }

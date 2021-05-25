@@ -13,15 +13,22 @@ import java.io.PrintWriter;
 public class TotalRevenueFileOutput extends ShowTotalRevenueObserver {
     private PrintWriter logStream;
 
+    public TotalRevenueFileOutput() {
+        try {
+            logStream = new PrintWriter(new FileWriter("total_revenue_log.txt"), true);
+        } catch (IOException e) {
+            System.out.println("CAN NOT LOG");
+            e.printStackTrace();
+        }
+    }
+
     @Override
-    protected void doShowTotalRevenue() throws IOException {
-        logStream = new PrintWriter(new FileWriter("total_revenue_log.txt"), true);
+    protected void doShowTotalRevenue() {
         logStream.println(totalRevenue);
     }
 
     @Override
     protected void handleErrors(Exception e) {
-        System.out.println("CAN NOT LOG");
         e.printStackTrace();
     }
 }
