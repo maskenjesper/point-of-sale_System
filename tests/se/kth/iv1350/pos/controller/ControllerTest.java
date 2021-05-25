@@ -8,6 +8,9 @@ import se.kth.iv1350.pos.DTO.SaleDTO;
 import se.kth.iv1350.pos.integration.InvalidItemIdentifierException;
 import se.kth.iv1350.pos.integration.Inventory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -80,6 +83,26 @@ class ControllerTest {
             controller.addItemToSale(500, 1);
             fail("Exception was not thrown when database server wasn't running");
         } catch (Exception e) {
+            assertTrue(e instanceof InventoryException, "Wrong Exception type");
+        }
+    }
+
+    @Test
+    void addItemToSaleTestDatabaseServerNotRunningErrorMessage() {
+        ByteArrayOutputStream printoutBuffer;
+        PrintStream originalSysOut;
+        printoutBuffer = new ByteArrayOutputStream();
+        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
+        originalSysOut = System.out;
+        System.setOut(inMemSysOut);
+        try {
+            controller.addItemToSale(500, 1);
+            System.setOut(originalSysOut);
+            fail("Exception was not thrown when database server wasn't running");
+        } catch (Exception e) {
+            String printout = printoutBuffer.toString();
+            String expectedOutput = "DEVELOPER LOG: The database server is not running";
+            assertTrue(printout.contains(expectedOutput));
             assertTrue(e instanceof InventoryException, "Wrong Exception type");
         }
     }
