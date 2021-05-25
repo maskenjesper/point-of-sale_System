@@ -1,7 +1,7 @@
 package se.kth.iv1350.pos.model;
 
 /**
- * An observer interface for observers concerned with tracking total price of paid sales
+ * An abstract class that implements TotalRevenueObserver related to showing total revenue.
  */
 public abstract class ShowTotalRevenueObserver implements TotalRevenueObserver {
     protected double totalRevenue = 0;
@@ -23,7 +23,15 @@ public abstract class ShowTotalRevenueObserver implements TotalRevenueObserver {
         }
     }
 
+    /**
+     * Shows total revenue
+     * @throws Exception general exception
+     */
     protected abstract void doShowTotalRevenue() throws Exception;
 
+    /**
+     * Handles general exceptions
+     * @param e general exception
+     */
     protected abstract void handleErrors(Exception e);
 }

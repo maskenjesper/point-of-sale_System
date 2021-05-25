@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * A observer class that implements the TotalRevenueObserver interface. Used for observing the totalPrice of ended
- * Sale objects and adding these. This observer prints the totalRevenue to a file.
+ * A observer class that implements the ShowTotalRevenueObserver abstract class. Writes total revenue to file.
  */
 public class TotalRevenueFileOutput extends ShowTotalRevenueObserver {
     private PrintWriter logStream;
 
+    /**
+     * Constructor that instantiates writing to file and handles possible exceptions
+     */
     public TotalRevenueFileOutput() {
         try {
             logStream = new PrintWriter(new FileWriter("total_revenue_log.txt"), true);
@@ -22,11 +24,18 @@ public class TotalRevenueFileOutput extends ShowTotalRevenueObserver {
         }
     }
 
+    /**
+     * Writes total revenue to file
+     */
     @Override
     protected void doShowTotalRevenue() {
         logStream.println(totalRevenue);
     }
 
+    /**
+     * Handles general exception
+     * @param e general exception
+     */
     @Override
     protected void handleErrors(Exception e) {
         e.printStackTrace();

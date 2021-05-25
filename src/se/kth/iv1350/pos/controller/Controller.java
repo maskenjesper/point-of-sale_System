@@ -37,7 +37,7 @@ public class Controller {
 
     /**
      * A system operation that activates the total revenue element in the view.
-     * @param totalRevenueView observer to add
+     * @param totalRevenueObserver observer to add
      */
     public void addTotalRevenueObserver(TotalRevenueObserver totalRevenueObserver) {
         totalRevenueObservers.add(totalRevenueObserver);
