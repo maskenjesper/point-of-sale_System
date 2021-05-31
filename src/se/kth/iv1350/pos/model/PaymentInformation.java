@@ -11,7 +11,6 @@ public class PaymentInformation {
     private PriceDTO totalPrice;
     private double amountPaid;
     private double change;
-    private DiscountStrategy discountStrategy;
     private DiscountFactory discountFactory;
 
     /**
@@ -38,8 +37,7 @@ public class PaymentInformation {
      * @param customerID ID of the customer.
      */
     void calculateDiscount(int customerID) {
-        discountStrategy = discountFactory.createDiscountStrategy(customerID);
-        totalPrice = discountStrategy.calculate(totalPrice);
+        totalPrice = discountFactory.createDiscountStrategy(customerID).calculate(totalPrice);
     }
 
     /**

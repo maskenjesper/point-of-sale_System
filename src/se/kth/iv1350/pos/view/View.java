@@ -16,6 +16,7 @@ public class View {
      */
     public View() {
         controller = new Controller();
+        controller.addTotalRevenueObserver(new TotalRevenueView());
     }
 
     /**
@@ -23,7 +24,6 @@ public class View {
      * functionality.
      */
     public void sampleExecution() {
-        controller.addTotalRevenueObserver(new TotalRevenueView());
         performSaleV1();
         performSaleV2();
     }
