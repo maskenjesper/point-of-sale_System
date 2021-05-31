@@ -89,15 +89,9 @@ class ControllerTest {
 
     @Test
     void addItemToSaleTestDatabaseServerNotRunningErrorMessage() {
-        ByteArrayOutputStream printoutBuffer;
-        PrintStream originalSysOut;
-        printoutBuffer = new ByteArrayOutputStream();
-        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
-        originalSysOut = System.out;
-        System.setOut(inMemSysOut);
+        ByteArrayOutputStream printoutBuffer = setupPrintoutBuffer();
         try {
             controller.addItemToSale(500, 1);
-            System.setOut(originalSysOut);
             fail("Exception was not thrown when database server wasn't running");
         } catch (Exception e) {
             String printout = printoutBuffer.toString();
@@ -105,6 +99,7 @@ class ControllerTest {
             assertTrue(printout.contains(expectedOutput));
             assertTrue(e instanceof InventoryException, "Wrong Exception type");
         }
+        teardownPrintoutBuffer();
     }
 
     //////////////////////////////////////////
@@ -243,6 +238,18 @@ class ControllerTest {
             fail("Exception was thrown when constructing valid test sale");
         }
         return null;
+    }
+
+    private ByteArrayOutputStream setupPrintoutBuffer() {
+        ByteArrayOutputStream printoutBuffer;
+        printoutBuffer = new ByteArrayOutputStream();
+        PrintStream inMemSysOut = new PrintStream(printoutBuffer);
+        System.setOut(inMemSysOut);
+        return printoutBuffer;
+    }
+
+    private void teardownPrintoutBuffer() {
+        System.setOut(System.out);
     }
 }
 
