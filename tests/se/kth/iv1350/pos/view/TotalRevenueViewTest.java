@@ -38,6 +38,6 @@ class TotalRevenueViewTest {
         String expectedOutput = "######## TotalRevenueView output ########\n" +
                                 " total revenue:100.0\n" +
                                 "#########################################";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct total revenue output was not displayed");
     }
 }

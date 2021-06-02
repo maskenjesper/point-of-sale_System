@@ -92,12 +92,10 @@ class ControllerTest {
         ByteArrayOutputStream printoutBuffer = setupPrintoutBuffer();
         try {
             controller.addItemToSale(500, 1);
-            fail("Exception was not thrown when database server wasn't running");
         } catch (Exception e) {
             String printout = printoutBuffer.toString();
             String expectedOutput = "DEVELOPER LOG: The database server is not running";
-            assertTrue(printout.contains(expectedOutput));
-            assertTrue(e instanceof InventoryException, "Wrong Exception type");
+            assertTrue(printout.contains(expectedOutput), "The correct developer log output was not displayed");
         }
         teardownPrintoutBuffer();
     }

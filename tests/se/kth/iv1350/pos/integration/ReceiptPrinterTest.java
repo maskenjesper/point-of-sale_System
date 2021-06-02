@@ -52,10 +52,11 @@ class ReceiptPrinterTest {
                                 "Betalat: 100.0\n" +
                                 "Växel: 70.0\n" +
                                 "Datum och tid: ";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct output for first half of receipt was not displayed");
         expectedOutput = "Butik: Jakobs liv's\n" +
-                        "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345";
-        assertTrue(printout.contains(expectedOutput));
+                        "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
+                        "| 1st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n";
+        assertTrue(printout.contains(expectedOutput), "The correct output for second half of receipt was not displayed");
     }
 
     //////////////////////////////

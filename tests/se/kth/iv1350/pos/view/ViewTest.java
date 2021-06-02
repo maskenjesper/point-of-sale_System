@@ -44,7 +44,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "START SALE:";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct start sale output was not displayed");
     }
 
     @Test
@@ -54,7 +54,7 @@ class ViewTest {
         String expectedOutput = "Item added: Mjölk: Naturens sportdryck\n" +
                                 "Price: 25.0 | VAT: 20.0%\n" +
                                 "Running total: 600.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -64,7 +64,7 @@ class ViewTest {
         String expectedOutput = "Item added: Levain: Nybakat surdegsbröd\n" +
                                 "Price: 20.0 | VAT: 30.0%\n" +
                                 "Running total: 1120.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -74,7 +74,7 @@ class ViewTest {
         String expectedOutput = "Item added: Mjölk: Naturens sportdryck\n" +
                                 "Price: 25.0 | VAT: 20.0%\n" +
                                 "Running total: 1270.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -82,7 +82,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Invalid item identifier: 3";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -90,7 +90,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Inventory failure";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -99,7 +99,7 @@ class ViewTest {
         String printout = printoutBuffer.toString();
         String expectedOutput = "Sale ended\n" +
                                 "Total price: 1270.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct end registering output was not displayed");
     }
 
     @Test
@@ -107,14 +107,14 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Price after discount: 1270.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct request discount output was not displayed");
     }
     @Test
     void sampleExecutionV1RequestDiscountValid() {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Price after discount: 635.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct request discount output was not displayed");
     }
 
     @Test
@@ -122,7 +122,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Change to give: 1365.0";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add payment output was not displayed");
     }
 
     @Test
@@ -130,7 +130,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "START SALE:";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct start sale output was not displayed");
     }
 
     @Test
@@ -140,7 +140,7 @@ class ViewTest {
         String expectedOutput = "Item added: Mjölk: Naturens sportdryck\n" +
                                 "Price: 25.0 | VAT: 20.0%\n" +
                                 "Running total: 30.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -150,7 +150,7 @@ class ViewTest {
         String expectedOutput = "Item added: Levain: Nybakat surdegsbröd\n" +
                                 "Price: 20.0 | VAT: 30.0%\n" +
                                 "Running total: 56.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add item output was not displayed");
     }
 
     @Test
@@ -159,7 +159,7 @@ class ViewTest {
         String printout = printoutBuffer.toString();
         String expectedOutput = "Sale ended\n" +
                                 "Total price: 56.0 SEK";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct end registering output was not displayed");
     }
 
     @Test
@@ -167,7 +167,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "Change to give: 1944.0";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct add payment output was not displayed");
     }
 
     @Test
@@ -177,7 +177,7 @@ class ViewTest {
         String expectedOutput = "######## TotalRevenueView output ########\n" +
                                 " total revenue:635.0\n" +
                                 "#########################################";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct total revenue output was not displayed");
     }
 
     @Test
@@ -187,7 +187,7 @@ class ViewTest {
         String expectedOutput = "######## TotalRevenueView output ########\n" +
                                 " total revenue:691.0\n" +
                                 "#########################################";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct total revenue output was not displayed");
     }
 
     @Test
@@ -195,7 +195,7 @@ class ViewTest {
         instanceToTest.sampleExecution();
         String printout = printoutBuffer.toString();
         String expectedOutput = "DEVELOPER LOG: The database server is not running";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct developer log output was not displayed");
     }
 
     @Test
@@ -207,12 +207,12 @@ class ViewTest {
                                 "Betalat: 2000.0\n" +
                                 "Växel: 1365.0\n" +
                                 "Datum och tid: ";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct output for first half of receipt was not displayed");
         expectedOutput = "Butik: Jakobs liv's\n" +
                         "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
                         "| 20st | 20.0SEK (VAT: 30.0%) | Levain: Nybakat surdegsbröd | ID: 2 |\n" +
                         "| 25st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct output for second half of receipt was not displayed");
     }
 
     @Test
@@ -224,11 +224,11 @@ class ViewTest {
                                 "Betalat: 2000.0\n" +
                                 "Växel: 1944.0\n" +
                                 "Datum och tid: ";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct output for first half of receipt was not displayed");
         expectedOutput = "Butik: Jakobs liv's\n" +
                         "Adress: Gatuvägen, Bostadsstaden, Sverige, 12345\n" +
                         "| 1st | 25.0SEK (VAT: 20.0%) | Mjölk: Naturens sportdryck | ID: 1 |\n" +
                         "| 1st | 20.0SEK (VAT: 30.0%) | Levain: Nybakat surdegsbröd | ID: 2 |\n";
-        assertTrue(printout.contains(expectedOutput));
+        assertTrue(printout.contains(expectedOutput), "The correct output for second half of receipt was not displayed");
     }
 }
